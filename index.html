@@ -6,19 +6,86 @@
   <title>The Johnson Firm | Confidential Legal Counsel</title>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <style>
+    .navbar {
+      background: #0e0e0e;
+      color: #f1f1f1;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid #222;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-links a {
+      margin-left: 10px;
+      padding: 10px 16px;
+      background: #4263eb;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 4px 0;
+    }
+
+    @media screen and (max-width: 600px) {
+      .nav-links a {
+        margin: 5px 0;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #0e0e0e;
+        border: 1px solid #444;
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+    }
+  </style>
 </head>
 <body style="margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0e0e0e; color: #f1f1f1; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh;">
 
   <!-- Navbar -->
-  <nav style="background: #0e0e0e; color: #f1f1f1; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222;">
+  <nav class="navbar">
     <div style="font-weight: 600; font-size: 1.2em; letter-spacing: 1px;">J | F</div>
-    <div>
-      <a href="/packs.html" style="margin-right: 10px; padding: 10px 16px; background: #4263eb; color: #fff; text-decoration: none; border-radius: 5px; font-weight: 500;">
-        Templates
-      </a>
-      <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/thejohnsonfirm/privacy'}); return false;" style="margin-left: 10px; padding: 10px 16px; background: #4263eb; color: #fff; text-decoration: none; border-radius: 5px; font-weight: 500;">
-        Request Counsel
-      </a>
+    <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="nav-links">
+      <a href="/packs.html">Templates</a>
+      <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/thejohnsonfirm/privacy'}); return false;">Request Counsel</a>
     </div>
   </nav>
 
