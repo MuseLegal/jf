@@ -5,18 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Templates | The Johnson Firm</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .navbar {
+      background: #0e0e0e;
+      color: #f1f1f1;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid #222;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+    .nav-links a {
+      padding: 10px 16px;
+      border-radius: 5px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+   .nav-links .pricing {
+  background: none;
+  border: none;
+  color: #f1f1f1;
+  padding: 10px 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+    .nav-links .request {
+      background: #4263eb;
+      color: #fff;
+    }
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #0e0e0e;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        border: 1px solid #222;
+        padding: 10px;
+        z-index: 1000;
+      }
+      .nav-links a {
+        margin: 5px 0;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .burger {
+        display: flex;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      links.classList.toggle('active');
+    }
+  </script>
+  <script>
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.classList.toggle('active');
+  }
+
+  // Close burger menu when clicking outside or on a nav link
+  document.addEventListener('click', function(event) {
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    const clickedInsideMenu = navLinks.contains(event.target) || burger.contains(event.target);
+
+    if (!clickedInsideMenu) {
+      navLinks.classList.remove('active');
+    }
+
+    // Optional: auto-close when clicking a link (especially helpful on mobile)
+    if (event.target.closest('.nav-links a')) {
+      navLinks.classList.remove('active');
+    }
+  });
+</script>
 </head>
 <body style="margin: 0; font-family: 'Inter', sans-serif; background: #0e0e0e; color: #f1f1f1; line-height: 1.6;">
 
   <!-- Navbar -->
-  <nav style="background: #0e0e0e; color: #f1f1f1; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #222;">
+  <nav class="navbar">
     <div style="font-weight: 600; font-size: 1.2em; letter-spacing: 1px;">Black Vault</div>
-    <div>
-      <a href="index.html" style="margin-left: 10px; padding: 10px 16px; background: #4263eb; color: #fff; text-decoration: none; border-radius: 5px; font-weight: 500;">
-        Request Counsel
-      </a>
+    <div class="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="nav-links">
+      <a href="#pricing" class="pricing">Pricing</a>
+      <a href="index.html" class="request">Request Counsel</a>
     </div>
   </nav>
+
+  <!-- Your existing content starts here -->
+  <!-- Keep everything else the same -->
 
   <!-- Hero -->
 <section style="padding: 80px 20px; text-align: center; background: linear-gradient(to right, #121212, #1e1e1e); border-bottom: 1px solid #222;">
@@ -37,10 +142,8 @@
   </div>
 </section>
 
-
-
-    <!-- Pricing -->
-  <section style="padding: 4rem 2rem; background-color: #0e0e0e;">
+<!-- Pricing -->
+  <section id="pricing" style="padding: 4rem 2rem; background-color: #0e0e0e;">
     <h2 style="text-align: center; font-size: 2rem; color: #f1f1f1; margin-bottom: 2rem;">🔓 Access Granted.</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
 
@@ -134,6 +237,36 @@
 </div>
 </section>
 
+ <!-- Pack Comparison Grid -->
+<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
+  <h2 style="font-size: 1.8em; margin-bottom: 2rem;">🤔 Compare the Business Packs</h2>
+  <div style="overflow-x: auto;">
+    <table style="border-collapse: separate; border-spacing: 0; min-width: 600px; margin: 0 auto; font-size: 0.95em; border: 1px solid #222; border-radius: 10px; overflow: hidden;">
+      <thead>
+        <tr style="background-color: #121212;">
+          <th style="padding: 12px 16px; text-align: left; border-bottom: 1px solid #222;">Included</th>
+          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Setup</th>
+          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Operating</th>
+          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding: 10px 16px; text-align: left;">Single-Member Operating Agreement</td><td style="color: #4263eb;">✓</td></td><td style="color: #4263eb;">✓</td></td><td style="color: #4263eb;">✓</td>
+        <tr><td style="padding: 10px 16px; text-align: left;">Multi-Member Operating Agreement</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Articles of Organization (generic)</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">EIN Application Instructions</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Mutual NDA</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Independent Contractor Agreement</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Simple Client Services Agreement</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Founders Agreement / Equity MOU</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">IP Assignment Agreement</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">One-Page Consulting Terms</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Referral Agreement</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px; text-align: left;">Licensing Agreement (lightweight)</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section> 
 <p style="font-size: 0.9em; color: #999; max-width: 700px; margin: 3rem auto 0 auto;">
   ⚠️ <strong>Legal Disclaimer:</strong> These templates are for general informational purposes only and do not constitute legal advice or create an attorney-client relationship. Consult a licensed attorney in your jurisdiction for advice specific to your situation.
 </p>
@@ -143,7 +276,7 @@
   <p style="color: #ccc; font-size: 1em; margin-bottom: 1.5em; max-width: 600px; margin: 0 auto;">
     Legal services for DC and MN residents are available separately through J|F.
   </p>
-  <a href="https://calendly.com/thejohnsonfirm/privacy" style="padding: 0.75rem 1.5rem; background-color: #4263eb; color: white; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; margin-top: 1.5rem;">
+  <a href="/index.html" style="padding: 0.75rem 1.5rem; background-color: #4263eb; color: white; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; margin-top: 1.5rem;">
     Request Legal Counsel
   </a>
 </section>
