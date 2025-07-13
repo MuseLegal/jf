@@ -76,15 +76,10 @@
 
     #rotating-word {
   display: inline-block;
-  transition: opacity 1.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
   </style>
-  <script>
-    function toggleMenu() {
-      const links = document.querySelector('.nav-links');
-      links.classList.toggle('active');
-    }
-  </script>
+ 
   <script>
   function toggleMenu() {
     const links = document.querySelector('.nav-links');
@@ -131,36 +126,20 @@
   <!-- Hero -->
 <section style="padding: 80px 20px; text-align: center; background: linear-gradient(to right, #121212, #1e1e1e); border-bottom: 1px solid #222;">
   <h1 style="font-size: 2.5em; font-weight: 600; margin-bottom: 10px; color: #ffffff;">
-    Legal templates for <span id="rotating-word">Families</span>
-  </h1>
-  <p style="font-size: 1.1em; color: #c2c2c2; max-width: 700px; margin: 0 auto;">Strategic, attorney-drafted legal tools. No subscriptions. No legal fees. Built to protect businesses and families.</p>
+  Legal Templates for <span id="rotating-word">Entrepreneurs</span>
+</h1>
+  <p style="font-size: 1.1em; color: #c2c2c2; max-width: 700px; margin: 0 auto;">The powerful and well-connected use legal tools most can't access. These documents shape deals and protect generational wealth. We're giving you the same edge by unlocking the vault.</p>
 </section>
 
-<script>
-  const words = ["Entrepreneurs", "Creatives", "Influencers", "Founders", "Families", "Everyone"];
-  let index = 0;
-
-  function rotateWord() {
-    const el = document.getElementById("rotating-word");
-    const word = words[index];
-    el.textContent = word;
-    el.style.color = (word === "Everyone") ? "#4263eb" : "#ffffff";
-    index = (index + 1) % words.length;
-  }
-
-  rotateWord(); // Show the first word immediately
-  setInterval(rotateWord, 2500); // Rotate every 2.5 seconds
-</script>
+  
 
 <!-- Features -->
 <section style="padding: 40px 20px; text-align: center; background-color: #121212;">
-  <h2 style="font-size: 1.8em; color: #f1f1f1; margin-bottom: 1rem;">Enforceable by Design</h2>
+  <h2 style="font-size: 1.8em; color: #f1f1f1; margin-bottom: 1rem;">Elite Tools. Open Access.</h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto;">
     <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">✅ Attorney-drafted for negotiation, enforcement, and real use </div>
     <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">🔒 No account required – buy and download securely</div>
     <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">📁 Includes detailed instructions for use and filing</div>
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">📃 Structured for clarity in sensitive negotiations</div>
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">⚖️ Optional review for DC & MN clients</div>
     <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">🤖 Smarter than a bot. Trained on outcomes, not mimicing patterns</div>
   </div>
 </section>
@@ -292,57 +271,58 @@
 </div>
 </section>
 
+<!-- Responsive Fee Comparison Section -->
 <section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
   <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
-
     <h2 style="font-size: 2rem; margin-bottom: 2rem;">
-      <span style="color: #white;">Black Vault</span> vs. Traditional Legal Fees
+      <span style="color: #ffffff;">Black Vault</span> vs. Traditional Legal Fees
     </h2>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; font-size: 0.95rem; border-top: 1px solid #333;">
+    <div style="overflow-x: auto;">
+      <div style="min-width: 600px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; font-size: 0.95rem; border-top: 1px solid #333;">
 
-      <!-- Headings -->
-      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Pack</div>
-      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Your Price</div>
-      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;"><span style="color: #4263eb;">Legal Fees</span> for comparable documents</div>
-      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">You Save</div>
+        <!-- Headings -->
+        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Pack</div>
+        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Your Price</div>
+        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;"><span style="color: #4263eb;">Legal Fees</span> for Comparable Docs</div>
+        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">You Save</div>
 
-      <!-- Row 1 -->
-      <div style="padding: 0.75rem 0; text-align: center;">Business Setup Pack</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>$95</strong></div>
-      <div style="padding: 0.75rem 0; text-align: center;">$1,200 – $2,000+</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 95%</strong></div>
+        <!-- Row 1 -->
+        <div style="padding: 0.75rem 0; text-align: center;">Business Setup Pack</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>$95</strong></div>
+        <div style="padding: 0.75rem 0; text-align: center;">$1,200 – $2,000+</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 95%</strong></div>
 
-      <!-- Row 2 -->
-      <div style="padding: 0.75rem 0; text-align: center;">Business Operating Pack</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>$295</strong></div>
-      <div style="padding: 0.75rem 0; text-align: center;">$2,500 – $4,000+</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 93%</strong></div>
+        <!-- Row 2 -->
+        <div style="padding: 0.75rem 0; text-align: center;">Business Operating Pack</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>$295</strong></div>
+        <div style="padding: 0.75rem 0; text-align: center;">$2,500 – $4,000+</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 93%</strong></div>
 
-      <!-- Row 3 -->
-      <div style="padding: 0.75rem 0; text-align: center;">Personal / Family Pack</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>$395</strong></div>
-      <div style="padding: 0.75rem 0; text-align: center;">$2,000 – $3,500+</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 89%</strong></div>
+        <!-- Row 3 -->
+        <div style="padding: 0.75rem 0; text-align: center;">Personal / Family Pack</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>$395</strong></div>
+        <div style="padding: 0.75rem 0; text-align: center;">$2,000 – $3,500+</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 89%</strong></div>
 
-      <!-- Row 4 -->
-      <div style="padding: 0.75rem 0; text-align: center;">Business Premium Pack</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>$595</strong></div>
-      <div style="padding: 0.75rem 0; text-align: center;">$4,000 – $7,500+</div>
-      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 92%</strong></div>
+        <!-- Row 4 -->
+        <div style="padding: 0.75rem 0; text-align: center;">Business Premium Pack</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>$595</strong></div>
+        <div style="padding: 0.75rem 0; text-align: center;">$4,000 – $7,500+</div>
+        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 92%</strong></div>
+      </div>
     </div>
 
     <p style="max-width: 700px; margin: 2rem auto 0; font-size: 1rem; color: #bbb;">
-      ❌ <strong>No retainers. No hourly rates.</strong> Just premium legal tools, built by counsel and priced for clarity.
+      ❌ <strong>No retainers. No hourly rates. No subscription.</strong> Just premium, attorney-drafted legal templates affordably priced.
     </p>
-
   </div>
 </section>
- <!-- Pack Comparison Grid -->
-<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
-  <h2 style="font-size: 1.8em; margin-bottom: 2rem;">Compare the Business Packs</h2>
-  <div style="overflow-x: auto;">
-    <table style="border-collapse: separate; border-spacing: 0; min-width: 600px; margin: 0 auto; font-size: 0.95em; border: 1px solid #222; border-radius: 10px; overflow: hidden;">
+ <!-- Pack Comparison Grid (Responsive Full Width) -->
+<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
+  <h2 style="font-size: 1.8em; text-align: center; margin-bottom: 2rem;">Compare the Business Packs</h2>
+  <div style="overflow-x: auto; max-width: 100%;">
+    <table style="width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0; font-size: 0.95em; border: 1px solid #222; border-radius: 10px; overflow: hidden;">
       <thead>
         <tr style="background-color: #121212;">
           <th style="padding: 12px 16px; text-align: left; border-bottom: 1px solid #222;">Included</th>
@@ -352,22 +332,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td style="padding: 10px 16px; text-align: left;">Single-Member Operating Agreement</td><td style="color: #4263eb;">✓</td></td><td style="color: #4263eb;">✓</td></td><td style="color: #4263eb;">✓</td>
-        <tr><td style="padding: 10px 16px; text-align: left;">Multi-Member Operating Agreement</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Articles of Organization (generic)</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">EIN Application Instructions</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Mutual NDA</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Independent Contractor Agreement</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Simple Client Services Agreement</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Founders Agreement / Equity MOU</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">IP Assignment Agreement</td><td>—</td><td style="color: #4263eb;">✓</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">One-Page Consulting Terms</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Referral Agreement</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px; text-align: left;">Licensing Agreement (lightweight)</td><td>—</td><td>—</td><td style="color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Single-Member Operating Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Multi-Member Operating Agreement</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Articles of Organization (generic)</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">EIN Application Instructions</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Mutual NDA</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Independent Contractor Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Simple Client Services Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Founders Agreement / Equity MOU</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">IP Assignment Agreement</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">One-Page Consulting Terms</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Referral Agreement</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
+        <tr><td style="padding: 10px 16px;">Licensing Agreement (lightweight)</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
       </tbody>
     </table>
   </div>
-</section> 
+</section>
 
   <!-- Competitor Comparison Grid -->
 <section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
@@ -423,19 +403,7 @@
     </table>
   </div>
   <p style="color: #aaa; font-size: 0.9em; max-width: 700px; margin: 2rem auto 0;">
-    🧠 Attorneys know: clients often come to us after AI and mass-market tools failed them. Don’t risk your deal or your name. Start strong with tools that stand up in real life.
-  </p>
-</section>
-
-<!-- Legal Systems Divider -->
-<section style="padding: 3rem 1rem; background-color: #121212; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
-  <h2 style="font-size: 1.9em; margin-bottom: 1rem;">Two Legal Systems. One Vault.</h2>
-  <p style="max-width: 700px; margin: 0 auto; color: #ccc; font-size: 1.05em; line-height: 1.8;">
-    💡 You’ve heard it said before: there are two justice systems—one for the powerful, one for everyone else.<br><br>
-    🧾 The same is true of the legal tools used in business and estate planning. The well-connected use custom legal documents to negotiate, grow, and protect wealth across generations.<br><br>
-    🔓 We're opening that playbook.<br><br>
-    🛠️ These aren’t mass-market templates. They’re designed to work—in real deals, in private moments, and under pressure.<br><br>
-    ✉️ If someone sent you here, it’s because they wanted you to have access to the real thing.
+    🧠 Attorneys know: clients are often forced to seek expensive counsel after AI and mass-market tools failed them. Don’t risk your deal or your name. Start strong with tools that stand up in real life.
   </p>
 </section>
   
@@ -485,5 +453,20 @@
   </div>
 </footer>
 
+<script>
+  const words = ["Founders", "Operators", "Dealmakers", "Creatives", "Advisors", "Entrepreneurs", "Influencers", "Consultants", "Builders", "Visionaires", "Families"];
+  let index = 0;
+  const rotatingWord = document.getElementById("rotating-word");
+
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    rotatingWord.style.opacity = 0;
+
+    setTimeout(() => {
+      rotatingWord.textContent = words[index];
+      rotatingWord.style.opacity = 1;
+    }, 300);
+  }, 2500);
+</script>
 </body>
 </html>
