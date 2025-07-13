@@ -73,6 +73,11 @@
         display: flex;
       }
     }
+
+    #rotating-word {
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out;
+}
   </style>
   <script>
     function toggleMenu() {
@@ -125,8 +130,10 @@
 
   <!-- Hero -->
 <section style="padding: 80px 20px; text-align: center; background: linear-gradient(to right, #121212, #1e1e1e); border-bottom: 1px solid #222;">
-  <h1 style="font-size: 2.5em; font-weight: 600; margin-bottom: 10px; color: #ffffff;">Legal Templates for Deals, Launches & Growth</h1>
-  <p style="font-size: 1.1em; color: #c2c2c2; max-width: 700px; margin: 0 auto;">Strategic, attorney-drafted tools without the commitment of a full engagement or a subscription. Built to protect businesses and families.</p>
+  <h1 style="font-size: 2.5em; font-weight: 600; margin-bottom: 10px; color: #ffffff;">
+  Legal Templates for <span id="rotating-word">Entrepreneurs</span>
+</h1>
+  <p style="font-size: 1.1em; color: #c2c2c2; max-width: 700px; margin: 0 auto;">Strategic, attorney-drafted legal tools. No subscriptions. No legal fees. Built to protect businesses and families.</p>
 </section>
 
 <!-- Features -->
@@ -269,6 +276,52 @@
 </div>
 </section>
 
+<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+
+    <h2 style="font-size: 2rem; margin-bottom: 2rem;">
+      <span style="color: #white;">Black Vault</span> vs. Traditional Legal Fees
+    </h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; font-size: 0.95rem; border-top: 1px solid #333;">
+
+      <!-- Headings -->
+      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Pack</div>
+      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Your Price</div>
+      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;"><span style="color: #4263eb;">Legal Fees</span> for comparable documents</div>
+      <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">You Save</div>
+
+      <!-- Row 1 -->
+      <div style="padding: 0.75rem 0; text-align: center;">Business Setup Pack</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>$95</strong></div>
+      <div style="padding: 0.75rem 0; text-align: center;">$1,200 – $2,000+</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 95%</strong></div>
+
+      <!-- Row 2 -->
+      <div style="padding: 0.75rem 0; text-align: center;">Business Operating Pack</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>$295</strong></div>
+      <div style="padding: 0.75rem 0; text-align: center;">$2,500 – $4,000+</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 93%</strong></div>
+
+      <!-- Row 3 -->
+      <div style="padding: 0.75rem 0; text-align: center;">Personal / Family Pack</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>$395</strong></div>
+      <div style="padding: 0.75rem 0; text-align: center;">$2,000 – $3,500+</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 89%</strong></div>
+
+      <!-- Row 4 -->
+      <div style="padding: 0.75rem 0; text-align: center;">Business Premium Pack</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>$595</strong></div>
+      <div style="padding: 0.75rem 0; text-align: center;">$4,000 – $7,500+</div>
+      <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 92%</strong></div>
+    </div>
+
+    <p style="max-width: 700px; margin: 2rem auto 0; font-size: 1rem; color: #bbb;">
+      ❌ <strong>No retainers. No hourly rates.</strong> Just premium legal tools, built by counsel and priced for clarity.
+    </p>
+
+  </div>
+</section>
  <!-- Pack Comparison Grid -->
 <section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
   <h2 style="font-size: 1.8em; margin-bottom: 2rem;">Compare the Business Packs</h2>
@@ -416,6 +469,20 @@
   </div>
 </footer>
 
+<script>
+  const words = ["Families", "Creatives", "Influencers", "Founders", "Everyone"];
+  let index = 0;
+  const rotatingWord = document.getElementById("rotating-word");
 
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    rotatingWord.style.opacity = 0;
+
+    setTimeout(() => {
+      rotatingWord.textContent = words[index];
+      rotatingWord.style.opacity = 1;
+    }, 300);
+  }, 2500);
+</script>
 </body>
 </html>
