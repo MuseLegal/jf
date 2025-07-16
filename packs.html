@@ -173,8 +173,7 @@
 
   
 <!-- Pricing -->
-  <!-- Redesigned Pricing Section -->
-<!-- Pricing Section with Green Checkmarks -->
+  <!-- Pricing Section with BEST VALUE tag at the top -->
 <section class="pricing-section" style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
   <style>
     .pricing-grid {
@@ -183,12 +182,28 @@
       gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
 
     @media (min-width: 768px) {
       .pricing-grid {
         flex-direction: row;
       }
+    }
+
+    .best-value-tag {
+      position: absolute;
+      top: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4263eb;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      z-index: 2;
+      letter-spacing: 0.5px;
     }
 
     .card {
@@ -205,17 +220,7 @@
     .card.highlight {
       border: 2px solid #4263eb;
       background-color: #1a1a1a;
-    }
-
-    .best-value {
-      background-color: #4263eb;
-      color: white;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border-radius: 4px;
-      width: fit-content;
-      margin-bottom: 0.5rem;
+      z-index: 1;
     }
 
     .tier-name {
@@ -274,18 +279,19 @@
     .pricing-title {
       text-align: center;
       font-size: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
   </style>
 
-  <h2 class="pricing-title">Legal Protection. No Billable Hours.</h2>
+  <h2 class="pricing-title">📦 Legal Protection. No Billable Hours.</h2>
 
   <div class="pricing-grid">
+    <div class="best-value-tag">BEST VALUE</div>
 
     <!-- Essentials -->
     <div class="card">
       <div class="tier-name">🏠 Essentials</div>
-      <div class="category-label">Personal</div>
+      <div class="category-label">Personal & Property</div>
       <div class="price">$149</div>
       <ul class="feature-list">
         <li>Prepare a simple will in minutes</li>
@@ -299,9 +305,8 @@
       <a class="cta" href="#">Get Essentials</a>
     </div>
 
-    <!-- Complete (Best Value) -->
+    <!-- Complete -->
     <div class="card highlight">
-      <div class="best-value">BEST VALUE</div>
       <div class="tier-name">📈 Complete</div>
       <div class="category-label">Business + Personal</div>
       <div class="price">$299</div>
@@ -333,7 +338,6 @@
       </ul>
       <a class="cta" href="#">Unlock Premium</a>
     </div>
-
   </div>
 </section>
 
