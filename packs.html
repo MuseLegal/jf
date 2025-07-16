@@ -173,98 +173,168 @@
 
   
 <!-- Pricing -->
-  <section id="pricing" style="padding: 4rem 2rem; background-color: #0e0e0e;">
-    <h2 style="text-align: center; font-size: 2rem; color: #f1f1f1; margin-bottom: 2rem;">🔓 Access Granted.</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+  <!-- Redesigned Pricing Section -->
+<!-- Pricing Section with Green Checkmarks -->
+<section class="pricing-section" style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
+  <style>
+    .pricing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-      <!-- Business Setup Pack -->
-      <div style="flex: 1; min-width: 280px; max-width: 350px; border: 1px solid #444; border-radius: 12px; padding: 2rem; background: #1a1a1a; position: relative;">
-  <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: #222; color: #fff; font-size: 0.75em; padding: 4px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Business</div>
-        <h3 style="text-align: center;">Business Setup Pack</h3>
-        <p style="text-align: center; font-size: 2rem; font-weight: bold;">$95</p>
-        <p style="text-align: center; color: #ccc;">Essential formation documents<br>No customization</p>
-        <ul style="list-style: none; padding: 0; color: #bbb;">
-          <li>✓ Single-Member LLC Operating Agreement</li>
-          <li>✓ Articles of Organization (generic)</li>
-          <li>✓ EIN Application Instructions</li>
-          <li>✓ Mutual NDA</li>
-          <li>✓ Independent Contractor Agreement</li>
-          <li>✓ Simple Client Services Agreement</li>
-          <li>✗ Legal review</li>
-        </ul>
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <button style="padding: 0.75rem 1.5rem; border: none; background-color: #4263eb; color: white; border-radius: 6px;">Unlock Access</button>
-        </div>
-      </div>
+    @media (min-width: 768px) {
+      .pricing-grid {
+        flex-direction: row;
+      }
+    }
 
-      <!-- Business Operating Pack -->
-      <div style="flex: 1; min-width: 280px; max-width: 350px; border: 2px solid #4263eb; border-radius: 12px; padding: 2rem; background: #1a1a1a; position: relative;">
-  <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: #222; color: #fff; font-size: 0.75em; padding: 4px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Real Estate</div>
-        <h3 style="text-align: center;">Business Operating Pack</h3>
-        <p style="text-align: center; font-size: 2rem; font-weight: bold;">$295</p>
-        <p style="text-align: center; color: #ccc;">Template bundle for operational growth</p>
-        <ul style="list-style: none; padding: 0; color: #bbb;">
-          <li>✓ Multi-Member LLC Operating Agreement</li>
-          <li>✓ Articles of Organization (generic)</li>
-          <li>✓ EIN Application Instructions</li>
-          <li>✓ Mutual NDA</li>
-          <li>✓ Independent Contractor Agreement</li>
-          <li>✓ Simple Client Services Agreement</li>
-          <li>✓ Founders Agreement / Equity Split MOU</li>
-          <li>✓ IP Assignment Agreement</li>
-          <li style='color: #888;'>⚖️ Optional legal review available for DC & MN clients with separate attorney agreement</li>
-        </ul>
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <button style="padding: 0.75rem 1.5rem; border: none; background-color: #4263eb; color: white; border-radius: 6px;">Unlock Access</button>
-        </div>
-      </div>
+    .card {
+      background-color: #141414;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-      <!-- Personal / Family Pack -->
-      <div style="flex: 1; min-width: 280px; max-width: 350px; border: 1px solid #444; border-radius: 12px; padding: 2rem; background: #1a1a1a; position: relative;">
-  <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: #222; color: #fff; font-size: 0.75em; padding: 4px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Estate Planning</div>
-        <h3 style="text-align: center;">Personal / Family Pack</h3>
-        <p style="text-align: center; font-size: 2rem; font-weight: bold;">$395</p>
-        <p style="text-align: center; color: #ccc;">Essential documents for planning & protection</p>
-        <ul style="list-style: none; padding: 0; color: #bbb;">
-          <li>✓ General Power of Attorney</li>
-          <li>✓ Healthcare Power of Attorney</li>
-          <li>✓ Living Will / Advance Directive</li>
-          <li>✓ Simple Will</li>
-          <li>✓ Revocable Living Trust (template)</li>
-          <li>✓ HIPAA Authorization Form</li>
-          <li>✓ Instructions for Digital Assets</li>
-          <li style='color: #888;'>⚖️ Optional legal review available for DC & MN clients with separate attorney agreement</li>
-        </ul>
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <button style="padding: 0.75rem 1.5rem; border: none; background-color: #4263eb; color: white; border-radius: 6px;">Unlock Access</button>
-        </div>
-      </div>
+    .card.highlight {
+      border: 2px solid #4263eb;
+      background-color: #1a1a1a;
+    }
 
-      <!-- Business Premium Pack -->
-<div style="flex: 1; min-width: 280px; max-width: 350px; border: 1px solid #444; border-radius: 12px; padding: 2rem; background: #1a1a1a; position: relative;">
-  <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: #222; color: #fff; font-size: 0.75em; padding: 4px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Business Law</div>
-  <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background-color: #222; color: #fff; font-size: 0.75em; padding: 4px 12px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Business Law</div>
-        <h3 style="text-align: center;">Business Premium Pack</h3>
-        <p style="text-align: center; font-size: 2rem; font-weight: bold;">$595</p>
-        <p style="text-align: center; color: #ccc;">Advanced business templates + extras</p>
-        <ul style="list-style: none; padding: 0; color: #bbb;">
-          <li>✓ Multi-Member LLC Operating Agreement</li>
-          <li>✓ Articles of Organization (generic)</li>
-          <li>✓ EIN Application Instructions</li>
-          <li>✓ Mutual NDA</li>
-          <li>✓ Independent Contractor Agreement</li>
-          <li>✓ Simple Client Services Agreement</li>
-          <li>✓ Founders Agreement / Equity Split MOU</li>
-          <li>✓ IP Assignment Agreement</li>
-          <li>✓ One-Page Consulting Terms</li>
-          <li>✓ Referral Agreement</li>
-          <li>✓ Licensing Agreement (lightweight)</li>
-          <li style='color: #888;'>⚖️ Optional legal review available for DC & MN clients with separate attorney agreement</li>
-        </ul>
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <button style="padding: 0.75rem 1.5rem; border: none; background-color: #4263eb; color: white; border-radius: 6px;">Unlock Access</button>
-        </div>
-</div>
+    .best-value {
+      background-color: #4263eb;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .category-label {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .feature-list {
+      padding-left: 0;
+      margin: 0 0 1.5rem;
+    }
+
+    .feature-list li {
+      list-style: none;
+      position: relative;
+      padding-left: 1.5em;
+      margin-bottom: 0.75em;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #53ff9c;
+      font-weight: bold;
+    }
+
+    .cta {
+      background-color: #4263eb;
+      color: white;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .cta:hover {
+      background-color: #2f4dcc;
+    }
+
+    .pricing-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+
+  <h2 class="pricing-title">Legal Protection. No Billable Hours.</h2>
+
+  <div class="pricing-grid">
+
+    <!-- Essentials -->
+    <div class="card">
+      <div class="tier-name">🏠 Essentials</div>
+      <div class="category-label">Personal</div>
+      <div class="price">$149</div>
+      <ul class="feature-list">
+        <li>Prepare a simple will in minutes</li>
+        <li>Protect your health with POA + Living Will</li>
+        <li>Use landlord forms that actually hold up</li>
+        <li>Get your deposit back with demand letters</li>
+        <li>Stop harassment with a cease & desist</li>
+        <li>Authorize child care & medical treatment</li>
+        <li>Travel-ready documents for parents & guardians</li>
+      </ul>
+      <a class="cta" href="#">Get Essentials</a>
+    </div>
+
+    <!-- Complete (Best Value) -->
+    <div class="card highlight">
+      <div class="best-value">BEST VALUE</div>
+      <div class="tier-name">📈 Complete</div>
+      <div class="category-label">Business + Personal</div>
+      <div class="price">$299</div>
+      <ul class="feature-list">
+        <li>Everything in Essentials included</li>
+        <li>Form an LLC with lawyer-level confidence</li>
+        <li>Protect IP with NDAs and contractor terms</li>
+        <li>Bill clients with pro service agreements</li>
+        <li>Use real Terms of Service + Privacy Policy</li>
+        <li>Close deals with a built-in sales contract</li>
+        <li>Customize any contract with smart clauses</li>
+      </ul>
+      <a class="cta" href="#">Get Complete</a>
+    </div>
+
+    <!-- Premium -->
+    <div class="card">
+      <div class="tier-name">🔐 Premium</div>
+      <div class="category-label">All-in-One Bundle</div>
+      <div class="price">$499</div>
+      <ul class="feature-list">
+        <li>Everything in Complete included</li>
+        <li>Bonus consulting, pet & rental addendums</li>
+        <li>Smart Playbooks: when + how to use each doc</li>
+        <li>Decision Trees for tricky legal situations</li>
+        <li>Checklists to stay compliant & confident</li>
+        <li>Organized folder system (ready to go)</li>
+        <li>Free updates for 12 months</li>
+      </ul>
+      <a class="cta" href="#">Unlock Premium</a>
+    </div>
+
+  </div>
 </section>
 
 <!-- Responsive Full-Width Fee Comparison Section -->
