@@ -174,6 +174,7 @@
   
 <!-- Pricing -->
   <!-- Pricing Section with BEST VALUE tag at the top -->
+<!-- Pricing Section with BEST VALUE tag correctly placed inside highlight card -->
 <section class="pricing-section" style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
   <style>
     .pricing-grid {
@@ -182,28 +183,12 @@
       gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
     }
 
     @media (min-width: 768px) {
       .pricing-grid {
         flex-direction: row;
       }
-    }
-
-    .best-value-tag {
-      position: absolute;
-      top: -1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #4263eb;
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      z-index: 2;
-      letter-spacing: 0.5px;
     }
 
     .card {
@@ -215,12 +200,27 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
     }
 
     .card.highlight {
       border: 2px solid #4263eb;
       background-color: #1a1a1a;
-      z-index: 1;
+    }
+
+    .best-value-tag {
+      position: absolute;
+      top: -1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4263eb;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      z-index: 2;
+      letter-spacing: 0.5px;
     }
 
     .tier-name {
@@ -286,7 +286,6 @@
   <h2 class="pricing-title">📦 Legal Protection. No Billable Hours.</h2>
 
   <div class="pricing-grid">
-    <div class="best-value-tag">BEST VALUE</div>
 
     <!-- Essentials -->
     <div class="card">
@@ -307,6 +306,7 @@
 
     <!-- Complete -->
     <div class="card highlight">
+      <div class="best-value-tag">BEST VALUE</div>
       <div class="tier-name">📈 Complete</div>
       <div class="category-label">Business + Personal</div>
       <div class="price">$299</div>
