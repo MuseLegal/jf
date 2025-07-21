@@ -14,11 +14,10 @@
       color: black;
     }
 
-    /* Navbar */
     .navbar {
       background: #ffffff;
       border-bottom: 1px solid #e0e0e0;
-      padding: 1rem 1.5rem;
+      padding: 0.6rem 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -27,9 +26,9 @@
       z-index: 1000;
     }
 
-    .navbar .logo {
+    .logo {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     .nav-links {
@@ -43,7 +42,23 @@
       font-weight: 500;
     }
 
-    /* Burger Menu */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .signup-btn {
+      background-color: #32cd32;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
     .burger {
       display: none;
       flex-direction: column;
@@ -51,10 +66,10 @@
     }
 
     .burger div {
-      width: 22px;
+      width: 20px;
       height: 2px;
       background-color: black;
-      margin: 4px 0;
+      margin: 3px 0;
       transition: 0.3s;
     }
 
@@ -71,20 +86,19 @@
       font-weight: 500;
     }
 
-    /* Hero Section */
     .hero {
       padding: 3rem 1.5rem 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
 
-    .hero .center-image {
+    .center-image {
       display: flex;
       justify-content: center;
       margin-bottom: 2rem;
     }
 
-    .hero .center-image img {
+    .center-image img {
       max-width: 100%;
       height: auto;
     }
@@ -127,7 +141,6 @@
       margin-top: 0.1rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -139,6 +152,7 @@
 
       .mobile-nav.active {
         display: flex;
+        padding: 0 1rem;
       }
     }
   </style>
@@ -147,21 +161,26 @@
 
   <header class="navbar">
     <div class="logo">Black Vault</div>
+
     <nav class="nav-links">
       <a href="#">Templates</a>
       <a href="#">Pricing</a>
       <a href="#">FAQs</a>
       <a href="#">Contact</a>
     </nav>
-    <div class="burger" onclick="toggleMobileNav()">
-      <div></div>
-      <div></div>
-      <div></div>
+
+    <div class="navbar-right">
+      <a class="signup-btn" href="#">Sign Up</a>
+      <div class="burger" onclick="toggleMobileNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </header>
 
   <!-- Mobile Nav -->
-  <div id="mobileNav" class="mobile-nav" style="padding: 0 1.5rem;">
+  <div id="mobileNav" class="mobile-nav">
     <a href="#">Templates</a>
     <a href="#">Pricing</a>
     <a href="#">FAQs</a>
