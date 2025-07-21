@@ -16,7 +16,7 @@
 
     .navbar {
       background: #ffffff;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid transparent;
       padding: 0.6rem 1rem;
       display: flex;
       justify-content: space-between;
@@ -24,6 +24,11 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: border-color 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      border-bottom-color: #e0e0e0;
     }
 
     .logo {
@@ -141,6 +146,75 @@
       margin-top: 0.1rem;
     }
 
+    /* Pricing Section */
+    .pricing {
+      background-color: #f9f9f9;
+      padding: 4rem 1.5rem;
+    }
+
+    .pricing h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .price-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-card .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+
+    .price-card ul li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .price-card ul li::before {
+      content: "✅";
+      margin-right: 0.5rem;
+      color: green;
+    }
+
+    .price-card a {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      background: #32cd32;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -159,7 +233,7 @@
 </head>
 <body>
 
-  <header class="navbar">
+  <header class="navbar" id="navbar">
     <div class="logo">Black Vault</div>
 
     <nav class="nav-links">
@@ -179,7 +253,6 @@
     </div>
   </header>
 
-  <!-- Mobile Nav -->
   <div id="mobileNav" class="mobile-nav">
     <a href="#">Templates</a>
     <a href="#">Pricing</a>
@@ -207,11 +280,58 @@
     <div class="point"><span class="check">✅</span><span class="highlight">Black Vault is clear, practical, and trustworthy.</span></div>
   </main>
 
+  <section class="pricing" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Essential</h3>
+        <div class="price">$49</div>
+        <ul>
+          <li>Basic personal templates</li>
+          <li>1-year access</li>
+          <li>No subscription</li>
+        </ul>
+        <a href="#">Choose Essential</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Complete</h3>
+        <div class="price">$99</div>
+        <ul>
+          <li>Everything in Essential</li>
+          <li>Small business docs</li>
+          <li>Operating agreements</li>
+        </ul>
+        <a href="#">Choose Complete</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Premium</h3>
+        <div class="price">$149</div>
+        <ul>
+          <li>Everything in Complete</li>
+          <li>Service agreements</li>
+          <li>Investor-ready bundle</li>
+        </ul>
+        <a href="#">Choose Premium</a>
+      </div>
+    </div>
+  </section>
+
   <script>
     function toggleMobileNav() {
       const nav = document.getElementById('mobileNav');
       nav.classList.toggle('active');
     }
+
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 10) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 
 </body>
