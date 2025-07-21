@@ -92,7 +92,7 @@
     }
 
     .hero {
-      padding: 3rem 1.5rem 2rem;
+      padding: 1.5rem 1.5rem 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
@@ -146,7 +146,6 @@
       margin-top: 0.1rem;
     }
 
-    /* Pricing Section */
     .pricing {
       background-color: #f9f9f9;
       padding: 4rem 1.5rem;
@@ -177,15 +176,38 @@
       justify-content: space-between;
     }
 
+    .price-card:nth-child(2) {
+      border: 2px solid #32cd32;
+      box-shadow: 0 0 0 3px rgba(50, 205, 50, 0.1);
+    }
+
+    .badge {
+      background: #f5f5f5;
+      color: #333;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 0.3rem 0.6rem;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
     .price-card h3 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
     }
 
-    .price-card .price {
+    .price {
       font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .savings {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 1.5rem;
     }
 
     .price-card ul {
@@ -215,6 +237,49 @@
       border-radius: 4px;
     }
 
+    .comparison-table {
+      padding: 4rem 1.5rem;
+      background: #fff;
+    }
+
+    .comparison-table h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    td:first-child {
+      text-align: left;
+    }
+
+    footer {
+      background: #f4f4f4;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -235,20 +300,16 @@
 
   <header class="navbar" id="navbar">
     <div class="logo">Black Vault</div>
-
     <nav class="nav-links">
       <a href="#">Templates</a>
       <a href="#">Pricing</a>
       <a href="#">FAQs</a>
       <a href="#">Contact</a>
     </nav>
-
     <div class="navbar-right">
       <a class="signup-btn" href="#">Sign Up</a>
       <div class="burger" onclick="toggleMobileNav()">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div></div><div></div><div></div>
       </div>
     </div>
   </header>
@@ -264,17 +325,9 @@
     <div class="center-image">
       <img src="main_image.PNG" alt="Legal Template Illustration" />
     </div>
-
     <h1>Simple attorney-designed legal templates.</h1>
-
-    <p class="subtext">
-      There are tons of ways to “DIY” your legal docs. Plenty of services promising help. You’ve probably tried some. And yet—you’re still unsure.
-    </p>
-
-    <p class="subtext bold">
-      Unfortunately, most legal templates are either vague, overpriced, outdated, confusing, or full of legal jargon. Sound familiar?
-    </p>
-
+    <p class="subtext">There are tons of ways to “DIY” your legal docs. Plenty of services promising help. You’ve probably tried some. And yet—you’re still unsure.</p>
+    <p class="subtext bold">Unfortunately, most legal templates are either vague, overpriced, outdated, confusing, or full of legal jargon. Sound familiar?</p>
     <div class="point"><span class="check">✅</span>Not Black Vault. Black Vault is refreshingly simple—attorney-designed templates that actually make sense.</div>
     <div class="point"><span class="xmark">❌</span>No subscriptions. No upsells. Just what you need, when you need it.</div>
     <div class="point"><span class="check">✅</span><span class="highlight">Black Vault is clear, practical, and trustworthy.</span></div>
@@ -286,6 +339,7 @@
       <div class="price-card">
         <h3>Essential</h3>
         <div class="price">$49</div>
+        <div class="savings">Save over $400 vs. hiring an attorney</div>
         <ul>
           <li>Basic personal templates</li>
           <li>1-year access</li>
@@ -293,30 +347,62 @@
         </ul>
         <a href="#">Choose Essential</a>
       </div>
-
       <div class="price-card">
+        <div class="badge">🔥 Best Value</div>
         <h3>Complete</h3>
         <div class="price">$99</div>
+        <div class="savings">Save over $900 vs. custom legal drafting</div>
         <ul>
           <li>Everything in Essential</li>
-          <li>Small business docs</li>
+          <li>Small business templates</li>
           <li>Operating agreements</li>
+          <li>Perfect for startups & side hustles</li>
+          <li>Access to template updates</li>
         </ul>
         <a href="#">Choose Complete</a>
       </div>
-
       <div class="price-card">
+        <div class="badge">🏢 Best for Business</div>
         <h3>Premium</h3>
         <div class="price">$149</div>
+        <div class="savings">Save over $1,500 vs. law firm documents</div>
         <ul>
           <li>Everything in Complete</li>
           <li>Service agreements</li>
           <li>Investor-ready bundle</li>
+          <li>Advanced contract templates</li>
+          <li>Ideal for consultants & mature LLCs</li>
         </ul>
         <a href="#">Choose Premium</a>
       </div>
     </div>
   </section>
+
+  <section class="comparison-table">
+    <h2>Compare What's Included</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Template</th>
+            <th>Essential</th>
+            <th>Complete</th>
+            <th>Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Will Template</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Operating Agreement</td><td>❌</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Service Agreement</td><td>❌</td><td>❌</td><td>✅</td></tr>
+          <tr><td>Investor Pitch Deck NDA</td><td>❌</td><td>✅</td><td>✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Black Vault. All rights reserved. | <a href="#">Terms</a> | <a href="#">Privacy</a>
+  </footer>
 
   <script>
     function toggleMobileNav() {
@@ -326,11 +412,7 @@
 
     window.addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar');
-      if (window.scrollY > 10) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
     });
   </script>
 
