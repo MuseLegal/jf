@@ -3,186 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Send a Private Message | The Johnson Firm</title>
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <title>Black Vault – Legal Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #0e0e0e;
-      color: #f1f1f1;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      padding: 0;
+      background-color: white;
+      color: black;
     }
-    nav {
-      background: #0e0e0e;
-      color: #f1f1f1;
-      padding: 15px 20px;
+
+    /* Navbar */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 999;
-      border-bottom: 1px solid #222;
+      z-index: 1000;
     }
-    nav a {
-      margin-left: 10px;
-      padding: 10px 16px;
-      background: #4263eb;
-      color: #fff;
+
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
       text-decoration: none;
-      border-radius: 5px;
+      color: black;
       font-weight: 500;
     }
-    main {
-      flex: 1;
+
+    /* Burger Menu */
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger div {
+      width: 22px;
+      height: 2px;
+      background-color: black;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+
+    .mobile-nav a {
+      text-decoration: none;
+      padding: 0.5rem 0;
+      color: black;
+      font-weight: 500;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 3rem 1.5rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero .center-image {
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
+      margin-bottom: 2rem;
     }
-    .form-container {
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 550px;
-      width: 100%;
-      box-shadow: 0 0 15px rgba(66,99,235,0.1);
+
+    .hero .center-image img {
+      max-width: 100%;
+      height: auto;
     }
+
     h1 {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: #ddd;
+
+    .subtext {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      text-align: left;
     }
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      background: #0e0e0e;
-      border: 1px solid #444;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 1em;
+
+    .bold {
+      font-weight: 600;
     }
-    input[type="checkbox"] {
-      width: auto;
-      margin-right: 10px;
-    }
-    .checkbox-group {
+
+    .point {
       display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: left;
     }
-    .checkbox-item {
-      margin-bottom: 10px;
-      font-size: 0.95em;
-      color: #ccc;
+
+    .highlight {
+      font-weight: 600;
+      font-size: 1.05rem;
     }
-    #other-description {
-      display: none;
+
+    .check,
+    .xmark {
+      font-size: 1.2rem;
+      margin-top: 0.1rem;
     }
-    button {
-      background: #4263eb;
-      color: #fff;
-      border: none;
-      padding: 12px 20px;
-      font-size: 1em;
-      border-radius: 6px;
-      cursor: pointer;
-      width: 100%;
-    }
-    button:hover {
-      background: #2f4cd8;
-    }
-    footer {
-      background: #0e0e0e;
-      padding: 20px 0;
-      text-align: center;
-      color: #666;
-      font-size: 0.9em;
-      border-top: 1px solid #222;
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <div style="font-weight: 600; font-size: 1.2em; letter-spacing: 1px;">J | F</div>
-    <div>
-      <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/thejohnsonfirm/privacy'}); return false;">Request Counsel</a>
+  <header class="navbar">
+    <div class="logo">Black Vault</div>
+    <nav class="nav-links">
+      <a href="#">Templates</a>
+      <a href="#">Pricing</a>
+      <a href="#">FAQs</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="burger" onclick="toggleMobileNav()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Form -->
-  <main>
-    <div class="form-container">
-      <h1>Request Counsel</h1>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+  <!-- Mobile Nav -->
+  <div id="mobileNav" class="mobile-nav" style="padding: 0 1.5rem;">
+    <a href="#">Templates</a>
+    <a href="#">Pricing</a>
+    <a href="#">FAQs</a>
+    <a href="#">Contact</a>
+  </div>
 
-        <!-- Name -->
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required />
-
-        <!-- Email -->
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required />
-
-        <!-- State -->
-        <label for="state">State of Residence</label>
-        <input type="text" id="state" name="state" placeholder="e.g. New York" required />
-
-        <!-- Legal Services -->
-        <label>Legal Services Needed</label>
-        <div class="checkbox-group">
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Business Acquisition or Sale"> Business Acquisition or Sale</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Entity Structuring or Reorganization"> Entity Structuring or Reorganization</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Private Negotiation or Deal Papering"> Private Negotiation or Deal Papering</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Non-Compete / NDA Drafting or Enforcement"> Non-Compete / NDA Drafting or Enforcement</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Private Real Estate Transaction"> Private Real Estate Transaction</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Asset Protection or Holding Company Setup"> Asset Protection or Holding Company Setup</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="Wills / Trusts / Estate Planning"> Wills / Trusts / Estate Planning</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="General Counsel Support or Fractional Legal"> General Counsel Support or Fractional Legal</label>
-          <label class="checkbox-item"><input type="checkbox" name="services[]" value="High-Stakes Legal Risk Review"> High-Stakes Legal Risk Review</label>
-          <label class="checkbox-item">
-            <input type="checkbox" name="services[]" value="Other" id="otherCheckbox"> Other / Not Listed
-          </label>
-        </div>
-
-        <!-- Conditional Other Field -->
-        <div id="other-description">
-          <label for="otherText">Briefly describe your needs</label>
-          <textarea id="otherText" name="other_details" rows="4"></textarea>
-        </div>
-
-        <button type="submit">Send Privately</button>
-      </form>
+  <main class="hero">
+    <div class="center-image">
+      <img src="main_image.png" alt="Legal Template Illustration" />
     </div>
+
+    <h1>Simple attorney-designed legal templates.</h1>
+
+    <p class="subtext">
+      There are tons of ways to “DIY” your legal docs. Plenty of services promising help. You’ve probably tried some. And yet—you’re still unsure.
+    </p>
+
+    <p class="subtext bold">
+      Unfortunately, most legal templates are either vague, overpriced, outdated, confusing, or full of legal jargon. Sound familiar?
+    </p>
+
+    <div class="point"><span class="check">✅</span>Not Black Vault. Black Vault is refreshingly simple—attorney-designed templates that actually make sense.</div>
+    <div class="point"><span class="xmark">❌</span>No subscriptions. No upsells. Just what you need, when you need it.</div>
+    <div class="point"><span class="check">✅</span><span class="highlight">Black Vault is clear, practical, and trustworthy.</span></div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    J | F<br>The Johnson Firm
-  </footer>
-
   <script>
-    const otherCheckbox = document.getElementById("otherCheckbox");
-    const otherDescription = document.getElementById("other-description");
-
-    otherCheckbox.addEventListener("change", function () {
-      otherDescription.style.display = this.checked ? "block" : "none";
-    });
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('active');
+    }
   </script>
 
 </body>
