@@ -1,545 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Templates | The Johnson Firm</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    .navbar {
-      background: #0e0e0e;
-      color: #f1f1f1;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      border-bottom: 1px solid #222;
-    }
-    .nav-links {
-      display: flex;
-      gap: 10px;
-    }
-    .nav-links a {
-      padding: 10px 16px;
-      border-radius: 5px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-   .nav-links .pricing {
-  background: none;
-  border: none;
-  color: #f1f1f1;
-  padding: 10px 16px;
-  font-weight: 500;
-  text-decoration: none;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pixelwise Law</title>
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#000000;
+  --muted:#555;
+  --border:#dcdcdc;
 }
-    .nav-links .request {
-      background: #4263eb;
-      color: #fff;
-    }
-    .burger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .burger div {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      margin: 4px 0;
-    }
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #0e0e0e;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        border: 1px solid #222;
-        padding: 10px;
-        z-index: 1000;
-      }
-      .nav-links a {
-        margin: 5px 0;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .burger {
-        display: flex;
-      }
-    }
-
-    #rotating-word {
-  display: inline-block;
-  transition: opacity 0.3s ease-in-out;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
-  </style>
- 
-  <script>
-  function toggleMenu() {
-    const links = document.querySelector('.nav-links');
-    links.classList.toggle('active');
-  }
-
-  // Close burger menu when clicking outside or on a nav link
-  document.addEventListener('click', function(event) {
-    const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
-
-    const clickedInsideMenu = navLinks.contains(event.target) || burger.contains(event.target);
-
-    if (!clickedInsideMenu) {
-      navLinks.classList.remove('active');
-    }
-
-    // Optional: auto-close when clicking a link (especially helpful on mobile)
-    if (event.target.closest('.nav-links a')) {
-      navLinks.classList.remove('active');
-    }
-  });
-</script>
+header{
+  position:absolute;
+  top:20px;
+  left:24px;
+  right:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:10;
+}
+.brand{font-weight:700;letter-spacing:-0.02em;}
+.login{font-size:14px;color:#3b82f6;text-decoration:none;}
+main{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:40px 20px 72px;
+  text-align:center;
+}
+.avatar-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+}
+.ai-icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:monospace;
+  font-size:28px;
+  border:2px solid black;
+}
+h1{
+  font-size:56px;
+  font-weight:600;
+  letter-spacing:-0.04em;
+  margin:28px 0 24px;
+  line-height:1;
+}
+.subtitle{
+  font-size:18px;
+  color:var(--muted);
+  max-width:520px;
+  margin-bottom:12px;
+}
+.description{
+  font-size:16px;
+  color:var(--muted);
+  max-width:700px;
+  margin-bottom:18px;
+}
+.input-wrapper{
+  width:100%;
+  max-width:820px;
+  margin-top:28px;
+}
+.input-box{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px 24px;
+  font-size:16px;
+  background:white;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:14px;
+  min-height:120px;
+}
+.input-box textarea{
+  border:none;
+  outline:none;
+  font-size:16px;
+  width:100%;
+  resize:none;
+  min-height:80px;
+  font-family:inherit;
+}
+.start-btn{
+  background:#eaeaea;
+  border:none;
+  border-radius:8px;
+  padding:12px 14px;
+  font-size:14px;
+  color:#777;
+  white-space:nowrap;
+}
+.helper{
+  font-size:12px;
+  color:#888;
+  margin-top:10px;
+}
+.talk-section{
+  margin-top:220px;
+  text-align:center;
+}
+.talk-title{
+  font-size:52px;
+  line-height:0.96;
+  letter-spacing:-0.05em;
+  margin:0 0 20px;
+  font-weight:500;
+}
+.talk-copy{
+  max-width:720px;
+  margin:0 auto 30px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.5;
+}
+.talk-graphic{
+  width:100%;
+  max-width:540px;
+  margin:0 auto;
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:26px;
+  min-height:250px;
+  position:relative;
+}
+.talk-bubble{
+  position:relative;
+  max-width:310px;
+  padding:14px 16px;
+  border-radius:14px;
+  font-size:14px;
+  line-height:1.45;
+  text-align:left;
+}
+.talk-bubble.ai{
+  background:#ffffff;
+  border:1px solid var(--border);
+  margin:40px auto 0 40px;
+}
+.talk-bubble.user{
+  background:#e9eef9;
+  margin:14px 36px 0 auto;
+}
+.section{
+  padding:90px 20px;
+}
+.section-inner{
+  max-width:980px;
+  margin:0 auto;
+  text-align:center;
+}
+.section h2{
+  font-size:64px;
+  line-height:0.95;
+  letter-spacing:-0.05em;
+  margin:0 0 22px;
+  font-weight:500;
+}
+.section-copy{
+  max-width:720px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.5;
+}
+.visual-wrap{
+  margin:60px auto 0;
+  width:100%;
+  max-width:760px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:32px;
+}
+.flow-step{
+  width:180px;
+  min-width:0;
+  padding:24px 18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+  text-align:center;
+}
+.flow-icon{
+  width:44px;
+  height:44px;
+  border-radius:8px;
+  border:2px solid #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 12px;
+  font-family:monospace;
+  font-weight:700;
+}
+.flow-step h3{
+  font-size:16px;
+  margin:6px 0 6px;
+}
+.flow-step p{
+  font-size:13px;
+  color:var(--muted);
+  margin:0;
+}
+.flow-arrow{
+  font-size:26px;
+  color:#999;
+  flex:0 0 auto;
+}
+.consult-card{
+  margin-top:40px;
+  display:flex;
+  justify-content:center;
+}
+.consult-card-inner{
+  max-width:560px;
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px 32px;
+  background:#fafafa;
+  text-align:left;
+}
+.consult-item{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+}
+.consult-item + .consult-item{margin-top:18px;}
+.consult-icon{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  border:2px solid #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  flex:0 0 auto;
+}
+.consult-text strong{display:block;}
+.consult-text div{
+  color:var(--muted);
+  font-size:14px;
+}
+.footer-cta{
+  padding:90px 20px 70px;
+}
+.footer-cta-inner{
+  max-width:980px;
+  margin:0 auto;
+  text-align:center;
+}
+.footer-cta h2{
+  font-size:64px;
+  line-height:0.95;
+  letter-spacing:-0.05em;
+  margin:0 0 22px;
+  font-weight:500;
+}
+.footer-cta-copy{
+  max-width:720px;
+  margin:0 auto 28px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.5;
+}
+.footer-input-wrap{
+  width:100%;
+  max-width:640px;
+  margin:0 auto 14px;
+}
+.footer-note{
+  font-size:12px;
+  color:#888;
+  margin-top:10px;
+}
+.footer-links{
+  max-width:760px;
+  margin:56px auto 0;
+  display:grid;
+  grid-template-columns:1.1fr 1fr 1fr 1fr;
+  gap:28px;
+  text-align:left;
+}
+.footer-brand{
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-0.03em;
+}
+.footer-social{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  color:#666;
+  font-size:13px;
+}
+.footer-col-title{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:10px;
+  color:#444;
+}
+.footer-link{
+  display:block;
+  color:#777;
+  text-decoration:none;
+  font-size:14px;
+  margin-bottom:8px;
+}
+.footer-disclaimer{
+  max-width:760px;
+  margin:34px auto 0;
+  font-size:12px;
+  color:#8a8a8a;
+  line-height:1.45;
+}
+@media (max-width:900px){
+  .section h2,.footer-cta h2{font-size:52px;}
+  .visual-wrap{gap:18px;}
+  .flow-step{width:160px;padding:20px 14px;}
+}
+@media (max-width:700px){
+  header{top:16px;left:16px;right:16px;}
+  main{min-height:auto;padding:96px 16px 72px;}
+  h1{font-size:40px}
+  .subtitle{font-size:16px}
+  .description{font-size:15px}
+  .input-box{padding:16px;}
+  .start-btn{width:100%;padding:12px 14px;}
+  .section,.footer-cta{padding:70px 16px}
+  .section h2,.footer-cta h2,.talk-title{font-size:42px}
+  .section-copy,.footer-cta-copy,.talk-copy{font-size:16px}
+  .visual-wrap{flex-direction:column;gap:18px;max-width:360px;}
+  .flow-step{width:100%;}
+  .flow-arrow{transform:rotate(90deg);line-height:1;}
+  .consult-card-inner{padding:22px 18px;}
+  .footer-links{grid-template-columns:1fr;gap:18px;text-align:center;}
+  .footer-social{justify-content:center;}
+  .talk-graphic{padding:18px;min-height:220px}
+  .talk-bubble.ai{margin:24px auto 0 8px;max-width:250px}
+  .talk-bubble.user{margin:12px 8px 0 auto;max-width:220px}
+}
+</style>
 </head>
-<body style="margin: 0; font-family: 'Inter', sans-serif; background: #0e0e0e; color: #f1f1f1; line-height: 1.6;">
+<body>
+<header>
+  <div class="brand">Pixelwise Law</div>
+  <a class="login" href="#">Log in</a>
+</header>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div style="font-weight: 600; font-size: 1.2em; letter-spacing: 1px;">Black Vault</div>
-    <div class="burger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="nav-links">
-      <a href="#pricing" class="pricing">Pricing</a>
-      <a href="index.html" class="request">Request Counsel</a>
-    </div>
-  </nav>
-
-  <!-- Your existing content starts here -->
-  <!-- Keep everything else the same -->
-
-  <!-- Hero -->
-<section style="padding: 80px 20px; text-align: center; background: linear-gradient(to right, #121212, #1e1e1e); border-bottom: 1px solid #222;">
-  <h1 style="font-size: 2.5em; font-weight: 600; margin-bottom: 10px; color: #ffffff;">
-  Legal Templates for <span id="rotating-word">Entrepreneurs</span>
-</h1>
-  <p style="font-size: 1.1em; color: #c2c2c2; max-width: 700px; margin: 0 auto;">The powerful and well-connected use legal tools most can't access. These documents shape deals and protect generational wealth. We're unlocking the vault and granting you access.</p>
-</section>
-
-  
-
-<!-- Features -->
-<section style="padding: 40px 20px; text-align: center; background-color: #121212;">
-  <h2 style="font-size: 1.8em; color: #f1f1f1; margin-bottom: 1rem;">Elite Tools. Open Access.</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">✅ Attorney-drafted for negotiation, enforcement, and real use </div>
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">🔒 No account required – buy and download securely</div>
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">📁 Includes detailed instructions for use and filing</div>
-    <div style="flex: 1 1 250px; background-color: #1a1a1a; padding: 1rem 1.5rem; border-radius: 10px; color: #ccc;">🤖 Smarter than a bot. Trained on outcomes, not mimicing patterns</div>
+<main>
+  <div class="avatar-row">
+    <div class="ai-icon">P</div>
   </div>
-</section>
 
-<!-- FAQ / Feature Highlights Section -->
-<section style="padding: 3rem 1rem; background-color: #151515; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: left; max-width: 800px; margin: 3rem auto 0; border-radius: 12px;">
-  <h2 style="text-align: center; font-size: 1.8em; margin-bottom: 2rem;">What’s Included?</h2>
-  <div style="border-top: 1px solid #333;">
-    <details style="padding: 1rem 0; border-bottom: 1px solid #333;">
-      <summary style="cursor: pointer; font-weight: 600;">What kinds of templates are included?</summary>
-      <p style="margin-top: 0.5rem; color: #ccc;">Each pack is designed around a real use case—like launching a business, handling daily operations, or preparing your family for the future. We include core templates (like LLC agreements and NDAs) plus helpful extras like IP assignments and trust forms depending on the pack.</p>
-    </details>
-    <details style="padding: 1rem 0; border-bottom: 1px solid #333;">
-      <summary style="cursor: pointer; font-weight: 600;">What if I’ve been burned by LegalZoom or AI tools?</summary>
-      <p style="margin-top: 0.5rem; color: #ccc;">You're not alone. Many of our clients come to us after trying forms that were either too vague to enforce—or too confusing to use. These are attorney-drafted tools built for real people, not bots or mass-market pipelines. You’ll see and feel the difference.</p>
-    </details>
-    <details style="padding: 1rem 0; border-bottom: 1px solid #333;">
-      <summary style="cursor: pointer; font-weight: 600;">Who are these packs built for?</summary>
-      <p style="margin-top: 0.5rem; color: #ccc;">Entrepreneurs, dealmakers, consultants, and families who want to protect their interests with confidence—without paying $3,000+ for custom drafting.</p>
-    </details>
-    <details style="padding: 1rem 0; border-bottom: 1px solid #333;">
-      <summary style="cursor: pointer; font-weight: 600;">Do you offer estate planning tools?</summary>
-      <p style="margin-top: 0.5rem; color: #ccc;">Yes. Our Personal / Family Pack includes a will, trust template, and medical/financial directives—helping you protect your assets and your wishes.</p>
-    </details>
-    <details style="padding: 1rem 0;">
-      <summary style="cursor: pointer; font-weight: 600;">Will new packs be added?</summary>
-      <p style="margin-top: 0.5rem; color: #ccc;">We’re just getting started. Additional packs are on the way—including tools for digital creators, equity-based startups, and partnership planning.</p>
-    </details>
+  <h1>Hi, I'm Pixelwise</h1>
+
+  <div class="subtitle">Your AI assistant for privacy, AI, and digital compliance questions.</div>
+  <div class="description">I can help surface relevant legal resources, summarize general materials, and capture the details of your issue before connecting you with a Pixelwise attorney if needed.</div>
+  <div class="description">The assistant does not provide legal advice and no attorney‑client relationship exists unless Pixelwise Law is formally engaged.</div>
+
+  <div class="input-wrapper">
+    <div class="input-box">
+      <textarea placeholder="Describe your question or issue…"></textarea>
+      <button class="start-btn">Get Started</button>
+    </div>
+    <div class="helper">Private • Issue intake • Resource support • No attorney‑client privilege with the AI</div>
   </div>
-</section>
 
-  
-<!-- Pricing -->
-  <!-- Pricing Section with BEST VALUE tag at the top -->
-<!-- Pricing Section with BEST VALUE tag correctly placed inside highlight card -->
-<section class="pricing-section" style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
-  <style>
-    .pricing-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    @media (min-width: 768px) {
-      .pricing-grid {
-        flex-direction: row;
-      }
-    }
-
-    .card {
-      background-color: #141414;
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 2rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-    }
-
-    .card.highlight {
-      border: 2px solid #4263eb;
-      background-color: #1a1a1a;
-    }
-
-    .best-value-tag {
-      position: absolute;
-      top: -1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #4263eb;
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      z-index: 2;
-      letter-spacing: 0.5px;
-    }
-
-    .tier-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .category-label {
-      font-size: 0.95rem;
-      color: #bbb;
-      margin-bottom: 1rem;
-    }
-
-    .price {
-      font-size: 1.75rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .feature-list {
-      padding-left: 0;
-      margin: 0 0 1.5rem;
-    }
-
-    .feature-list li {
-      list-style: none;
-      position: relative;
-      padding-left: 1.5em;
-      margin-bottom: 0.75em;
-    }
-
-    .feature-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #53ff9c;
-      font-weight: bold;
-    }
-
-    .cta {
-      background-color: #4263eb;
-      color: white;
-      text-align: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
-
-    .cta:hover {
-      background-color: #2f4dcc;
-    }
-
-    .pricing-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 3rem;
-    }
-  </style>
-
-  <h2 class="pricing-title">Simple Pricing. No Billable Hours.</h2>
-
-  <div class="pricing-grid">
-
-    <!-- Essentials -->
-    <div class="card">
-      <div class="tier-name">🏠 Essentials</div>
-      <div class="category-label">Personal</div>
-      <div class="price">$149</div>
-      <ul class="feature-list">
-        <li>Prepare a simple will in minutes</li>
-        <li>Protect your health with POA + Living Will</li>
-        <li>Use landlord forms that actually hold up</li>
-        <li>Get your deposit back with demand letters</li>
-        <li>Stop harassment with a cease & desist</li>
-        <li>Authorize child care & medical treatment</li>
-        <li>Travel-ready documents for parents & guardians</li>
-      </ul>
-      <a class="cta" href="https://buy.stripe.com/test_8x29AJbklbg397C0OJaEE01">Get Essentials</a>
+  <section class="talk-section">
+    <h2 class="talk-title">You can talk to Pixelwise just like you would your regular counsel</h2>
+    <div class="talk-copy">Start with a plain-language description of your issue. The assistant can help organize the facts, point you to relevant materials, and prepare the matter for attorney follow-up when legal advice is needed.</div>
+    <div class="talk-graphic">
+      <div class="talk-bubble user">Is a BAA required to share analytics data with a vendor?</div>
+      <div class="talk-bubble ai">HHS‑OCR explains that a Business Associate Agreement is required when a vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity or business associate. See the <a href="#" style="color:#2563eb;text-decoration:underline;">HHS‑OCR guidance on Business Associates</a>.</div>
     </div>
+  </section>
+</main>
 
-    <!-- Complete -->
-    <div class="card highlight">
-      <div class="best-value-tag">BEST VALUE</div>
-      <div class="tier-name">🏢 Complete</div>
-      <div class="category-label">Personal + Business</div>
-      <div class="price">$299</div>
-      <ul class="feature-list">
-        <li>Everything in Essentials included</li>
-        <li>Form an LLC with lawyer-level confidence</li>
-        <li>Protect IP with NDAs and contractor terms</li>
-        <li>Bill clients with pro service agreements</li>
-        <li>Use real Terms of Service + Privacy Policy</li>
-        <li>Close deals with a built-in sales contract</li>
-        <li>Customize any contract with smart clauses</li>
-      </ul>
-      <a class="cta" href="https://buy.stripe.com/test_8x29AJbklbg397C0OJaEE01" class="lemonsqueezy-button=">Get Complete</a><script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
-    </div>
+<section class="section">
+  <div class="section-inner">
+    <h2>Fast, focused support for modern legal issues</h2>
+    <div class="section-copy">Start with a simple description of your issue. Pixelwise can help organize the problem, surface relevant public resources, and prepare the matter for attorney review when your situation calls for legal advice.</div>
 
-    <!-- Premium -->
-    <div class="card">
-      <div class="tier-name">🔐 Premium</div>
-      <div class="category-label">Personal + Business + Playbooks</div>
-      <div class="price">$499</div>
-      <ul class="feature-list">
-        <li>Everything in Complete included</li>
-        <li>Bonus consulting, pet & rental addendums</li>
-        <li>Smart Playbooks: when + how to use each doc</li>
-        <li>Decision Trees for tricky legal situations</li>
-        <li>Checklists to stay compliant & confident</li>
-        <li>Organized folder system (ready to go)</li>
-        <li>Free updates for 12 months</li>
-      </ul>
-      <a class="cta" href="https://buy.stripe.com/test_8x29AJbklbg397C0OJaEE01">Get Premium</a>
+    <div class="visual-wrap">
+      <div class="flow-step">
+        <div class="flow-icon">P</div>
+        <h3>Ask the assistant</h3>
+        <p>Describe your privacy, AI, marketing, or data question.</p>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-icon">AI</div>
+        <h3>See resources</h3>
+        <p>Pixelwise surfaces regulator guidance, legal materials, and relevant templates.</p>
+      </div>
+
+      <div class="flow-arrow">→</div>
+
+      <div class="flow-step">
+        <div class="flow-icon">⚖</div>
+        <h3>Consult an attorney</h3>
+        <p>If needed, connect with a licensed lawyer for tailored legal advice.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Responsive Full-Width Fee Comparison Section -->
-<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
-  <div style="margin: 0 auto; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 2rem;">
-      <span style="color: #ffffff;">Black Vault</span> vs. Traditional Legal Fees
-    </h2>
 
-    <div style="width: 100%; overflow-x: auto;">
-      <div style="display: grid; width: 100%; min-width: 760px; grid-template-columns: repeat(4, 1fr); gap: 1rem; font-size: 0.95rem; border-top: 1px solid #333;">
 
-        <!-- Headings -->
-        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Pack</div>
-        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">Your Price</div>
-        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;"><span style="color: #4263eb;">Legal Fees</span> for Comparable Docs</div>
-        <div style="font-weight: 600; padding: 0.75rem 0; border-bottom: 1px solid #333; text-align: center;">You Save</div>
+<section class="section">
+  <div class="section-inner">
+    <h2>Templates the assistant may recommend</h2>
+    <div class="section-copy">
+      Many privacy and digital compliance issues can be solved with the right documentation. The Pixelwise assistant may recommend these templates during chat, or you can purchase them directly below. Pixelwise templates are drafted by licensed attorneys. They are static legal resources — the AI does not generate or draft legal documents.
+    </div>
 
-        <!-- Row 1 -->
-        <div style="padding: 0.75rem 0; text-align: center;">Business Setup Pack</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>$95</strong></div>
-        <div style="padding: 0.75rem 0; text-align: center;">$1,200 – $2,000+</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 95%</strong></div>
+    <div style="margin-top:18px;color:#888;font-size:13px;">Suggested during chat • Available for direct purchase</div>
 
-        <!-- Row 2 -->
-        <div style="padding: 0.75rem 0; text-align: center;">Business Operating Pack</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>$295</strong></div>
-        <div style="padding: 0.75rem 0; text-align: center;">$2,500 – $4,000+</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 93%</strong></div>
+    <div class="visual-wrap" style="margin-top:50px;">
 
-        <!-- Row 3 -->
-        <div style="padding: 0.75rem 0; text-align: center;">Personal / Family Pack</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>$395</strong></div>
-        <div style="padding: 0.75rem 0; text-align: center;">$2,000 – $3,500+</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 89%</strong></div>
+      <div class="flow-step">
+        <div class="flow-icon">📄</div>
+        <h3>Website Privacy Policy</h3>
+        <p>Modern privacy policy covering analytics, cookies, and state privacy laws.</p>
+        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$79</p>
+        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+      </div>
 
-        <!-- Row 4 -->
-        <div style="padding: 0.75rem 0; text-align: center;">Business Premium Pack</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>$595</strong></div>
-        <div style="padding: 0.75rem 0; text-align: center;">$4,000 – $7,500+</div>
-        <div style="padding: 0.75rem 0; text-align: center;"><strong>🔥 Up to 92%</strong></div>
+      <div class="flow-step">
+        <div class="flow-icon">📝</div>
+        <h3>HIPAA BAA Template</h3>
+        <p>Clean Business Associate Agreement for vendors and digital health partners.</p>
+        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$129</p>
+        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-icon">🍪</div>
+        <h3>Cookie & Tracking Policy</h3>
+        <p>Disclosure framework for pixels, analytics tools, and marketing technologies.</p>
+        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$59</p>
+        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <h2>If your situation requires legal advice, talk with a privacy attorney for <span style="color:#2563eb;">$199</span></h2>
+    <div class="section-copy">If you want, you can schedule a follow-up consultation with a Pixelwise attorney to review your situation, confirm compliance risks, and get practical guidance for your product, marketing, or data practices.</div>
+    <div style="margin-top:22px;display:flex;justify-content:center;">
+      <div style="border:1px solid #6ccf7a;color:#3d9b4c;border-radius:999px;padding:10px 18px;font-size:16px;">Consultations available within 24–48 hours</div>
+    </div>
+
+    <div class="consult-card">
+      <div class="consult-card-inner">
+        <div class="consult-item">
+          <div class="consult-icon">⚖</div>
+          <div class="consult-text">
+            <strong>Licensed privacy attorneys</strong>
+            <div>Experienced in HIPAA, digital health, AI, and advertising compliance.</div>
+          </div>
+        </div>
+
+        <div class="consult-item">
+          <div class="consult-icon">✓</div>
+          <div class="consult-text">
+            <strong>Focused legal review</strong>
+            <div>Clear answers about marketing, tracking technologies, AI tools, and vendor relationships.</div>
+          </div>
+        </div>
+
+        <div class="consult-item">
+          <div class="consult-icon">🛡</div>
+          <div class="consult-text">
+            <strong>Flat consult pricing</strong>
+            <div><span style="color:#2563eb;">$199</span> for a 30-minute legal consultation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="footer-cta">
+  <div class="footer-cta-inner">
+    <h2>Start with the assistant. Talk to a lawyer when needed.</h2>
+    <div class="footer-cta-copy">Describe your privacy, AI, marketing, or digital compliance issue. Pixelwise can help organize the question and route the matter for attorney follow-up when formal legal advice is needed.</div>
+
+    <div class="footer-input-wrap">
+      <div class="input-box">
+        <textarea placeholder="Describe your question or issue…"></textarea>
+        <button class="start-btn">Get Started</button>
+      </div>
+      <div class="footer-note">Private • Issue intake • Resource support</div>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <div class="footer-brand">Pixelwise Law</div>
+        <div class="footer-social">
+          <span>◎</span><span>◌</span><span>◍</span><span>◐</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <a class="footer-link" href="#">About</a>
+        <a class="footer-link" href="#">Contact</a>
+        <a class="footer-link" href="#">Careers</a>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <a class="footer-link" href="#">Privacy Policy</a>
+        <a class="footer-link" href="#">Terms of Service</a>
+        <a class="footer-link" href="#">Engagement Terms</a>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Support</div>
+        <a class="footer-link" href="#">FAQ</a>
+        <a class="footer-link" href="#">Feedback</a>
+        <a class="footer-link" href="#">For Organizations</a>
       </div>
     </div>
 
-    <p style="max-width: 700px; margin: 2rem auto 0; font-size: 1rem; color: #bbb;">
-      ❌ <strong>No retainers. No hourly rates. No subscription.</strong> Just premium, attorney-drafted legal templates affordably priced.
-    </p>
+    <div class="footer-disclaimer">Pixelwise is not a law firm and the AI assistant does not provide legal advice. No attorney‑client relationship or privilege exists through use of the assistant. An attorney‑client relationship is created only after you formally engage a licensed attorney.</div>
   </div>
 </section>
-
- <!-- Pack Comparison Grid (Responsive Full Width) -->
-<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif;">
-  <h2 style="font-size: 1.8em; text-align: center; margin-bottom: 2rem;">Compare the Business Packs</h2>
-  <div style="overflow-x: auto; max-width: 100%;">
-    <table style="width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0; font-size: 0.95em; border: 1px solid #222; border-radius: 10px; overflow: hidden;">
-      <thead>
-        <tr style="background-color: #121212;">
-          <th style="padding: 12px 16px; text-align: left; border-bottom: 1px solid #222;">Included</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Setup</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Operating</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Premium</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td style="padding: 10px 16px;">Single-Member Operating Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Multi-Member Operating Agreement</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Articles of Organization (generic)</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">EIN Application Instructions</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Mutual NDA</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Independent Contractor Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Simple Client Services Agreement</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Founders Agreement / Equity MOU</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">IP Assignment Agreement</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">One-Page Consulting Terms</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Referral Agreement</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-        <tr><td style="padding: 10px 16px;">Licensing Agreement (lightweight)</td><td style="text-align: center;">—</td><td style="text-align: center;">—</td><td style="text-align: center; color: #4263eb;">✓</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
- <!-- Competitor Comparison Grid (Responsive Full Width) -->
-<section style="padding: 3rem 1rem; background-color: #0e0e0e; color: #f1f1f1; font-family: 'Inter', sans-serif; text-align: center;">
-  <h2 style="font-size: 1.8em; margin-bottom: 2rem;">What Sets Black Vault Apart</h2>
-
-  <div style="width: 100%; overflow-x: auto;">
-    <table style="width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.95em; border: 1px solid #222; border-radius: 10px; overflow: hidden; min-width: 760px;">
-      <thead>
-        <tr style="background-color: #121212;">
-          <th style="padding: 12px 16px; text-align: left; border-bottom: 1px solid #222;">Critical Features</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">Black Vault</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">LegalZoom</th>
-          <th style="padding: 12px 16px; border-bottom: 1px solid #222;">AI Tools</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">Drafted by a Real Deal Attorney</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">✅</td>
-          <td style="color: #e74c3c;">❌ No legal author</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">Designed for Real-World Enforcement</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">❌ Template-first, not outcomes-first</td>
-          <td style="color: #e74c3c;">❌ Not designed for enforceability</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">Built for Private, Confidential Use</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">❌ Requires account & upsells</td>
-          <td style="color: #e74c3c;">❌ Tracks prompts & usage</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">No Risk of AI Hallucinations</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">❌ Risk of fabricated laws, fake cases</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">Used in High-Stakes Transactions</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">❌ Not tested in real negotiations</td>
-          <td style="color: #e74c3c;">❌ No proven outcomes</td>
-        </tr>
-        <tr>
-          <td style="padding: 10px 16px; text-align: left;">No Hidden Monthly Fees</td>
-          <td style="color: #4263eb;">✅</td>
-          <td style="color: #e74c3c;">❌ Subscription upsells</td>
-          <td style="color: #e74c3c;">⚠️ Depends</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p style="color: #aaa; font-size: 0.9em; max-width: 700px; margin: 2rem auto 0;">
-    🧠 Attorneys know: clients are often forced to seek expensive counsel after AI and mass-market tools failed them. Don’t risk your deal or your name. Start strong with tools that stand up in real life.
-  </p>
-</section>
-  
-<section style="text-align: center; padding: 3rem 2rem;">
-  <h3 style="color: #f1f1f1; font-size: 1.8em; margin-bottom: 0.5em;">Need Legal Review or Custom Drafting?</h3>
-  <p style="color: #ccc; font-size: 1em; margin-bottom: 1.5em; max-width: 600px; margin: 0 auto;">
-    Legal services for DC and MN residents are available separately through J|F.
-  </p>
-  <a href="/index.html" style="padding: 0.75rem 1.5rem; background-color: #4263eb; color: white; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; margin-top: 1.5rem;">
-    Request Legal Counsel
-  </a>
-</section>
-  </section>
-
-  <!-- Footer -->
-<footer style="background: #0e0e0e; padding: 3rem 1rem; font-family: 'Inter', sans-serif; border-top: 1px solid #222; color: #aaa; font-size: 0.9em;">
-  <div style="max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
-    
-    <!-- Column 1: Site Info -->
-    <div style="flex: 1 1 250px;">
-      <h4 style="color: #f1f1f1; font-size: 1em; margin-bottom: 0.5em;">Black Vault</h4>
-      <p style="line-height: 1.6;">Legal templates designed for leverage, clarity, and real-world use. No subscriptions. No filler. Just strategic documents, ready when you are. You are in control.</p>
-    </div>
-
-    <!-- Column 2: Quick Links -->
-    <div style="flex: 1 1 150px;">
-      <h4 style="color: #f1f1f1; font-size: 1em; margin-bottom: 0.5em;">Quick Links</h4>
-      <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
-        <li><a href="#pricing" style="color: #aaa; text-decoration: none;">Pricing</a></li>
-        <li><a href="packs.html" style="color: #aaa; text-decoration: none;">Template Packs</a></li>
-        <li><a href="index.html" style="color: #aaa; text-decoration: none;">Request Counsel</a></li>
-        <li><a href="privacy.html" style="color: #aaa; text-decoration: none;">Privacy Policy</a></li>
-        <li><a href="terms.html" style="color: #aaa; text-decoration: none;">Terms of Service</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 3: Disclaimer -->
-    <div style="flex: 1 1 300px;">
-      <h4 style="color: #f1f1f1; font-size: 1em; margin-bottom: 0.5em;">Legal Disclaimer</h4>
-      <p style="font-size: 0.8em; line-height: 1.6; color: #777;">
-        ⚠️ These templates are for general informational purposes only and do not constitute legal advice or create an attorney-client relationship. Consult a licensed attorney in your jurisdiction for advice specific to your situation.
-      </p>
-    </div>
-  </div>
-  <div style="text-align: center; margin-top: 2rem; font-size: 0.75em; color: #666;">
-    © 2025 Black Vault. All rights reserved.
-  </div>
-</footer>
-
-<script>
-  const words = ["Founders", "Operators", "Dealmakers", "Creatives", "Advisors", "Entrepreneurs", "Influencers", "Consultants", "Builders", "Visionaires", "Families"];
-  let index = 0;
-  const rotatingWord = document.getElementById("rotating-word");
-
-  setInterval(() => {
-    index = (index + 1) % words.length;
-    rotatingWord.style.opacity = 0;
-
-    setTimeout(() => {
-      rotatingWord.textContent = words[index];
-      rotatingWord.style.opacity = 1;
-    }, 300);
-  }, 2500);
-</script>
 </body>
 </html>
