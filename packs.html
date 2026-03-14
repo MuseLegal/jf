@@ -336,6 +336,42 @@ h1{
   color:#8a8a8a;
   line-height:1.45;
 }
+.template-grid{
+  margin:50px auto 0;
+  width:100%;
+  max-width:760px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.template-card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+  text-align:center;
+  padding:22px 16px;
+}
+.template-card h3{
+  font-size:16px;
+  margin:8px 0 6px;
+}
+.template-card p{
+  font-size:13px;
+  color:var(--muted);
+  margin:0;
+}
+.template-price{
+  margin-top:8px;
+  font-weight:600;
+  color:#2563eb;
+}
+.template-link{
+  display:inline-block;
+  margin-top:6px;
+  color:#2563eb;
+  text-decoration:none;
+  font-size:14px;
+}
 @media (max-width:900px){
   .section h2,.footer-cta h2{font-size:52px;}
   .visual-wrap{gap:18px;}
@@ -361,6 +397,7 @@ h1{
   .talk-graphic{padding:18px;min-height:220px}
   .talk-bubble.ai{margin:24px auto 0 8px;max-width:250px}
   .talk-bubble.user{margin:12px 8px 0 auto;max-width:220px}
+  .template-grid{grid-template-columns:1fr;max-width:320px;}
 }
 </style>
 </head>
@@ -378,7 +415,7 @@ h1{
   <h1>Hi, I'm Pixelwise</h1>
 
   <div class="subtitle">Your AI assistant for privacy, AI, and digital compliance questions.</div>
-  <div class="description">I can help surface relevant legal resources, summarize general materials, and capture the details of your issue before connecting you with a Pixelwise attorney if needed.</div>
+  <div class="description">Ask a privacy, AI, or digital compliance question. Pixelwise can surface relevant legal resources, suggest attorney-drafted templates or bundles, and connect you with a licensed attorney if legal advice is needed.</div>
   <div class="description">The assistant does not provide legal advice and no attorney‑client relationship exists unless Pixelwise Law is formally engaged.</div>
 
   <div class="input-wrapper">
@@ -430,44 +467,66 @@ h1{
   </div>
 </section>
 
-
-
 <section class="section">
   <div class="section-inner">
-    <h2>Templates the assistant may recommend</h2>
+    <h2>Templates and bundles the assistant may recommend</h2>
     <div class="section-copy">
-      Many privacy and digital compliance issues can be solved with the right documentation. The Pixelwise assistant may recommend these templates during chat, or you can purchase them directly below. Pixelwise templates are drafted by licensed attorneys. They are static legal resources — the AI does not generate or draft legal documents.
+      Many privacy and digital compliance issues can be solved with the right documentation. The assistant may recommend a single template or a bundled pack based on your question, and you can also purchase them directly below. All Pixelwise templates are drafted by licensed attorneys. The AI does not draft legal documents.
     </div>
 
     <div style="margin-top:18px;color:#888;font-size:13px;">Suggested during chat • Available for direct purchase</div>
 
-    <div class="visual-wrap" style="margin-top:50px;">
-
-      <div class="flow-step">
+    <div class="template-grid">
+      <div class="template-card">
         <div class="flow-icon">📄</div>
         <h3>Website Privacy Policy</h3>
         <p>Modern privacy policy covering analytics, cookies, and state privacy laws.</p>
-        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$79</p>
-        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+        <div class="template-price">$79</div>
+        <a href="#" class="template-link">Buy from chat →</a>
       </div>
 
-      <div class="flow-step">
+      <div class="template-card">
         <div class="flow-icon">📝</div>
         <h3>HIPAA BAA Template</h3>
-        <p>Clean Business Associate Agreement for vendors and digital health partners.</p>
-        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$129</p>
-        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+        <p>Business Associate Agreement for vendors and digital health partners.</p>
+        <div class="template-price">$129</div>
+        <a href="#" class="template-link">Buy from chat →</a>
       </div>
 
-      <div class="flow-step">
+      <div class="template-card">
         <div class="flow-icon">🍪</div>
         <h3>Cookie & Tracking Policy</h3>
         <p>Disclosure framework for pixels, analytics tools, and marketing technologies.</p>
-        <p style="margin-top:8px;font-weight:600;color:#2563eb;">$59</p>
-        <a href="#" class="footer-link" style="display:inline-block;margin-top:6px;color:#2563eb;">Buy from chat →</a>
+        <div class="template-price">$59</div>
+        <a href="#" class="template-link">Buy from chat →</a>
       </div>
 
+      <div class="template-card">
+        <div class="flow-icon">📦</div>
+        <h3>Startup Privacy Pack</h3>
+        <p>Privacy Policy, Cookie Policy, and Terms of Use bundled together.</p>
+        <div class="template-price">$199</div>
+        <a href="#" class="template-link">Buy bundle →</a>
+      </div>
+
+      <div class="template-card">
+        <div class="flow-icon">🏥</div>
+        <h3>Digital Health Pack</h3>
+        <p>Core templates for HIPAA-facing websites, vendors, and product teams.</p>
+        <div class="template-price">$299</div>
+        <a href="#" class="template-link">Buy bundle →</a>
+      </div>
+
+      <div class="template-card">
+        <div class="flow-icon">📣</div>
+        <h3>Marketing Compliance Pack</h3>
+        <p>Template set for consent, outreach, and tracking-tech disclosure issues.</p>
+        <div class="template-price">$149</div>
+        <a href="#" class="template-link">Buy bundle →</a>
+      </div>
     </div>
+
+  </div>
 
   </div>
 </section>
@@ -510,7 +569,55 @@ h1{
   </div>
 </section>
 
+<section class="section">
+  <div class="section-inner">
 
+    <h2>Frequently asked questions</h2>
+    <div class="section-copy">
+      Pixelwise is designed for founders, operators, and in‑house generalists who need fast answers on privacy, AI, and digital compliance without the friction of a traditional law firm engagement.
+    </div>
+
+    <div style="max-width:760px;margin:50px auto 0;text-align:left;">
+
+      <details style="border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px;background:#fff;">
+        <summary style="font-weight:600;cursor:pointer;">Why not just hire a law firm?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;">
+          Many privacy and digital compliance questions don’t require a full law firm engagement. Pixelwise helps you start with resources, templates, and structured issue intake before deciding whether legal advice is necessary.
+        </div>
+      </details>
+
+      <details style="border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px;background:#fff;">
+        <summary style="font-weight:600;cursor:pointer;">How much does this cost?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;">
+          Most users begin with free AI‑assisted issue intake and resource discovery. Templates typically range from $59–$129, and bundles combine multiple documents at a discounted rate. If you need legal advice, consultations with a licensed attorney are available for a flat $199.
+        </div>
+      </details>
+
+      <details style="border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px;background:#fff;">
+        <summary style="font-weight:600;cursor:pointer;">Who is Pixelwise designed for?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;">
+          Pixelwise is especially useful for founders, product teams, marketers, and in‑house legal or compliance generalists who occasionally need niche expertise in areas like HIPAA, AI governance, marketing compliance, and digital tracking technologies.
+        </div>
+      </details>
+
+      <details style="border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:12px;background:#fff;">
+        <summary style="font-weight:600;cursor:pointer;">Does the AI provide legal advice?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;">
+          No. The assistant surfaces public regulatory guidance, summarizes materials, and helps organize your issue. Legal advice is provided only by licensed attorneys after formal engagement.
+        </div>
+      </details>
+
+      <details style="border:1px solid var(--border);border-radius:10px;padding:16px 18px;background:#fff;">
+        <summary style="font-weight:600;cursor:pointer;">When should I speak with an attorney?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;">
+          If your issue involves regulatory risk, contractual obligations, or a product launch decision, a short consultation can provide clarity quickly. The assistant helps organize the issue first so attorney time is focused and efficient.
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</section>
 
 <section class="footer-cta">
   <div class="footer-cta-inner">
