@@ -18,7 +18,8 @@ body{
   background:var(--bg);
   color:var(--text);
 }
-header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;z-index:10;background:#ffffff;padding:28px 24px 12px;border-bottom:1px solid #eee;}
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:#ffffff;border-bottom:1px solid #eee;} 
+.header-inner{max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:10px 16px;}
 .brand{font-weight:700;letter-spacing:-0.02em;}
 .login{color:#000;text-decoration:none;font-size:14px;}
 .menu-btn{font-size:22px;border:none;background:none;cursor:pointer;color:#000;}
@@ -431,16 +432,23 @@ h1{
   .footer-links{grid-template-columns:1fr;gap:18px;text-align:center;}
   .footer-social{justify-content:center;}
   .talk-graphic{padding:18px;min-height:220px}
-  .talk-bubble.ai{margin:24px auto 0 8px;max-width:250px}
+
+  /* fix AI bubble + logo layout on small screens */
+  .talk-bubble.ai{margin:24px auto 0 42px;max-width:250px}
+  .ai-logo{left:-32px;bottom:-4px;width:26px;height:26px}
+
   .talk-bubble.user{margin:12px 8px 0 auto;max-width:220px}
+}
 }
 </style>
 </head>
 <body>
 <header>
+  <div class="header-inner">
   <button class="menu-btn" onclick="openDrawer()">☰</button>
   <div class="brand">Dicta</div>
   <a class="login" href="#">Log in</a>
+  </div>
 </header>
 
 <div id="overlay" class="overlay" onclick="closeDrawer()"></div>
