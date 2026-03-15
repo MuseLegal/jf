@@ -45,15 +45,17 @@ header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-be
   background:none;
   cursor:pointer;
 }
-.drawer a{
-  display:block;
-  padding:14px 0;
-  text-decoration:none;
-  color:#000;
-  font-size:18px;
-  border-bottom:1px solid #f1f1f1;
-}
+.drawer a{display:block;padding:14px 0;text-decoration:none;color:#000;font-size:18px;border-bottom:1px solid #f1f1f1;}
 .drawer a:last-child{border-bottom:none;}
+.drawer-top a,.drawer-mid-toggle{font-size:18px;}
+.drawer-section-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#888;margin:18px 0 8px;}
+.drawer-mid-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;padding:14px 0;background:none;border:none;border-bottom:1px solid #f1f1f1;color:#000;cursor:pointer;text-align:left;}
+.drawer-submenu{display:none;padding:8px 0 4px 14px;border-bottom:1px solid #f1f1f1;}
+.drawer-submenu.open{display:block;}
+.drawer-submenu a{font-size:16px;padding:10px 0;border-bottom:none;color:#555;}
+.drawer-bottom{margin-top:auto;padding-top:20px;}
+.drawer-join{display:block;text-align:center;padding:14px 18px;background:#22c55e;color:#fff;border-radius:10px;border-bottom:none;font-size:18px;font-weight:600;margin-bottom:14px;}
+.drawer-login{display:block;text-align:center;padding:12px 0;color:#000;text-decoration:none;font-size:16px;border-bottom:none;}
 .overlay{
   position:fixed;
   top:0;
@@ -184,11 +186,22 @@ h1{
   line-height:1.45;
   text-align:left;
 }
-.talk-bubble.ai{
-  background:#ffffff;
-  border:1px solid var(--border);
-  margin:40px auto 0 40px;
+.talk-bubble.ai{background:#ffffff;border:1px solid var(--border);margin:40px auto 0 60px;padding:14px 16px;position:relative;} 
+.ai-logo{
+  position:absolute;
+  left:-38px;
+  bottom:-6px;
+  width:28px;
+  height:28px;
+  border:1px solid #000;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
 }
+.ai-logo svg{width:16px;height:16px;} 
+.ai-text{font-size:14px;line-height:1.45;}
 .talk-bubble.user{
   background:#e9eef9;
   margin:14px 36px 0 auto;
@@ -435,14 +448,42 @@ h1{
 <div id="drawer" class="drawer">
   <button class="drawer-close" onclick="closeDrawer()">✕</button>
   <div style="font-weight:700;margin-bottom:20px;font-size:20px;">Dicta</div>
-  <a href="#templates" onclick="closeDrawer()">Templates</a>
-  <a href="#faq" onclick="closeDrawer()">FAQ</a>
-  <a href="#" style="margin-top:24px;display:inline-block;padding:14px 18px;background:#2563eb;color:#fff;border-radius:10px;border-bottom:none;font-size:18px;font-weight:600;">Join now free</a>
-</div>
 
+  <div class="drawer-top">
+    <a href="#templates" onclick="closeDrawer()">Templates</a>
+    <a href="#" onclick="closeDrawer()">Blog</a>
+        <a href="#faq" onclick="closeDrawer()">FAQ</a>
+  </div>
+
+  <div class="drawer-section-label">Legal topics</div>
+  <div id="topicsMenu" class="drawer-submenu open">
+    <a href="#" onclick="closeDrawer()">Housing</a>
+    <a href="#" onclick="closeDrawer()">Family</a>
+    <a href="#" onclick="closeDrawer()">Money &amp; debt</a>
+    <a href="#" onclick="closeDrawer()">Consumer problems</a>
+    <a href="#" onclick="closeDrawer()">Employment</a>
+    <a href="#" onclick="closeDrawer()">Small business</a>
+    <a href="#" onclick="closeDrawer()">Contracts &amp; agreements</a>
+    <a href="#" onclick="closeDrawer()">Starting a business</a>
+  </div>
+
+  <div class="drawer-bottom">
+    <a href="#" class="drawer-join">Join now free</a>
+    <a href="#" class="drawer-login">Log in</a>
+  </div>
+</div>
 <main>
   <div class="avatar-row">
-    <div class="ai-icon">D</div>
+    <div class="ai-icon">
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3v3"/>
+<path d="M5 6h14"/>
+<path d="M7 6l-3 5h6l-3-5z"/>
+<path d="M17 6l-3 5h6l-3-5z"/>
+<path d="M12 9v8"/>
+<path d="M8 21h8"/>
+</svg>
+</div>
   </div>
 
   <h1>Hi, I'm Dicta</h1>
@@ -464,7 +505,20 @@ h1{
     <div class="talk-copy">Describe your issue in plain language. Dicta surfaces guidance, highlights useful templates, and helps you decide whether speaking with an attorney makes sense.</div>
     <div class="talk-graphic">
       <div class="talk-bubble user">My landlord kept my security deposit. What should I do next?</div>
-      <div class="talk-bubble ai">State landlord-tenant rules often set deadlines and notice requirements for returning a security deposit. See your state’s attorney general or housing guidance for the rules that apply where you live.</div>
+      <div class="talk-bubble ai">
+  <div class="ai-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v3"/>
+      <path d="M5 6h14"/>
+      <path d="M7 6l-3 5h6l-3-5z"/>
+      <path d="M17 6l-3 5h6l-3-5z"/>
+      <path d="M12 9v8"/>
+      <path d="M8 21h8"/>
+    </svg>
+  </div>
+  <div class="ai-text">State landlord-tenant rules often set deadlines and notice requirements for returning a security deposit. See your state’s attorney general or housing guidance for the rules that apply where you live.</div>
+</div>
+</div>
     </div>
   </section>
 </main>
@@ -476,7 +530,16 @@ h1{
 
     <div class="visual-wrap">
       <div class="flow-step">
-        <div class="flow-icon">D</div>
+        <div class="flow-icon">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3v3"/>
+<path d="M5 6h14"/>
+<path d="M7 6l-3 5h6l-3-5z"/>
+<path d="M17 6l-3 5h6l-3-5z"/>
+<path d="M12 9v8"/>
+<path d="M8 21h8"/>
+</svg>
+</div>
         <h3>Ask the assistant</h3>
         <p>Describe your family, housing, money, or personal legal issue.</p>
       </div>
@@ -675,9 +738,11 @@ function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
 }
-function toggleMenu(){
-  const m=document.getElementById('menu');
-  m.style.display=m.style.display==='block'?'none':'block';
+function toggleTopics(){
+  const menu=document.getElementById('topicsMenu');
+  const chevron=document.getElementById('topicsChevron');
+  const open=menu.classList.toggle('open');
+  chevron.textContent=open?'▴':'▾';
 }
 </script>
 <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
