@@ -18,25 +18,56 @@ body{
   background:var(--bg);
   color:var(--text);
 }
-header{
-  position:absolute;
-  top:20px;
-  left:24px;
-  right:24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:10;
-}
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;z-index:10;background:#ffffff;padding:28px 24px 12px;border-bottom:1px solid #eee;}
 .brand{font-weight:700;letter-spacing:-0.02em;}
-.login{font-size:14px;color:#3b82f6;text-decoration:none;}
-main{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  padding:40px 20px 72px;
+.login{color:#000;text-decoration:none;font-size:14px;}
+.menu-btn{font-size:22px;border:none;background:none;cursor:pointer;color:#000;}
+.drawer{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:280px;
+  background:#ffffff;
+  border-right:1px solid var(--border);
+  transform:translateX(-100%);
+  transition:transform .25s ease;
+  z-index:1000;
+  padding:24px;
+}
+.drawer.open{transform:translateX(0);}
+.drawer-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:22px;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
+.drawer a{
+  display:block;
+  padding:14px 0;
+  text-decoration:none;
+  color:#000;
+  font-size:18px;
+  border-bottom:1px solid #f1f1f1;
+}
+.drawer a:last-child{border-bottom:none;}
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.25);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease;
+  z-index:900;
+}
+.overlay.open{opacity:1;pointer-events:auto;}
+main{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:160px 20px 72px;
   text-align:center;
 }
 .avatar-row{
@@ -369,7 +400,7 @@ h1{
   .template-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media (max-width:700px){
-  header{top:16px;left:16px;right:16px;}
+  header{top:0;left:0;right:0;}
   main{min-height:auto;padding:96px 16px 72px;}
   h1{font-size:40px}
   .subtitle{font-size:16px}
@@ -394,9 +425,20 @@ h1{
 </head>
 <body>
 <header>
+  <button class="menu-btn" onclick="openDrawer()">☰</button>
   <div class="brand">Dicta</div>
   <a class="login" href="#">Log in</a>
 </header>
+
+<div id="overlay" class="overlay" onclick="closeDrawer()"></div>
+
+<div id="drawer" class="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <div style="font-weight:700;margin-bottom:20px;font-size:20px;">Dicta</div>
+  <a href="#templates" onclick="closeDrawer()">Templates</a>
+  <a href="#faq" onclick="closeDrawer()">FAQ</a>
+  <a href="#" style="margin-top:24px;display:inline-block;padding:14px 18px;background:#2563eb;color:#fff;border-radius:10px;border-bottom:none;font-size:18px;font-weight:600;">Join now free</a>
+</div>
 
 <main>
   <div class="avatar-row">
@@ -458,7 +500,7 @@ h1{
   </div>
 </section>
 
-<section class="section">
+<section id="templates" class="section">
   <div class="section-inner">
     <h2>Templates the assistant may recommend</h2>
     <div class="section-copy">
@@ -557,7 +599,7 @@ h1{
   </div>
 </section>
 
-<section class="section">
+<section id="faq" class="section">
   <div class="section-inner">
     <h2>Frequently asked questions</h2>
     <div class="section-copy">Transparent pricing and easier access for people who need help with a legal issue but do not want to start with a full law firm engagement.</div>
@@ -624,5 +666,54 @@ h1{
     <div class="footer-disclaimer">Dicta AI is not a law firm and does not provide legal advice. Legal services are provided by licensed attorneys only after formal engagement. No attorney-client relationship or privilege exists through use of the assistant alone.</div>
   </div>
 </section>
+<script>
+function openDrawer(){
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+function toggleMenu(){
+  const m=document.getElementById('menu');
+  m.style.display=m.style.display==='block'?'none':'block';
+}
+</script>
+<button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+<style>
+#scrollTopBtn{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid #dcdcdc;
+  background:#ffffff;
+  color:#000;
+  font-size:18px;
+  cursor:pointer;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  z-index:1200;
+}
+#scrollTopBtn:hover{background:#f7f7f7}
+</style>
+<script>
+const scrollBtn=document.getElementById('scrollTopBtn');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>400){
+    scrollBtn.style.display='flex';
+  }else{
+    scrollBtn.style.display='none';
+  }
+});
+scrollBtn.addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
 </body>
 </html>
