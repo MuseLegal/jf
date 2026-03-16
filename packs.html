@@ -126,6 +126,11 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 .footer-col-title{font-size:14px;font-weight:600;margin-bottom:10px;color:#444;}
 .footer-link{display:block;color:#777;text-decoration:none;font-size:14px;margin-bottom:8px;}
 .footer-disclaimer{max-width:760px;margin:34px auto 0;font-size:12px;color:#8a8a8a;line-height:1.45;}
+.drawer-logo{
+  width:22px;
+  height:22px;
+  display:block;
+}
 @media (max-width:900px){
   .section h2,.footer-cta h2{font-size:52px;}
   .visual-wrap{gap:18px;}
@@ -171,13 +176,23 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 <div id="drawer" class="drawer">
   <button class="drawer-close" onclick="closeDrawer()">✕</button>
   <div style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:20px;font-size:20px;">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 3v3"/>
-      <path d="M5 6h14"/>
-      <path d="M7 6l-3 5h6l-3-5z"/>
-      <path d="M17 6l-3 5h6l-3-5z"/>
-      <path d="M12 9v8"/>
-      <path d="M8 21h8"/>
+    <svg class="drawer-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+      <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
+      <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
+      <rect x="9" y="1" width="4" height="4" fill="#000000"/>
+      <rect x="13" y="1" width="4" height="4" fill="#000000"/>
+
+      <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
+      <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
+      <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
+      <rect x="13" y="5" width="4" height="4" fill="#000000"/>
+
+      <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
+      <rect x="5" y="9" width="4" height="4" fill="#000000"/>
+      <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+
+      <rect x="1" y="13" width="4" height="4" fill="#000000"/>
+      <rect x="5" y="13" width="4" height="4" fill="#000000"/>
     </svg>
     <span>Pixelwise</span>
   </div>
