@@ -86,13 +86,42 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 .talk-section{margin-top:320px;text-align:center;}
 .talk-title{font-size:52px;line-height:0.96;letter-spacing:-0.05em;margin:0 0 20px;font-weight:500;}
 .talk-copy{max-width:720px;margin:0 auto 30px;color:var(--muted);font-size:18px;line-height:1.5;}
-.talk-graphic{width:100%;max-width:540px;margin:0 auto;background:#ffffff;border:1px solid var(--border);border-radius:14px;padding:26px;min-height:250px;position:relative;}
+.talk-graphic{width:100%;max-width:540px;margin:0 auto;background:#ffffff;border:1px solid var(--border);border-radius:14px;padding:26px;min-height:280px;position:relative;}
 .talk-bubble{position:relative;max-width:310px;padding:14px 16px;border-radius:14px;font-size:14px;line-height:1.45;text-align:left;}
 .talk-bubble.ai{background:#ffffff;border:1px solid var(--border);margin:40px auto 0 60px;padding:14px 16px;position:relative;}
 .ai-logo{position:absolute;left:-38px;bottom:-6px;width:28px;height:28px;border:1px solid #000;border-radius:6px;display:flex;align-items:center;justify-content:center;background:#fff;}
 .ai-logo svg{width:16px;height:16px;}
 .ai-text{font-size:14px;line-height:1.45;}
 .talk-bubble.user{background:#e9eef9;margin:14px 36px 0 auto;}
+.link-card{
+  display:block;
+  margin-top:12px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fafafa;
+  text-decoration:none;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.link-card:hover{
+  background:#f5f8ff;
+  border-color:#bfd2ff;
+  transform:translateY(-1px);
+}
+.link-card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  color:#2563eb;
+  font-weight:600;
+  font-size:13px;
+}
+.link-card-meta{
+  margin-top:4px;
+  font-size:12px;
+  color:#777;
+}
 .section{padding:90px 20px;}
 .section-inner{max-width:980px;margin:0 auto;text-align:center;}
 .section h2{font-size:64px;line-height:0.95;letter-spacing:-0.05em;margin:0 auto 22px;font-weight:500;max-width:720px;}
@@ -155,7 +184,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
   .consult-card-inner{padding:22px 18px;}
   .footer-links{grid-template-columns:1fr;gap:18px;text-align:center;}
   .footer-social{justify-content:center;}
-  .talk-graphic{padding:18px;min-height:220px}
+  .talk-graphic{padding:18px;min-height:260px}
   .talk-bubble.ai{margin:24px auto 0 42px;max-width:250px}
   .ai-logo{left:-32px;bottom:-4px;width:26px;height:26px}
   .talk-bubble.user{margin:12px 8px 0 auto;max-width:220px}
@@ -181,16 +210,13 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
       <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
       <rect x="9" y="1" width="4" height="4" fill="#000000"/>
       <rect x="13" y="1" width="4" height="4" fill="#000000"/>
-
       <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
       <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
       <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
       <rect x="13" y="5" width="4" height="4" fill="#000000"/>
-
       <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
       <rect x="5" y="9" width="4" height="4" fill="#000000"/>
       <rect x="9" y="9" width="4" height="4" fill="#000000"/>
-
       <rect x="1" y="13" width="4" height="4" fill="#000000"/>
       <rect x="5" y="13" width="4" height="4" fill="#000000"/>
     </svg>
@@ -254,7 +280,16 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
             <path d="M8 21h8"/>
           </svg>
         </div>
-        <div class="ai-text">HHS-OCR explains that a Business Associate Agreement is required when a vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity or business associate. See the HHS-OCR guidance on business associates and evaluate whether the replay tool receives identifiable health information.</div>
+        <div class="ai-text">
+          HHS-OCR explains that a Business Associate Agreement is required when a vendor creates, receives, maintains, or transmits PHI on behalf of a covered entity or business associate.
+          <a class="link-card" href="https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/business-associates/index.html" target="_blank" rel="noopener noreferrer">
+            <div class="link-card-title">
+              <span>HHS-OCR guidance on business associates</span>
+              <span>↗</span>
+            </div>
+            <div class="link-card-meta">U.S. Department of Health & Human Services</div>
+          </a>
+        </div>
       </div>
     </div>
   </section>
