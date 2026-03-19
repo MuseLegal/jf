@@ -10,6 +10,9 @@
   --text:#000000;
   --muted:#555;
   --border:#dcdcdc;
+  --blue:#2563eb;
+  --green:#4ade80;
+  --soft-green:#dcfce7;
 }
 *{box-sizing:border-box}
 body{
@@ -74,7 +77,6 @@ header.scrolled{border-bottom:1px solid #eee;}
 .overlay.open{opacity:1;pointer-events:auto;}
 main{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:120px 20px 72px;text-align:center;}
 
-.ai-icon{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:2px solid black;}
 h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line-height:1;}
 .subtitle{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:12px;}
 .description{font-size:16px;color:var(--muted);max-width:700px;margin-bottom:18px;}
@@ -83,6 +85,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 .input-box textarea{border:none;outline:none;font-size:16px;width:100%;resize:none;min-height:120px;font-family:inherit;}
 .start-btn{background:#eaeaea;border:none;border-radius:8px;padding:12px 14px;font-size:14px;color:#777;white-space:nowrap;}
 .helper{font-size:12px;color:#888;margin-top:10px;}
+
 .talk-section{margin-top:320px;text-align:center;}
 .talk-title{font-size:52px;line-height:0.96;letter-spacing:-0.05em;margin:0 0 20px;font-weight:500;}
 .talk-copy{max-width:720px;margin:0 auto 30px;color:var(--muted);font-size:18px;line-height:1.5;}
@@ -93,6 +96,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 .ai-logo svg{width:16px;height:16px;}
 .ai-text{font-size:14px;line-height:1.45;}
 .talk-bubble.user{background:#e9eef9;margin:14px 36px 0 auto;}
+
 .link-card{
   display:block;
   margin-top:12px;
@@ -122,22 +126,220 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
   font-size:12px;
   color:#777;
 }
+
 .section{padding:90px 20px;}
-.section-inner{max-width:980px;margin:0 auto;text-align:center;}
-.section h2{font-size:64px;line-height:0.95;letter-spacing:-0.05em;margin:0 auto 22px;font-weight:500;max-width:720px;}
-.section-copy{max-width:720px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.5;}
+.section-inner{max-width:1120px;margin:0 auto;text-align:center;}
+.section h2{font-size:64px;line-height:0.95;letter-spacing:-0.05em;margin:0 auto 22px;font-weight:500;max-width:780px;}
+.section-copy{max-width:760px;margin:0 auto;color:var(--muted);font-size:18px;line-height:1.5;}
+
 .visual-wrap{margin:60px auto 0;width:100%;max-width:760px;display:flex;justify-content:center;align-items:center;gap:32px;}
 .flow-step{width:180px;min-width:0;padding:24px 18px;border:1px solid var(--border);border-radius:14px;background:#fff;text-align:center;}
 .flow-icon{width:44px;height:44px;border-radius:8px;border:2px solid #000;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:monospace;font-weight:700;}
 .flow-step h3{font-size:16px;margin:6px 0 6px;}
 .flow-step p{font-size:13px;color:var(--muted);margin:0;}
 .flow-arrow{font-size:26px;color:#999;flex:0 0 auto;}
-.template-grid{margin:50px auto 0;width:100%;max-width:760px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
-.template-card{border:1px solid var(--border);border-radius:14px;background:#fff;text-align:center;padding:22px 16px;}
-.template-card h3{font-size:16px;margin:8px 0 6px;}
-.template-card p{font-size:13px;color:var(--muted);margin:0;}
-.template-price{margin-top:8px;font-weight:600;color:#2563eb;}
-.template-link{display:inline-block;margin-top:6px;color:#2563eb;text-decoration:none;font-size:14px;}
+
+/* Catalog */
+.catalog-toggle-wrap{
+  display:flex;
+  justify-content:center;
+  margin:28px 0 0;
+}
+.catalog-toggle{
+  display:inline-flex;
+  align-items:center;
+  padding:6px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#fafafa;
+  gap:4px;
+}
+.catalog-toggle button{
+  border:none;
+  background:transparent;
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:13px;
+  color:#555;
+  cursor:pointer;
+  font-family:inherit;
+  transition:background .2s ease,color .2s ease;
+}
+.catalog-toggle button.active{
+  background:#000;
+  color:#fff;
+}
+.catalog-helper{
+  margin-top:14px;
+  font-size:13px;
+  color:#666;
+}
+.catalog-view{
+  display:none;
+}
+.catalog-view.active{
+  display:block;
+}
+.catalog-grid{
+  margin:42px auto 0;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  align-items:stretch;
+}
+.catalog-card{
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#fff;
+  overflow:hidden;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+.catalog-card.featured{
+  border-color:#86efac;
+  box-shadow:0 8px 30px rgba(74, 222, 128, 0.16);
+  transform:translateY(-4px);
+}
+.catalog-topbar{
+  height:14px;
+  background:#000;
+}
+.catalog-topbar.green{
+  background:var(--green);
+}
+.catalog-badge{
+  position:absolute;
+  top:18px;
+  right:18px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:600;
+  line-height:1;
+  color:#166534;
+  background:var(--soft-green);
+  border:1px solid #bbf7d0;
+}
+.catalog-body{
+  padding:22px 20px 20px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.catalog-eyebrow{
+  font-size:13px;
+  color:#777;
+  margin-bottom:8px;
+}
+.catalog-title{
+  font-size:30px;
+  line-height:1;
+  letter-spacing:-0.04em;
+  margin:0 0 6px;
+  font-weight:600;
+}
+.catalog-subtitle{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:18px;
+  min-height:40px;
+}
+.catalog-price-row{
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  margin-bottom:12px;
+}
+.catalog-price{
+  font-size:46px;
+  line-height:0.95;
+  letter-spacing:-0.05em;
+  font-weight:600;
+}
+.catalog-price-note{
+  font-size:13px;
+  color:#777;
+  padding-bottom:5px;
+}
+.catalog-savings{
+  display:inline-block;
+  margin-bottom:14px;
+  padding:7px 10px;
+  border-radius:10px;
+  font-size:12px;
+  line-height:1.3;
+  color:#166534;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+}
+.catalog-desc{
+  font-size:14px;
+  color:#444;
+  line-height:1.45;
+  padding:14px 0 16px;
+  border-top:1px solid #efefef;
+}
+.catalog-list-label{
+  font-size:14px;
+  font-weight:600;
+  margin:0 0 12px;
+}
+.catalog-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.catalog-list li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:10px;
+  color:#555;
+  font-size:14px;
+  line-height:1.4;
+}
+.catalog-list li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:#666;
+  font-size:13px;
+}
+.catalog-spacer{
+  flex:1 1 auto;
+}
+.catalog-cta{
+  display:inline-block;
+  margin-top:18px;
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+  padding:13px 16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  color:#000;
+  font-weight:600;
+  background:#fff;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease;
+}
+.catalog-cta:hover{
+  background:#f8f8f8;
+  transform:translateY(-1px);
+}
+.catalog-cta.primary{
+  background:#000;
+  color:#fff;
+  border-color:#000;
+}
+.catalog-cta.primary:hover{
+  background:#111;
+}
+
+/* Future support section */
 .consult-card{margin-top:40px;display:flex;justify-content:center;}
 .consult-card-inner{max-width:560px;width:100%;border:1px solid var(--border);border-radius:16px;padding:28px 32px;background:#fafafa;text-align:left;}
 .consult-item{display:flex;align-items:flex-start;gap:14px;}
@@ -145,6 +347,8 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 .consult-icon{width:36px;height:36px;border-radius:8px;border:2px solid #000;display:flex;align-items:center;justify-content:center;font-weight:700;flex:0 0 auto;}
 .consult-text strong{display:block;}
 .consult-text div{color:var(--muted);font-size:14px;}
+
+/* Footer */
 .footer-cta{padding:90px 20px 70px;}
 .footer-cta-inner{max-width:980px;margin:0 auto;text-align:center;}
 .footer-cta h2{font-size:64px;line-height:0.95;letter-spacing:-0.05em;margin:0 0 22px;font-weight:500;}
@@ -160,11 +364,34 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
   height:22px;
   display:block;
 }
+#scrollTopBtn{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid #dcdcdc;
+  background:#ffffff;
+  color:#000;
+  font-size:18px;
+  cursor:pointer;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  z-index:1200;
+}
+#scrollTopBtn:hover{background:#f7f7f7}
+
+@media (max-width:1000px){
+  .catalog-grid{grid-template-columns:1fr;}
+  .catalog-card.featured{transform:none;}
+}
 @media (max-width:900px){
   .section h2,.footer-cta h2{font-size:52px;}
   .visual-wrap{gap:18px;}
   .flow-step{width:160px;padding:20px 14px;}
-  .template-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media (max-width:700px){
   header{top:0;left:0;right:0;}
@@ -180,7 +407,6 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
   .visual-wrap{flex-direction:column;gap:18px;max-width:360px;}
   .flow-step{width:100%;}
   .flow-arrow{transform:rotate(90deg);line-height:1;}
-  .template-grid{grid-template-columns:1fr;max-width:320px;}
   .consult-card-inner{padding:22px 18px;}
   .footer-links{grid-template-columns:1fr;gap:18px;text-align:center;}
   .footer-social{justify-content:center;}
@@ -224,7 +450,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
   </div>
 
   <div class="drawer-top">
-    <a href="#templates" onclick="closeDrawer()">Templates</a>
+    <a href="#templates" onclick="closeDrawer()">Templates & Playbooks</a>
     <a href="#" onclick="closeDrawer()">Blog</a>
     <a href="#faq" onclick="closeDrawer()">FAQ</a>
   </div>
@@ -248,17 +474,15 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 </div>
 
 <main>
-    </div>
-
   <h1>Hi, I'm Pixelwise</h1>
 
-  <div class="subtitle">Ask questions about digital health, privacy, and tracking technologies.</div>
-  <div class="description">The assistant surfaces relevant legal resources, suggests attorney-drafted templates, and can connect you with an attorney if needed.</div>
-  <div class="description">Start here if you want faster access to niche digital health and privacy expertise without beginning with a full law firm engagement.</div>
+  <div class="subtitle">Practical templates and playbooks for digital health, privacy, and tracking-tech issues.</div>
+  <div class="description">Pixelwise helps you move faster with attorney-informed templates, decision playbooks, and plain-English guidance built for teams navigating complex privacy questions.</div>
+  <div class="description">Start here if you want a faster path to defensible language and smarter decisions without beginning with a full law firm engagement.</div>
 
   <div class="input-wrapper">
     <div class="input-box">
-      <textarea placeholder="Describe your digital health, privacy, or tracking-tech question…"></textarea>
+      <textarea placeholder="Describe your privacy, digital health, or tracking-tech issue…"></textarea>
       <button class="start-btn">Get Started</button>
     </div>
     <div class="helper">Private • Issue intake • Resource support • No attorney-client privilege with the AI</div>
@@ -266,7 +490,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 
   <section class="talk-section">
     <h2 class="talk-title">Talk to Pixelwise like you would an attorney</h2>
-    <div class="talk-copy">Describe your issue in plain language. Pixelwise surfaces guidance, highlights useful templates, and helps you decide whether speaking with an attorney makes sense.</div>
+    <div class="talk-copy">Describe your issue in plain language. Pixelwise helps surface practical guidance, relevant templates, and the right playbook for your goals and risk tolerance.</div>
     <div class="talk-graphic">
       <div class="talk-bubble user">Can we use session replay in our patient portal without a BAA?</div>
       <div class="talk-bubble ai">
@@ -298,7 +522,7 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 <section class="section">
   <div class="section-inner">
     <h2>Fast, focused help for digital health and privacy issues</h2>
-    <div class="section-copy">Start with the assistant, review the most relevant resources and templates, and speak with an attorney only when legal advice is worth the time and cost.</div>
+    <div class="section-copy">Start with the issue. Use Pixelwise to identify the right template, choose the right playbook, and move forward with language that fits your business goals and risk posture.</div>
 
     <div class="visual-wrap">
       <div class="flow-step">
@@ -312,24 +536,24 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
             <path d="M8 21h8"/>
           </svg>
         </div>
-        <h3>Ask the assistant</h3>
-        <p>Describe your HIPAA, tracking-tech, AI, or digital health issue.</p>
+        <h3>Describe the issue</h3>
+        <p>Share your HIPAA, tracking-tech, AI, or digital health question in plain English.</p>
       </div>
 
       <div class="flow-arrow">→</div>
 
       <div class="flow-step">
         <div class="flow-icon">AI</div>
-        <h3>See resources</h3>
-        <p>Pixelwise surfaces public guidance, practical next steps, and relevant templates.</p>
+        <h3>Get pointed to the right asset</h3>
+        <p>Pixelwise surfaces practical guidance, useful templates, and playbooks based on the issue.</p>
       </div>
 
       <div class="flow-arrow">→</div>
 
       <div class="flow-step">
-        <div class="flow-icon">⚖</div>
-        <h3>Consult an attorney</h3>
-        <p>If needed, connect with a licensed attorney for tailored legal advice.</p>
+        <div class="flow-icon">📘</div>
+        <h3>Use it with confidence</h3>
+        <p>Download language and follow the playbook that best fits your goals and risk tolerance.</p>
       </div>
     </div>
   </div>
@@ -337,94 +561,242 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 
 <section id="templates" class="section">
   <div class="section-inner">
-    <h2>Templates the assistant may recommend</h2>
-    <div class="section-copy">Many privacy and digital health issues can be handled with the right document. The assistant may recommend these attorney-drafted templates during chat, or you can buy them directly below.</div>
+    <h2>Choose the level of guidance that fits your team</h2>
+    <div class="section-copy">Start with the offer most likely to get you to a practical answer faster. For most teams, templates paired with playbooks provide the best mix of usability, clarity, and value.</div>
 
-    <div style="margin-top:18px;color:#888;font-size:13px;">Suggested during chat • Available for direct purchase</div>
-
-    <div class="template-grid">
-      <div class="template-card">
-        <div class="flow-icon">📄</div>
-        <h3>Website Privacy Policy</h3>
-        <p>Modern privacy policy covering cookies, analytics, and state privacy laws.</p>
-        <div class="template-price">$79</div>
-        <a href="#" class="template-link">Buy template →</a>
-      </div>
-
-      <div class="template-card">
-        <div class="flow-icon">📝</div>
-        <h3>HIPAA BAA Template</h3>
-        <p>Business Associate Agreement for vendors and digital health partners.</p>
-        <div class="template-price">$129</div>
-        <a href="#" class="template-link">Buy template →</a>
-      </div>
-
-      <div class="template-card">
-        <div class="flow-icon">🍪</div>
-        <h3>Cookie & Tracking Policy</h3>
-        <p>Disclosure framework for pixels, session replay, analytics tools, and trackers.</p>
-        <div class="template-price">$59</div>
-        <a href="#" class="template-link">Buy template →</a>
-      </div>
-
-      <div class="template-card">
-        <div class="flow-icon">📦</div>
-        <h3>Startup Privacy Pack</h3>
-        <p>Privacy policy, cookie policy, and terms for digital products and websites.</p>
-        <div class="template-price">$199</div>
-        <a href="#" class="template-link">Buy bundle →</a>
-      </div>
-
-      <div class="template-card">
-        <div class="flow-icon">🏥</div>
-        <h3>Digital Health Pack</h3>
-        <p>Core templates for HIPAA-facing sites, vendor relationships, and product teams.</p>
-        <div class="template-price">$299</div>
-        <a href="#" class="template-link">Buy bundle →</a>
-      </div>
-
-      <div class="template-card">
-        <div class="flow-icon">📣</div>
-        <h3>Marketing Compliance Pack</h3>
-        <p>Template set for consent, outreach, and tracking-tech disclosure issues.</p>
-        <div class="template-price">$149</div>
-        <a href="#" class="template-link">Buy bundle →</a>
+    <div class="catalog-toggle-wrap">
+      <div class="catalog-toggle" role="tablist" aria-label="Product options">
+        <button id="toggle-bundles" class="active" type="button" onclick="showCatalog('bundles')">Templates + Playbooks</button>
+        <button id="toggle-templates" type="button" onclick="showCatalog('templates')">Templates Only</button>
       </div>
     </div>
+
+    <div class="catalog-helper">Best value for most buyers: start with templates + playbooks for more guidance and better overall savings than buying piece by piece.</div>
+
+    <!-- Templates + Playbooks -->
+    <div id="catalog-bundles" class="catalog-view active">
+      <div class="catalog-grid">
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For focused one-off issues</div>
+            <h3 class="catalog-title">Starter</h3>
+            <div class="catalog-subtitle">A lighter entry point for teams that need a small set of strong materials without going all the way in.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$149</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Good for testing Pixelwise on a narrower issue.</div>
+
+            <div class="catalog-desc">Get a practical starting package that gives you usable language plus a bit more structure than a standalone template.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>2 core templates</li>
+              <li>1 focused mini playbook</li>
+              <li>Practical implementation notes</li>
+              <li>Instant digital delivery</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Choose Starter</a>
+          </div>
+        </div>
+
+        <div class="catalog-card featured">
+          <div class="catalog-topbar green"></div>
+          <div class="catalog-badge">Best value</div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For most teams</div>
+            <h3 class="catalog-title">Growth</h3>
+            <div class="catalog-subtitle">The strongest mix of templates, playbooks, and decision support for teams that want to move faster with more confidence.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$299</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Framed as the smart buy: broader guidance at a lower effective cost than building your set a la carte.</div>
+
+            <div class="catalog-desc">This is the option most likely to reduce back-and-forth internally because it gives both language and a clearer path for using it.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>4 high-value templates</li>
+              <li>2 detailed playbooks</li>
+              <li>Risk-based and goal-based options</li>
+              <li>Better savings than buying separately</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta primary">Choose Growth</a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For teams building a fuller system</div>
+            <h3 class="catalog-title">Complete</h3>
+            <div class="catalog-subtitle">A broader toolkit for teams that want deeper coverage across tracking-tech, privacy, and digital health workflows.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$499</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best for broader internal reuse across multiple issues or stakeholders.</div>
+
+            <div class="catalog-desc">Choose this when you want fuller documentation and more decision support across several recurring privacy questions.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>Full template bundle</li>
+              <li>Full playbook bundle</li>
+              <li>Broader scenario coverage</li>
+              <li>Built for repeat internal use</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Choose Complete</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Templates only -->
+    <div id="catalog-templates" class="catalog-view">
+      <div class="catalog-grid">
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For basic website needs</div>
+            <h3 class="catalog-title">Essential</h3>
+            <div class="catalog-subtitle">A simple entry point for teams that mainly need foundational privacy language.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$59</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Lowest-cost way to get started.</div>
+
+            <div class="catalog-desc">Best when you know what you need and mostly want clean, attorney-informed language.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>1 single template</li>
+              <li>Fast digital delivery</li>
+              <li>Editable format</li>
+              <li>Good for narrow needs</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Choose Essential</a>
+          </div>
+        </div>
+
+        <div class="catalog-card featured">
+          <div class="catalog-topbar green"></div>
+          <div class="catalog-badge">Most popular</div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For practical coverage</div>
+            <h3 class="catalog-title">Core</h3>
+            <div class="catalog-subtitle">A stronger set of templates for teams that want broader coverage without adding playbooks yet.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$129</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">The best standalone template value for buyers not ready for playbooks.</div>
+
+            <div class="catalog-desc">A good middle option when you want more than one building block but are still shopping on a tighter budget.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>2 to 3 core templates</li>
+              <li>Better range of use cases</li>
+              <li>Useful for internal teams</li>
+              <li>Lower cost than buying separate singles</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta primary">Choose Core</a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For broader document needs</div>
+            <h3 class="catalog-title">Expanded</h3>
+            <div class="catalog-subtitle">A fuller template pack for teams that want a stronger document library but still prefer to skip playbooks.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$199</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best for buyers who want more documents now and may add playbooks later.</div>
+
+            <div class="catalog-desc">Useful when several stakeholders need materials, but you are not yet ready to buy the guided decision layer.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>4 or more templates</li>
+              <li>Broader policy and disclosure coverage</li>
+              <li>Good for repeat document use</li>
+              <li>Stronger than one-off purchases</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Choose Expanded</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="section">
   <div class="section-inner">
-    <h2>If your situation requires legal advice, talk with an attorney for <span style="color:#2563eb;">$199</span></h2>
-    <div class="section-copy">If your issue needs legal advice, book a focused consultation with a licensed attorney for practical guidance on HIPAA, tracking tech, AI tools, vendor contracts, product launches, and digital health risk.</div>
+    <h2>Need more than a template?</h2>
+    <div class="section-copy">Pixelwise is starting with templates and playbooks first. Guided compliance workflows and expanded support options are planned for future releases.</div>
     <div style="margin-top:22px;display:flex;justify-content:center;">
-      <div style="border:1px solid #6ccf7a;color:#3d9b4c;border-radius:999px;padding:10px 18px;font-size:16px;">Consultations available within 24–48 hours</div>
+      <div style="border:1px solid #6ccf7a;color:#3d9b4c;border-radius:999px;padding:10px 18px;font-size:16px;">Expanded support features are in development</div>
     </div>
 
     <div class="consult-card">
       <div class="consult-card-inner">
         <div class="consult-item">
+          <div class="consult-icon">📘</div>
+          <div class="consult-text">
+            <strong>Templates first</strong>
+            <div>Start with high-value language packs and practical documents you can use immediately.</div>
+          </div>
+        </div>
+
+        <div class="consult-item">
+          <div class="consult-icon">🧭</div>
+          <div class="consult-text">
+            <strong>Playbooks next</strong>
+            <div>Use guided decision frameworks to choose language based on your goals, facts, and risk tolerance.</div>
+          </div>
+        </div>
+
+        <div class="consult-item">
           <div class="consult-icon">⚖</div>
           <div class="consult-text">
-            <strong>Licensed privacy attorneys</strong>
-            <div>Support for HIPAA, digital health, tracking technologies, and AI governance issues.</div>
-          </div>
-        </div>
-
-        <div class="consult-item">
-          <div class="consult-icon">✓</div>
-          <div class="consult-text">
-            <strong>Focused review</strong>
-            <div>Clear answers about BAAs, pixels, session replay, marketing compliance, and product risk.</div>
-          </div>
-        </div>
-
-        <div class="consult-item">
-          <div class="consult-icon">🛡</div>
-          <div class="consult-text">
-            <strong>Flat consult pricing</strong>
-            <div><span style="color:#2563eb;">$199</span> for a short legal consultation.</div>
+            <strong>More support to come</strong>
+            <div>Pixelwise will expand over time to include additional guided compliance support for more complex use cases.</div>
           </div>
         </div>
       </div>
@@ -435,27 +807,27 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 <section id="faq" class="section">
   <div class="section-inner">
     <h2>Frequently asked questions</h2>
-    <div class="section-copy">Transparent pricing and easier access for teams that need niche digital health and privacy expertise without starting with a full law firm engagement.</div>
+    <div class="section-copy">Transparent pricing and practical tools for teams that need niche digital health and privacy support without starting with a full law firm engagement.</div>
 
     <div style="max-width:760px;margin:50px auto 0;text-align:left;">
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
         <summary style="font-weight:600;cursor:pointer;">How much does Pixelwise cost?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">The assistant is free to use. Templates typically range from $59–$129, and bundles provide more coverage at a lower combined cost. If you need legal advice, consultations with a licensed attorney are available for a flat $199.</div>
+        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">The assistant is free to use for issue intake and resource discovery. Templates start lower, while templates paired with playbooks cost more because they include more structured guidance and usually provide better overall value than assembling materials one by one.</div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Why not just start with a law firm?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">Many digital health and tracking-tech questions do not require a full law firm engagement. Pixelwise helps you start with resources and attorney-drafted templates before deciding whether legal advice is necessary.</div>
+        <summary style="font-weight:600;cursor:pointer;">What is the difference between a template and a playbook?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">A template gives you ready-to-use language. A playbook helps you decide which language to use, when to use it, and how different approaches line up with different business goals and risk tolerance levels.</div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Who is Pixelwise built for?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">Pixelwise is built for founders, product teams, marketers, compliance professionals, and in-house legal generalists who occasionally need niche expertise in HIPAA, AI governance, tracking technologies, and digital health compliance.</div>
+        <summary style="font-weight:600;cursor:pointer;">Why are the templates + playbooks packages featured first?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">Because most buyers do not just need a document — they need help using it well. Pairing templates with playbooks gives more guidance, reduces guesswork, and generally delivers better value than piecing materials together separately.</div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
         <summary style="font-weight:600;cursor:pointer;">Does the AI provide legal advice?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">No. The assistant surfaces public guidance, summarizes materials, and helps organize your issue. Legal advice is provided only by licensed attorneys after formal engagement.</div>
+        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">No. The assistant helps organize issues, surface public guidance, and point you toward relevant templates or playbooks. It does not provide legal advice or create an attorney-client relationship.</div>
       </details>
     </div>
   </div>
@@ -463,8 +835,8 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
 
 <section class="footer-cta">
   <div class="footer-cta-inner">
-    <h2>Start with the assistant. Talk to an attorney when needed.</h2>
-    <div class="footer-cta-copy">Start with a simple question, review suggested resources or templates, and speak with a licensed attorney if your situation calls for legal advice.</div>
+    <h2>Start with the issue. Leave with the right language and playbook.</h2>
+    <div class="footer-cta-copy">Use Pixelwise to find practical guidance, download attorney-informed templates, and choose a playbook that helps you move forward with more confidence.</div>
 
     <div class="footer-links">
       <div>
@@ -496,32 +868,12 @@ h1{font-size:56px;font-weight:600;letter-spacing:-0.04em;margin:28px 0 24px;line
       </div>
     </div>
 
-    <div class="footer-disclaimer">Pixelwise AI is not a law firm and does not provide legal advice. Legal services are provided by licensed attorneys only after formal engagement. No attorney-client relationship or privilege exists through use of the assistant alone.</div>
+    <div class="footer-disclaimer">Pixelwise AI is not a law firm and does not provide legal advice. Templates and playbooks are general informational resources and do not create an attorney-client relationship or privilege. Additional guided support features may be added in future releases.</div>
   </div>
 </section>
 
 <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-<style>
-#scrollTopBtn{
-  position:fixed;
-  bottom:24px;
-  right:24px;
-  width:44px;
-  height:44px;
-  border-radius:999px;
-  border:1px solid #dcdcdc;
-  background:#ffffff;
-  color:#000;
-  font-size:18px;
-  cursor:pointer;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  z-index:1200;
-}
-#scrollTopBtn:hover{background:#f7f7f7}
-</style>
+
 <script>
 function openDrawer(){
   document.getElementById('drawer').classList.add('open');
@@ -531,6 +883,26 @@ function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
 }
+
+function showCatalog(view){
+  const bundlesBtn = document.getElementById('toggle-bundles');
+  const templatesBtn = document.getElementById('toggle-templates');
+  const bundlesView = document.getElementById('catalog-bundles');
+  const templatesView = document.getElementById('catalog-templates');
+
+  if(view === 'bundles'){
+    bundlesBtn.classList.add('active');
+    templatesBtn.classList.remove('active');
+    bundlesView.classList.add('active');
+    templatesView.classList.remove('active');
+  } else {
+    templatesBtn.classList.add('active');
+    bundlesBtn.classList.remove('active');
+    templatesView.classList.add('active');
+    bundlesView.classList.remove('active');
+  }
+}
+
 const scrollBtn=document.getElementById('scrollTopBtn');
 window.addEventListener('scroll',()=>{
   const brand=document.querySelector('.brand');
