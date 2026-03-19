@@ -254,6 +254,41 @@ h1{
   font-size:18px;
   line-height:1.5;
 }
+.section-description{
+  margin:18px auto 0;
+  font-size:16px;
+  color:#666;
+  max-width:720px;
+  text-align:center;
+}
+
+.framework-pill-row{
+  margin-top:28px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+.framework-pill{
+  font-size:13px;
+  padding:8px 12px;
+  border:1px solid #e5e5e5;
+  border-radius:999px;
+  background:#fff;
+  color:#111;
+  cursor:pointer;
+  font-family:inherit;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease;
+}
+.framework-pill:hover{
+  transform:translateY(-1px);
+  border-color:#cfcfcf;
+}
+.framework-pill.active{
+  background:#000;
+  color:#fff;
+  border-color:#000;
+}
 
 .compare-table-wrap{
   margin-top:46px;
@@ -753,6 +788,9 @@ h1{
   .section,.footer-cta{padding:70px 16px}
   .section h2,.footer-cta h2,.capture-title{font-size:42px}
   .section-copy,.footer-cta-copy,.capture-copy{font-size:16px}
+  .section-description{
+    font-size:15px;
+  }
   .consult-card-inner{padding:22px 18px;}
   .footer-links{
     grid-template-columns:1fr;
@@ -836,98 +874,78 @@ h1{
   </div>
 
   <div class="hero-actions">
-    <a href="#templates" class="hero-btn primary">Browse frameworks</a>
+    <a href="#framework" class="hero-btn primary">Learn frameworks</a>
     <a href="#risk-brief" class="hero-btn secondary">Get the risk brief</a>
   </div>
 
-  <div class="helper">
-    
-  </div>
+  <div class="helper"></div>
 </main>
 
-<section class="section">
+<section id="framework" class="section">
   <div class="section-inner">
 
-    <!-- Header -->
     <h2>A privacy decision framework</h2>
 
     <div class="section-copy">
       We connect the dots so you don’t have to.
     </div>
 
-    <div style="margin-top:18px; font-size:16px; color:#666; max-width:720px;">
+    <div class="section-description">
       Pixelwise turns complex privacy questions into structured decisions, usable language, and practical guidance—so teams can move forward without piecing things together from multiple sources.
     </div>
 
-    <!-- Example Chips -->
-    <div style="margin-top:28px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-      <div style="font-size:13px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:999px;">
-        Policies
-      </div>
-      <div style="font-size:13px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:999px;">
-        Playbooks
-      </div>
-      <div style="font-size:13px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:999px;">
-        Contract Templates
-      </div>
-      <div style="font-size:13px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:999px;">
-        Risk Decision Trees
-      </div>
+    <div class="framework-pill-row">
+      <button class="framework-pill active" type="button" data-framework="policies">Policies</button>
+      <button class="framework-pill" type="button" data-framework="playbooks">Playbooks</button>
+      <button class="framework-pill" type="button" data-framework="contracts">Contract Templates</button>
+      <button class="framework-pill" type="button" data-framework="trees">Risk Decision Trees</button>
     </div>
 
-    <!-- Framework Grid -->
     <div class="catalog-grid" style="margin-top:44px;">
-      
-      <!-- Decisions -->
       <div class="catalog-card">
         <div class="catalog-topbar"></div>
         <div class="catalog-body">
-          <div class="catalog-eyebrow">Step 1</div>
-          <h3 class="catalog-title" style="font-size:28px;">Decisions</h3>
-          <div class="catalog-desc" style="border-top:none; padding-top:0;">
+          <div class="catalog-eyebrow" id="fw-step-1">Step 1</div>
+          <h3 class="catalog-title" id="fw-title-1" style="font-size:28px;">Decisions</h3>
+          <div class="catalog-desc" id="fw-desc-1" style="border-top:none; padding-top:0;">
             Understand what approach makes sense based on your use case, risk tolerance, and goals.
           </div>
-          <div style="margin-top:14px; font-size:13px; color:#777;">
+          <div id="fw-example-1" style="margin-top:14px; font-size:13px; color:#777;">
             Example: Avoid or restrict tracking on authenticated pages depending on risk.
           </div>
         </div>
       </div>
 
-      <!-- Language (Featured) -->
       <div class="catalog-card featured">
         <div class="catalog-topbar green"></div>
         <div class="catalog-body">
-          <div class="catalog-eyebrow">Step 2</div>
-          <h3 class="catalog-title" style="font-size:28px;">Language</h3>
-          <div class="catalog-desc" style="border-top:none; padding-top:0;">
+          <div class="catalog-eyebrow" id="fw-step-2">Step 2</div>
+          <h3 class="catalog-title" id="fw-title-2" style="font-size:28px;">Language</h3>
+          <div class="catalog-desc" id="fw-desc-2" style="border-top:none; padding-top:0;">
             Use ready-to-adapt templates aligned to the decision you’ve made.
           </div>
-          <div style="margin-top:14px; font-size:13px; color:#777;">
+          <div id="fw-example-2" style="margin-top:14px; font-size:13px; color:#777;">
             Example: Disclosure language for cookies, analytics, or session replay tools.
           </div>
         </div>
       </div>
 
-      <!-- Application -->
       <div class="catalog-card">
         <div class="catalog-topbar"></div>
         <div class="catalog-body">
-          <div class="catalog-eyebrow">Step 3</div>
-          <h3 class="catalog-title" style="font-size:28px;">Application</h3>
-          <div class="catalog-desc" style="border-top:none; padding-top:0;">
+          <div class="catalog-eyebrow" id="fw-step-3">Step 3</div>
+          <h3 class="catalog-title" id="fw-title-3" style="font-size:28px;">Application</h3>
+          <div class="catalog-desc" id="fw-desc-3" style="border-top:none; padding-top:0;">
             Apply the approach in your product, site, or workflows with practical guidance.
           </div>
-          <div style="margin-top:14px; font-size:13px; color:#777;">
+          <div id="fw-example-3" style="margin-top:14px; font-size:13px; color:#777;">
             Example: Where disclosures should appear and when stricter controls apply.
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- AI Layer -->
     <div style="margin-top:48px; text-align:center; max-width:700px; margin-left:auto; margin-right:auto;">
-      
       <div style="font-size:14px; color:#888;">
         Optional
       </div>
@@ -940,9 +958,7 @@ h1{
         Upload your Pixelwise materials into tools like NotebookLM or your preferred AI workspace to explore scenarios and ask questions from a more structured starting point.
       </div>
 
-      <!-- Logo Cards -->
       <div style="margin-top:18px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-
         <div style="
           background:#fff;
           border:1px solid #eaeaea;
@@ -987,13 +1003,11 @@ h1{
           <div style="width:10px; height:10px; border-radius:2px; border:2px solid #111;"></div>
           NotebookLM
         </div>
-
       </div>
 
       <div style="margin-top:8px; font-size:12px; color:#999;">
         Works with your preferred AI tools
       </div>
-
     </div>
 
   </div>
@@ -1451,6 +1465,95 @@ function showCatalog(view){
     bundlesView.classList.remove('active');
   }
 }
+
+const frameworkContent = {
+  policies: {
+    step1: "Step 1",
+    title1: "Coverage",
+    desc1: "Identify which policies your team actually needs based on product, data use, and audience.",
+    example1: "Example: Decide whether you need a public privacy policy, internal AI governance policy, or both.",
+    step2: "Step 2",
+    title2: "Language",
+    desc2: "Use policy language that fits the actual risk and operations of the business rather than generic boilerplate.",
+    example2: "Example: Website privacy policy language covering analytics, cookies, or consumer health data.",
+    step3: "Step 3",
+    title3: "Use",
+    desc3: "Apply the policy in the right place and update it as your tools, vendors, or practices change.",
+    example3: "Example: Publish externally, route internally, and revisit when products or workflows shift."
+  },
+  playbooks: {
+    step1: "Step 1",
+    title1: "Scenario",
+    desc1: "Start with the actual privacy question and understand the practical choices in front of your team.",
+    example1: "Example: Whether a marketing workflow can rely on a lighter or stricter approach.",
+    step2: "Step 2",
+    title2: "Decision path",
+    desc2: "Use a guided framework to compare options based on goals, facts, and risk tolerance.",
+    example2: "Example: A path for deciding when to avoid tracking on authenticated pages.",
+    step3: "Step 3",
+    title3: "Next steps",
+    desc3: "Turn the decision into an internal action plan that can be repeated across similar issues.",
+    example3: "Example: Align the team on what to permit, what to pause, and what to revisit later."
+  },
+  contracts: {
+    step1: "Step 1",
+    title1: "Issue spotting",
+    desc1: "Understand what the contract needs to address based on the relationship, data involved, and business goal.",
+    example1: "Example: Whether a vendor needs a DPA, BAA, or tighter tracking-tech terms.",
+    step2: "Step 2",
+    title2: "Template",
+    desc2: "Start with practical contract language built for recurring privacy and digital health scenarios.",
+    example2: "Example: Contract language covering data use restrictions, HIPAA obligations, or vendor handling rules.",
+    step3: "Step 3",
+    title3: "Adaptation",
+    desc3: "Adjust the template to the deal instead of starting from scratch every time.",
+    example3: "Example: Tailor a clause for a healthcare vendor versus a general SaaS provider."
+  },
+  trees: {
+    step1: "Step 1",
+    title1: "Trigger",
+    desc1: "Start with a key privacy question and follow the decision points that matter most.",
+    example1: "Example: Whether a tool touches authenticated pages, sensitive data, or patient-facing workflows.",
+    step2: "Step 2",
+    title2: "Branching logic",
+    desc2: "Move through structured yes/no logic to narrow the issue into a more practical answer.",
+    example2: "Example: A decision tree for when a stricter consent or disclosure approach may be needed.",
+    step3: "Step 3",
+    title3: "Outcome",
+    desc3: "Land on a clearer action path supported by guidance and related framework materials.",
+    example3: "Example: Route the team toward a policy update, contract review, or narrower implementation choice."
+  }
+};
+
+function updateFramework(key){
+  const content = frameworkContent[key];
+  if(!content) return;
+
+  document.getElementById('fw-step-1').textContent = content.step1;
+  document.getElementById('fw-title-1').textContent = content.title1;
+  document.getElementById('fw-desc-1').textContent = content.desc1;
+  document.getElementById('fw-example-1').textContent = content.example1;
+
+  document.getElementById('fw-step-2').textContent = content.step2;
+  document.getElementById('fw-title-2').textContent = content.title2;
+  document.getElementById('fw-desc-2').textContent = content.desc2;
+  document.getElementById('fw-example-2').textContent = content.example2;
+
+  document.getElementById('fw-step-3').textContent = content.step3;
+  document.getElementById('fw-title-3').textContent = content.title3;
+  document.getElementById('fw-desc-3').textContent = content.desc3;
+  document.getElementById('fw-example-3').textContent = content.example3;
+
+  document.querySelectorAll('.framework-pill').forEach((pill)=>{
+    pill.classList.toggle('active', pill.dataset.framework === key);
+  });
+}
+
+document.querySelectorAll('.framework-pill').forEach((pill)=>{
+  pill.addEventListener('click', ()=>{
+    updateFramework(pill.dataset.framework);
+  });
+});
 
 const scrollBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
