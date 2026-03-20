@@ -827,6 +827,11 @@ h1{
 
 @media (max-width:1000px){
   .catalog-grid{grid-template-columns:1fr;}
+  .pricing-grid{
+    max-width:380px;
+    margin-left:auto;
+    margin-right:auto;
+  }
   .catalog-card.featured{transform:none;}
   .header-newsletter input{
     min-width:130px;
@@ -932,6 +937,10 @@ h1{
     width:100%;
   }
   .capture-btn{width:100%;}
+  .pricing-grid{
+    max-width:320px;
+    width:100%;
+  }
   .catalog-body{
     text-align:center;
   }
@@ -980,6 +989,9 @@ h1{
   .header-newsletter button{
     padding:7px 8px;
     font-size:10px;
+  }
+  .pricing-grid{
+    max-width:290px;
   }
 }
 </style>
@@ -1073,7 +1085,7 @@ h1{
   </div>
 
   <div class="hero-actions">
-    <a href="#templates" class="hero-btn primary">Browse templates & playbooks</a>
+    <a href="#templates" class="hero-btn primary">Get Solutions</a>
     <a href="#risk-brief" class="hero-btn secondary">Get the free risk brief</a>
   </div>
 
@@ -1088,7 +1100,6 @@ h1{
     <div class="section-copy">
       Go from issue to decision to usable language—without reinventing the wheel every time.
     </div>
-
 
     <div class="framework-pill-row">
       <button class="framework-pill active" type="button" data-framework="policies">Policies</button>
@@ -1114,7 +1125,6 @@ h1{
 
       <div class="catalog-card featured">
         <div class="catalog-topbar green"></div>
-        
         <div class="catalog-body">
           <div class="catalog-eyebrow" id="fw-step-2">Policies</div>
           <h3 class="catalog-title" id="fw-title-2" style="font-size:28px;">What to say</h3>
@@ -1243,7 +1253,7 @@ h1{
     </div>
 
     <div id="catalog-bundles" class="catalog-view active">
-      <div class="catalog-grid">
+      <div class="catalog-grid pricing-grid">
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
@@ -1335,7 +1345,7 @@ h1{
     </div>
 
     <div id="catalog-templates" class="catalog-view">
-      <div class="catalog-grid">
+      <div class="catalog-grid pricing-grid">
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
