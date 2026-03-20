@@ -29,7 +29,7 @@ header{
   z-index:10;
   background:#ffffff;
   border-bottom:1px solid transparent;
-  transition:border-color .25s ease;
+  transition:border-color .25s ease, background .25s ease;
 }
 header.scrolled{border-bottom:1px solid #eee;}
 .header-inner{
@@ -39,28 +39,69 @@ header.scrolled{border-bottom:1px solid #eee;}
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 32px;
-  position:relative;
+  padding:14px 32px;
+  gap:18px;
 }
-.brand{
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+}
+.brand-lockup{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:#000;
   font-weight:700;
   letter-spacing:-0.02em;
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  opacity:0;
-  transition:opacity .25s ease;
 }
-.brand.show{opacity:1;}
-.login{
-  display:inline-block;
-  background:#2563eb;
+.brand-text{
+  font-size:20px;
+  line-height:1;
+}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:auto;
+}
+.header-newsletter{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:4px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:#fff;
+  min-width:0;
+}
+.header-newsletter input{
+  border:none;
+  outline:none;
+  background:transparent;
+  font-family:inherit;
+  font-size:13px;
+  color:#000;
+  min-width:210px;
+  width:210px;
+  padding:0 10px;
+}
+.header-newsletter input::placeholder{
+  color:#888;
+}
+.header-newsletter button{
+  border:none;
+  background:#000;
   color:#fff;
-  text-decoration:none;
-  font-size:14px;
-  padding:6px 14px;
-  border-radius:8px;
-  font-weight:500;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  white-space:nowrap;
 }
 .menu-btn{
   font-size:22px;
@@ -68,16 +109,18 @@ header.scrolled{border-bottom:1px solid #eee;}
   background:none;
   cursor:pointer;
   color:#000;
+  padding:0;
+  line-height:1;
 }
 .drawer{
   position:fixed;
   top:0;
-  left:0;
+  right:0;
   height:100%;
   width:280px;
   background:#ffffff;
-  border-right:1px solid var(--border);
-  transform:translateX(-100%);
+  border-left:1px solid var(--border);
+  transform:translateX(100%);
   transition:transform .25s ease;
   z-index:1000;
   padding:24px;
@@ -178,17 +221,18 @@ h1{
   letter-spacing:-0.04em;
   margin:34px 0 24px;
   line-height:1;
+  max-width:980px;
 }
 .subtitle{
   font-size:20px;
   color:var(--muted);
-  max-width:700px;
+  max-width:760px;
   margin-bottom:14px;
 }
 .description{
   font-size:17px;
   color:var(--muted);
-  max-width:760px;
+  max-width:820px;
   margin-bottom:26px;
 }
 .hero-actions{
@@ -229,7 +273,7 @@ h1{
   font-size:13px;
   color:#888;
   margin-top:18px;
-  max-width:760px;
+  max-width:860px;
 }
 .section{
   padding:90px 20px;
@@ -245,10 +289,10 @@ h1{
   letter-spacing:-0.05em;
   margin:0 auto 22px;
   font-weight:500;
-  max-width:820px;
+  max-width:860px;
 }
 .section-copy{
-  max-width:760px;
+  max-width:820px;
   margin:0 auto;
   color:var(--muted);
   font-size:18px;
@@ -258,10 +302,9 @@ h1{
   margin:18px auto 0;
   font-size:16px;
   color:#666;
-  max-width:720px;
+  max-width:760px;
   text-align:center;
 }
-
 .framework-pill-row{
   margin-top:28px;
   display:flex;
@@ -289,7 +332,6 @@ h1{
   color:#fff;
   border-color:#000;
 }
-
 .compare-table-wrap{
   margin-top:46px;
   border:1px solid var(--border);
@@ -307,7 +349,7 @@ h1{
 }
 .compare-row{
   display:grid;
-  grid-template-columns:1.2fr 1fr 1fr 1fr;
+  grid-template-columns:1.3fr 1fr 1fr 1fr;
 }
 .compare-row + .compare-row{
   border-top:1px solid var(--border);
@@ -323,6 +365,9 @@ h1{
   background:#fafafa;
   font-weight:600;
 }
+.compare-row.header .compare-cell.center-head{
+  text-align:center;
+}
 .compare-label{
   font-weight:600;
 }
@@ -332,12 +377,27 @@ h1{
 .compare-row.header .compare-cell.pixelwise{
   background:#dcfce7;
 }
+.compare-brand{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+}
+.compare-brand-logo{
+  width:18px;
+  height:18px;
+  display:block;
+  flex:0 0 auto;
+}
 .compare-top-note{
   margin-top:18px;
   font-size:14px;
   color:#666;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
 }
-
 .catalog-toggle-wrap{
   display:flex;
   justify-content:center;
@@ -371,7 +431,7 @@ h1{
   margin-top:14px;
   font-size:13px;
   color:#666;
-  max-width:720px;
+  max-width:760px;
   margin-left:auto;
   margin-right:auto;
 }
@@ -539,7 +599,6 @@ h1{
 .catalog-cta.primary:hover{
   background:#111;
 }
-
 .capture-section{
   padding-top:40px;
 }
@@ -596,14 +655,13 @@ h1{
   font-size:12px;
   color:#777;
 }
-
 .consult-card{
   margin-top:40px;
   display:flex;
   justify-content:center;
 }
 .consult-card-inner{
-  max-width:560px;
+  max-width:640px;
   width:100%;
   border:1px solid var(--border);
   border-radius:16px;
@@ -633,7 +691,6 @@ h1{
   color:var(--muted);
   font-size:14px;
 }
-
 .footer-cta{
   padding:90px 20px 70px;
 }
@@ -650,7 +707,7 @@ h1{
   font-weight:500;
 }
 .footer-cta-copy{
-  max-width:720px;
+  max-width:760px;
   margin:0 auto 28px;
   color:var(--muted);
   font-size:18px;
@@ -730,10 +787,12 @@ h1{
   color:#8a8a8a;
   line-height:1.45;
 }
-.drawer-logo{
+.drawer-logo,
+.header-logo{
   width:22px;
   height:22px;
   display:block;
+  flex:0 0 auto;
 }
 #scrollTopBtn{
   position:fixed;
@@ -755,10 +814,31 @@ h1{
 }
 #scrollTopBtn:hover{background:#f7f7f7}
 
+@media (max-width:1180px){
+  .header-newsletter input{
+    min-width:170px;
+    width:170px;
+  }
+  .header-newsletter button{
+    padding:10px 12px;
+    font-size:12px;
+  }
+}
+
 @media (max-width:1000px){
   .catalog-grid{grid-template-columns:1fr;}
   .catalog-card.featured{transform:none;}
+  .header-newsletter input{
+    min-width:130px;
+    width:130px;
+    font-size:12px;
+  }
+  .header-newsletter button{
+    padding:9px 11px;
+    font-size:12px;
+  }
 }
+
 @media (max-width:900px){
   .section h2,.footer-cta h2{font-size:52px;}
   .capture-title{font-size:36px;}
@@ -769,9 +849,58 @@ h1{
     padding:14px 14px;
     font-size:13px;
   }
+  .header-inner{
+    padding:14px 18px;
+    gap:12px;
+  }
+  .header-right{
+    gap:8px;
+  }
+  .header-newsletter{
+    padding:3px;
+    gap:4px;
+  }
+  .header-newsletter input{
+    min-width:100px;
+    width:100px;
+    padding:0 8px;
+  }
+  .header-newsletter button{
+    padding:8px 10px;
+    font-size:11px;
+  }
 }
+
 @media (max-width:700px){
   header{top:0;left:0;right:0;}
+  .header-inner{
+    padding:12px 12px;
+    gap:8px;
+  }
+  .brand-text{
+    font-size:18px;
+  }
+  .header-right{
+    gap:6px;
+  }
+  .header-newsletter{
+    max-width:180px;
+    padding:3px;
+    gap:3px;
+  }
+  .header-newsletter input{
+    min-width:0;
+    width:82px;
+    padding:0 6px;
+    font-size:11px;
+  }
+  .header-newsletter button{
+    padding:8px 9px;
+    font-size:10px;
+  }
+  .menu-btn{
+    font-size:20px;
+  }
   main{
     min-height:auto;
     padding:120px 16px 84px;
@@ -803,15 +932,89 @@ h1{
     width:100%;
   }
   .capture-btn{width:100%;}
+  .catalog-body{
+    text-align:center;
+  }
+  .catalog-price-row{
+    justify-content:center !important;
+    width:100%;
+  }
+  .catalog-title,
+  .catalog-price,
+  .catalog-price-row,
+  .catalog-eyebrow,
+  .catalog-subtitle,
+  .catalog-savings,
+  .catalog-list-label,
+  .catalog-desc{
+    text-align:center !important;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .catalog-title{
+    width:100%;
+    display:block;
+  }
+  .catalog-price{
+    display:block;
+  }
+  .catalog-list{
+    text-align:left;
+  }
+  .catalog-list-label{
+    width:100%;
+  }
+  .catalog-desc{
+    width:100%;
+  }
+}
+
+@media (max-width:520px){
+  .header-newsletter{
+    max-width:154px;
+  }
+  .header-newsletter input{
+    width:62px;
+    font-size:10px;
+  }
+  .header-newsletter button{
+    padding:7px 8px;
+    font-size:10px;
+  }
 }
 </style>
 </head>
 <body>
 <header>
   <div class="header-inner">
-    <button class="menu-btn" onclick="openDrawer()">☰</button>
-    <div class="brand">Pixelwise</div>
-    <a class="login" href="#">Join free</a>
+    <div class="header-left">
+      <a href="#" class="brand-lockup" aria-label="Pixelwise home">
+        <svg class="header-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+          <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="9" y="1" width="4" height="4" fill="#000000"/>
+          <rect x="13" y="1" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
+          <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
+          <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
+          <rect x="13" y="5" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="5" y="9" width="4" height="4" fill="#000000"/>
+          <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="13" width="4" height="4" fill="#000000"/>
+          <rect x="5" y="13" width="4" height="4" fill="#000000"/>
+        </svg>
+        <span class="brand-text">Pixelwise</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <form class="header-newsletter">
+        <input type="email" placeholder="Enter your email" />
+        <button type="button">Free Newsletter</button>
+      </form>
+      <button class="menu-btn" onclick="openDrawer()" aria-label="Open menu">☰</button>
+    </div>
   </div>
 </header>
 
@@ -840,7 +1043,7 @@ h1{
 
   <div class="drawer-top">
     <a href="#templates" onclick="closeDrawer()">Templates & Playbooks</a>
-    <a href="#" onclick="closeDrawer()">Blog</a>
+    <a href="#framework" onclick="closeDrawer()">How it works</a>
     <a href="#faq" onclick="closeDrawer()">FAQ</a>
   </div>
 
@@ -857,75 +1060,69 @@ h1{
   </div>
 
   <div class="drawer-bottom">
-    <a href="#" class="drawer-join">Join free</a>
-    <a href="#" class="drawer-login">Sign up</a>
+    <a href="#risk-brief" class="drawer-join">Get free brief</a>
+    <a href="#templates" class="drawer-login">Browse products</a>
   </div>
 </div>
 
 <main>
-  <h1>Hi, I'm Pixelwise</h1>
+  <h1>Privacy templates & playbooks for digital health teams</h1>
 
   <div class="subtitle">
-    A privacy decision framework.
-  </div>
-
-  <div class="description">
-    We deliver simple, affordable <a href="#templates" style="text-decoration:underline; font-weight:500; color:inherit;">frameworks</a> to help health & wellness companies solve privacy.
+    Move faster on HIPAA, tracking tech, AI, and marketing compliance without starting from scratch.
   </div>
 
   <div class="hero-actions">
-    <a href="#framework" class="hero-btn primary">Learn frameworks</a>
-    <a href="#risk-brief" class="hero-btn secondary">Get the risk brief</a>
+    <a href="#templates" class="hero-btn primary">Browse templates & playbooks</a>
+    <a href="#risk-brief" class="hero-btn secondary">Get the free risk brief</a>
   </div>
 
-  <div class="helper"></div>
+  <div class="helper">
+    Built for providers, digital health companies, and wellness platforms
+  </div>
 </main>
 
 <section id="framework" class="section">
   <div class="section-inner">
-
-    <h2>A privacy decision framework</h2>
-
+    <h2>How Pixelwise helps you make privacy decisions faster</h2>
     <div class="section-copy">
-      We connect the dots so you don’t have to.
+      Go from issue to decision to usable language—without reinventing the wheel every time.
     </div>
 
-    <div class="section-description">
-      Pixelwise turns complex privacy questions into structured decisions, usable language, and practical guidance—so teams can move forward without piecing things together from multiple sources.
-    </div>
 
     <div class="framework-pill-row">
       <button class="framework-pill active" type="button" data-framework="policies">Policies</button>
       <button class="framework-pill" type="button" data-framework="playbooks">Playbooks</button>
       <button class="framework-pill" type="button" data-framework="contracts">Contract Templates</button>
-      <button class="framework-pill" type="button" data-framework="trees">Risk Decision Trees</button>
+      <button class="framework-pill" type="button" data-framework="trees">Risk Spectrums</button>
     </div>
 
     <div class="catalog-grid" style="margin-top:44px;">
       <div class="catalog-card">
         <div class="catalog-topbar"></div>
         <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-1">Step 1</div>
-          <h3 class="catalog-title" id="fw-title-1" style="font-size:28px;">Decisions</h3>
+          <div class="catalog-eyebrow" id="fw-step-1">Policies</div>
+          <h3 class="catalog-title" id="fw-title-1" style="font-size:28px;">What applies</h3>
           <div class="catalog-desc" id="fw-desc-1" style="border-top:none; padding-top:0;">
-            Understand what approach makes sense based on your use case, risk tolerance, and goals.
+            Identify which policies your team actually needs based on product, data use, and audience.
           </div>
           <div id="fw-example-1" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Avoid or restrict tracking on authenticated pages depending on risk.
+            Example: Decide whether you need a public privacy policy, internal AI governance policy, or both.
           </div>
         </div>
       </div>
 
       <div class="catalog-card featured">
         <div class="catalog-topbar green"></div>
+        
         <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-2">Step 2</div>
-          <h3 class="catalog-title" id="fw-title-2" style="font-size:28px;">Language</h3>
+          <div class="catalog-eyebrow" id="fw-step-2">Policies</div>
+          <h3 class="catalog-title" id="fw-title-2" style="font-size:28px;">What to say</h3>
           <div class="catalog-desc" id="fw-desc-2" style="border-top:none; padding-top:0;">
-            Use ready-to-adapt templates aligned to the decision you’ve made.
+            Use ready-to-adapt language built for the actual issue instead of generic boilerplate.
           </div>
           <div id="fw-example-2" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Disclosure language for cookies, analytics, or session replay tools.
+            Example: Policy language covering cookies, analytics, session replay, or consumer health data.
           </div>
         </div>
       </div>
@@ -933,91 +1130,25 @@ h1{
       <div class="catalog-card">
         <div class="catalog-topbar"></div>
         <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-3">Step 3</div>
-          <h3 class="catalog-title" id="fw-title-3" style="font-size:28px;">Application</h3>
+          <div class="catalog-eyebrow" id="fw-step-3">Policies</div>
+          <h3 class="catalog-title" id="fw-title-3" style="font-size:28px;">What to do next</h3>
           <div class="catalog-desc" id="fw-desc-3" style="border-top:none; padding-top:0;">
-            Apply the approach in your product, site, or workflows with practical guidance.
+            Apply the approach in your product, site, contracts, or workflows with practical implementation guidance.
           </div>
           <div id="fw-example-3" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Where disclosures should appear and when stricter controls apply.
+            Example: Know where the language goes, when stricter controls apply, and what to revisit later.
           </div>
         </div>
       </div>
     </div>
-
-    <div style="margin-top:48px; text-align:center; max-width:700px; margin-left:auto; margin-right:auto;">
-      <div style="font-size:14px; color:#888;">
-        Optional
-      </div>
-
-      <div style="margin-top:8px; font-size:18px;">
-        Talk to your framework
-      </div>
-
-      <div style="margin-top:10px; font-size:15px; color:#666;">
-        Upload your Pixelwise materials into tools like NotebookLM or your preferred AI workspace to explore scenarios and ask questions from a more structured starting point.
-      </div>
-
-      <div style="margin-top:18px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-        <div style="
-          background:#fff;
-          border:1px solid #eaeaea;
-          border-radius:10px;
-          padding:10px 16px;
-          font-size:13px;
-          color:#111;
-          display:flex;
-          align-items:center;
-          gap:8px;
-        ">
-          <div style="width:10px; height:10px; border-radius:50%; background:#111;"></div>
-          OpenAI
-        </div>
-
-        <div style="
-          background:#fff;
-          border:1px solid #eaeaea;
-          border-radius:10px;
-          padding:10px 16px;
-          font-size:13px;
-          color:#111;
-          display:flex;
-          align-items:center;
-          gap:8px;
-        ">
-          <div style="width:10px; height:10px; border-radius:2px; background:#111;"></div>
-          Claude
-        </div>
-
-        <div style="
-          background:#fff;
-          border:1px solid #eaeaea;
-          border-radius:10px;
-          padding:10px 16px;
-          font-size:13px;
-          color:#111;
-          display:flex;
-          align-items:center;
-          gap:8px;
-        ">
-          <div style="width:10px; height:10px; border-radius:2px; border:2px solid #111;"></div>
-          NotebookLM
-        </div>
-      </div>
-
-      <div style="margin-top:8px; font-size:12px; color:#999;">
-        Works with your preferred AI tools
-      </div>
-    </div>
-
   </div>
 </section>
 
 <section class="section">
   <div class="section-inner">
-    <h2>A better way to handle privacy issues</h2>
+    <h2>A practical path between generic templates and full legal spend</h2>
     <div class="section-copy">
-      Pixelwise sits between generic AI tools and traditional legal engagement—giving you structured, usable outputs without the cost or guesswork.
+      Built for capable teams that want a more efficient alternative to repeated counsulting spend.
     </div>
 
     <div class="compare-table-wrap">
@@ -1025,58 +1156,70 @@ h1{
         <div class="compare-table">
           <div class="compare-row header">
             <div class="compare-cell"></div>
-            <div class="compare-cell">ChatGPT / AI tools</div>
-            <div class="compare-cell pixelwise">Pixelwise</div>
-            <div class="compare-cell">Law firm</div>
+            <div class="compare-cell center-head">Traditional Consultants</div>
+            <div class="compare-cell pixelwise center-head">
+              <span class="compare-brand">
+                <svg class="compare-brand-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+                  <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
+                  <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
+                  <rect x="9" y="1" width="4" height="4" fill="#000000"/>
+                  <rect x="13" y="1" width="4" height="4" fill="#000000"/>
+                  <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
+                  <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
+                  <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
+                  <rect x="13" y="5" width="4" height="4" fill="#000000"/>
+                  <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
+                  <rect x="5" y="9" width="4" height="4" fill="#000000"/>
+                  <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+                  <rect x="1" y="13" width="4" height="4" fill="#000000"/>
+                  <rect x="5" y="13" width="4" height="4" fill="#000000"/>
+                </svg>
+                <span>Pixelwise</span>
+              </span>
+            </div>
+            <div class="compare-cell center-head">Traditional law firm</div>
           </div>
 
           <div class="compare-row">
-            <div class="compare-cell compare-label">Output</div>
-            <div class="compare-cell">Unstructured answers</div>
-            <div class="compare-cell pixelwise">Templates + playbooks</div>
-            <div class="compare-cell">Custom legal advice</div>
+            <div class="compare-cell compare-label">Built for digital health privacy</div>
+            <div class="compare-cell">No</div>
+            <div class="compare-cell pixelwise">Yes—focused on recurring privacy and digital health issues</div>
+            <div class="compare-cell">Yes, if specially engaged</div>
           </div>
 
           <div class="compare-row">
-            <div class="compare-cell compare-label">Consistency</div>
-            <div class="compare-cell">Varies by prompt</div>
-            <div class="compare-cell pixelwise">Pre-built and reliable</div>
+            <div class="compare-cell compare-label">Decision support</div>
+            <div class="compare-cell">No</div>
+            <div class="compare-cell pixelwise">Playbooks and decision trees built around real use cases</div>
+            <div class="compare-cell">Yes, but through billable time</div>
+          </div>
+
+          <div class="compare-row">
+            <div class="compare-cell compare-label">Usable recurring materials</div>
+            <div class="compare-cell">Usually broad and generic</div>
+            <div class="compare-cell pixelwise">Templates built for repeat internal use and adaptation</div>
+            <div class="compare-cell">Custom, but not usually productized for reuse</div>
+          </div>
+
+          <div class="compare-row">
+            <div class="compare-cell compare-label">Cost profile</div>
+            <div class="compare-cell">Low, but limited depth</div>
+            <div class="compare-cell pixelwise">Lower-cost than a law firm, with more specificity than generic templates</div>
             <div class="compare-cell">High</div>
           </div>
 
           <div class="compare-row">
-            <div class="compare-cell compare-label">Ease of use</div>
-            <div class="compare-cell">Requires prompting skill</div>
-            <div class="compare-cell pixelwise">Ready to use</div>
-            <div class="compare-cell">Requires engagement</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Speed</div>
-            <div class="compare-cell">Fast</div>
-            <div class="compare-cell pixelwise">Fast + actionable</div>
-            <div class="compare-cell">Slower</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Cost</div>
-            <div class="compare-cell">Low</div>
-            <div class="compare-cell pixelwise">Moderate</div>
-            <div class="compare-cell">High</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Best for</div>
-            <div class="compare-cell">Exploring ideas</div>
-            <div class="compare-cell pixelwise">Making decisions</div>
-            <div class="compare-cell">Complex matters</div>
+            <div class="compare-cell compare-label">Best fit</div>
+            <div class="compare-cell">Basic general business docs</div>
+            <div class="compare-cell pixelwise">Teams handling real privacy questions that keep coming up</div>
+            <div class="compare-cell">High-stakes, bespoke, or highly sensitive matters</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="compare-top-note">
-      If you are trying to figure things out, use AI. If you are dealing with something complex, hire a lawyer. If you need to move forward with confidence, use Pixelwise.
+      Pixelwise is the better fit when generic templates are too thin, but a full legal engagement is more time and cost than the issue calls for.
     </div>
   </div>
 </section>
@@ -1085,7 +1228,7 @@ h1{
   <div class="section-inner">
     <h2>Choose the level of guidance that fits your team</h2>
     <div class="section-copy">
-      Start with the option most likely to get you to a practical answer faster. For most teams, templates paired with playbooks provide the best mix of usability, clarity, and value.
+      Start with the option most likely to get you to a practical answer faster. For most teams, templates paired with playbooks provide the strongest mix of clarity, usability, and value.
     </div>
 
     <div class="catalog-toggle-wrap">
@@ -1096,7 +1239,7 @@ h1{
     </div>
 
     <div class="catalog-helper">
-      Best value for most buyers: start with templates + playbooks for more guidance and better overall savings than buying piece by piece.
+      Best value for most buyers: start with templates + playbooks if you want both usable language and clearer guidance on when and how to use it.
     </div>
 
     <div id="catalog-bundles" class="catalog-view active">
@@ -1104,18 +1247,18 @@ h1{
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For focused one-off issues</div>
+            <div class="catalog-eyebrow">For one immediate issue</div>
             <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A lighter entry point for teams that need a small set of strong materials without going all the way in.</div>
+            <div class="catalog-subtitle">A focused package for teams that need to solve one privacy problem quickly and move on.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$149</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Good for testing Pixelwise on a narrower issue.</div>
+            <div class="catalog-savings">A strong first purchase for a narrower issue.</div>
 
-            <div class="catalog-desc">Get a practical starting package that gives you usable language plus a bit more structure than a standalone template.</div>
+            <div class="catalog-desc">Get a practical set of materials that gives you usable language plus enough guidance to apply it with more confidence.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1126,26 +1269,26 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Choose Starter</a>
+            <a href="#" class="catalog-cta">Get Starter</a>
           </div>
         </div>
 
         <div class="catalog-card featured">
           <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Best value</div>
+          <div class="catalog-badge">Most popular</div>
           <div class="catalog-body">
             <div class="catalog-eyebrow">For most teams</div>
             <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The strongest mix of templates, playbooks, and decision support for teams that want to move faster with more confidence.</div>
+            <div class="catalog-subtitle">The best fit for teams that handle recurring privacy questions and want a repeatable way to move faster.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$299</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Broader guidance at a lower effective cost than building your set a la carte.</div>
+            <div class="catalog-savings">Broader guidance at a lower effective cost than piecing things together separately.</div>
 
-            <div class="catalog-desc">This is the option most likely to reduce back-and-forth internally because it gives both language and a clearer path for using it.</div>
+            <div class="catalog-desc">This package gives both language and clearer decision support, helping reduce internal back-and-forth on common privacy and digital health issues.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1156,25 +1299,25 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Choose Growth</a>
+            <a href="#" class="catalog-cta primary">Get Growth</a>
           </div>
         </div>
 
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For teams building a fuller system</div>
+            <div class="catalog-eyebrow">For broader internal use</div>
             <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A broader toolkit for teams that want deeper coverage across tracking-tech, privacy, and digital health workflows.</div>
+            <div class="catalog-subtitle">A broader toolkit for teams that want deeper coverage across tracking tech, privacy, and digital health workflows.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$499</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Best for broader internal reuse across multiple issues or stakeholders.</div>
+            <div class="catalog-savings">Best for repeat use across multiple issues, stakeholders, and workflows.</div>
 
-            <div class="catalog-desc">Choose this when you want fuller documentation and more decision support across several recurring privacy questions.</div>
+            <div class="catalog-desc">Choose this when you want fuller documentation and wider decision support across several recurring privacy questions—not just one narrow need.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1185,7 +1328,7 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Choose Complete</a>
+            <a href="#" class="catalog-cta">Get Complete</a>
           </div>
         </div>
       </div>
@@ -1196,18 +1339,18 @@ h1{
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For basic website needs</div>
+            <div class="catalog-eyebrow">For one basic document need</div>
             <h3 class="catalog-title">Essential</h3>
-            <div class="catalog-subtitle">A simple entry point for teams that mainly need foundational privacy language.</div>
+            <div class="catalog-subtitle">A simple entry point for teams that mainly need foundational privacy language and already know what they want.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$59</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Lowest-cost way to get started.</div>
+            <div class="catalog-savings">Lowest-cost way to get a single strong building block.</div>
 
-            <div class="catalog-desc">Best when you know what you need and mostly want clean, attorney-informed language.</div>
+            <div class="catalog-desc">Best when you have a specific document need and mostly want clean, attorney-informed language you can adapt quickly.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1218,7 +1361,7 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Choose Essential</a>
+            <a href="#" class="catalog-cta">Get Essential</a>
           </div>
         </div>
 
@@ -1235,9 +1378,9 @@ h1{
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">The best standalone template value for buyers not ready for playbooks.</div>
+            <div class="catalog-savings">The strongest standalone template value for buyers not ready for playbooks.</div>
 
-            <div class="catalog-desc">A good middle option when you want more than one building block but are still shopping on a tighter budget.</div>
+            <div class="catalog-desc">A good middle option when you want more than one document and need a stronger base for recurring internal use.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1248,25 +1391,25 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Choose Core</a>
+            <a href="#" class="catalog-cta primary">Get Core</a>
           </div>
         </div>
 
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader document needs</div>
+            <div class="catalog-eyebrow">For a broader document library</div>
             <h3 class="catalog-title">Expanded</h3>
-            <div class="catalog-subtitle">A fuller template pack for teams that want a stronger document library but still prefer to skip playbooks.</div>
+            <div class="catalog-subtitle">A fuller template pack for teams that want stronger coverage now and may add guided materials later.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$199</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Best for buyers who want more documents now and may add playbooks later.</div>
+            <div class="catalog-savings">Best for buyers who want more documents now and more flexibility later.</div>
 
-            <div class="catalog-desc">Useful when several stakeholders need materials, but you are not yet ready to buy the guided decision layer.</div>
+            <div class="catalog-desc">Useful when several stakeholders need materials and you want broader policy, disclosure, and workflow coverage without jumping to the full bundle.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
@@ -1277,7 +1420,7 @@ h1{
             </ul>
 
             <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Choose Expanded</a>
+            <a href="#" class="catalog-cta">Get Expanded</a>
           </div>
         </div>
       </div>
@@ -1288,31 +1431,26 @@ h1{
 <section id="risk-brief" class="section capture-section">
   <div class="section-inner">
     <div class="capture-box">
-      <h2 class="capture-title">Understand your privacy risks</h2>
+      <h2 class="capture-title">Get the tracking-tech & privacy risk brief</h2>
       <div class="capture-copy">
-        Get a breakdown of recent enforcement, lawsuits, and state law trends—and what they mean for your products and services.
+        Get a free breakdown of recent enforcement, lawsuits, and state law trends affecting digital health companies, websites, apps, and product teams.
       </div>
 
       <div class="capture-form">
         <input class="capture-input" type="email" placeholder="Enter your email" />
-        <button class="capture-btn">Get the risk brief</button>
+        <button class="capture-btn">Get the free brief</button>
       </div>
 
-      <div class="capture-note">Free resource + occasional updates on new templates and playbooks.</div>
+      <div class="capture-note">Free resource + occasional updates on new templates, playbooks, and practical privacy guidance.</div>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="section-inner">
-    <h2>Need more than a template?</h2>
+    <h2>Built for recurring privacy questions your team cannot ignore</h2>
     <div class="section-copy">
-      Pixelwise is starting with templates and playbooks first. Guided compliance workflows and expanded support options are planned for future releases.
-    </div>
-    <div style="margin-top:22px;display:flex;justify-content:center;">
-      <div style="border:1px solid #6ccf7a;color:#3d9b4c;border-radius:999px;padding:10px 18px;font-size:16px;">
-        Expanded support features are in development
-      </div>
+      Start with attorney-informed templates and playbooks designed for practical use right now—from website language and tracking disclosures to vendor terms, HIPAA-facing issues, and internal decision support.
     </div>
 
     <div class="consult-card">
@@ -1320,24 +1458,24 @@ h1{
         <div class="consult-item">
           <div class="consult-icon">📘</div>
           <div class="consult-text">
-            <strong>Templates first</strong>
-            <div>Start with high-value language packs and practical documents you can use immediately.</div>
+            <strong>Usable language</strong>
+            <div>Start with strong templates instead of a blank page or thin generic forms.</div>
           </div>
         </div>
 
         <div class="consult-item">
           <div class="consult-icon">🧭</div>
           <div class="consult-text">
-            <strong>Playbooks next</strong>
-            <div>Use guided decision frameworks to choose language based on your goals, facts, and risk tolerance.</div>
+            <strong>Decision support</strong>
+            <div>Use playbooks and decision trees to compare options based on facts, goals, and risk tolerance.</div>
           </div>
         </div>
 
         <div class="consult-item">
           <div class="consult-icon">⚖</div>
           <div class="consult-text">
-            <strong>More support to come</strong>
-            <div>Pixelwise will expand over time to include additional guided compliance support for more complex use cases.</div>
+            <strong>Practical scope</strong>
+            <div>Best for recurring privacy and digital health issues that need more structure than generic templates but do not always justify a full legal engagement.</div>
           </div>
         </div>
       </div>
@@ -1349,35 +1487,42 @@ h1{
   <div class="section-inner">
     <h2>Frequently asked questions</h2>
     <div class="section-copy">
-      Transparent pricing and practical tools for teams that need niche digital health and privacy support without starting with a full law firm engagement.
+      Everything you need to decide whether Pixelwise is the right fit for your team right now.
     </div>
 
     <div style="max-width:760px;margin:50px auto 0;text-align:left;">
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">How much does Pixelwise cost?</summary>
+        <summary style="font-weight:600;cursor:pointer;">Who is Pixelwise for?</summary>
         <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          The assistant is free to use for issue intake and resource discovery. Templates start lower, while templates paired with playbooks cost more because they include more structured guidance and usually provide better overall value than assembling materials one by one.
+          Pixelwise is for digital health, wellness, product, marketing, privacy, and in-house legal teams that keep running into recurring privacy questions and want stronger materials than generic templates without sending every issue to outside counsel.
         </div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">What is the difference between a template and a playbook?</summary>
+        <summary style="font-weight:600;cursor:pointer;">Should I buy templates only or templates + playbooks?</summary>
         <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          A template gives you ready-to-use language. A playbook helps you decide which language to use, when to use it, and how different approaches line up with different business goals and risk tolerance levels.
+          Buy templates only if you already know what document you need and mostly want usable language. Choose templates + playbooks if you also want guidance on which approach fits your facts, goals, and risk tolerance. For most teams, the bundles are the better buy.
         </div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Why are the templates + playbooks packages featured first?</summary>
+        <summary style="font-weight:600;cursor:pointer;">What kinds of issues is Pixelwise best for?</summary>
         <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Because most buyers do not just need a document—they need help using it well. Pairing templates with playbooks gives more guidance, reduces guesswork, and generally delivers better value than piecing materials together separately.
+          Pixelwise is best for recurring privacy and digital health issues like website privacy policies, tracking-tech disclosures, HIPAA-facing vendor terms, AI governance materials, consent and marketing questions, and other repeat issues where teams need a practical answer and reusable materials.
         </div>
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Does the AI provide legal advice?</summary>
+        <summary style="font-weight:600;cursor:pointer;">When is Pixelwise not enough on its own?</summary>
         <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          No. The assistant helps organize issues, surface public guidance, and point you toward relevant templates or playbooks. It does not provide legal advice or create an attorney-client relationship.
+          Pixelwise is not a substitute for bespoke legal advice on your most sensitive matters. If you are dealing with litigation, a government investigation, a major transaction, a novel high-stakes issue, or facts that require deep legal judgment specific to your business, a law firm may still be the right next step.
+        </div>
+      </details>
+
+      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
+        <summary style="font-weight:600;cursor:pointer;">Does Pixelwise create an attorney-client relationship?</summary>
+        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
+          No. Pixelwise provides general informational resources, templates, and playbooks. It does not create an attorney-client relationship, provide legal advice, or establish privilege.
         </div>
       </details>
     </div>
@@ -1386,9 +1531,9 @@ h1{
 
 <section class="footer-cta">
   <div class="footer-cta-inner">
-    <h2>Start with the issue. Leave with the right language and playbook.</h2>
+    <h2>Start with the issue. Leave with the right language and a clearer path forward.</h2>
     <div class="footer-cta-copy">
-      Use Pixelwise to find practical guidance, download attorney-informed templates, and choose a playbook that helps you move forward with more confidence.
+      Use Pixelwise to find practical guidance, download attorney-informed templates, and choose playbooks that help your team move faster on recurring privacy and digital health issues.
     </div>
 
     <div class="footer-links">
@@ -1422,7 +1567,7 @@ h1{
     </div>
 
     <div class="footer-mini-capture">
-      <div class="footer-mini-title">Get the tracking-tech risk brief and updates on new templates and playbooks</div>
+      <div class="footer-mini-title">Get the tracking-tech & privacy risk brief and updates on new templates and playbooks</div>
       <div class="footer-mini-form">
         <input class="footer-mini-input" type="email" placeholder="Enter your email" />
         <button class="footer-mini-btn">Get updates</button>
@@ -1430,7 +1575,7 @@ h1{
     </div>
 
     <div class="footer-disclaimer">
-      Pixelwise AI is not a law firm and does not provide legal advice. Templates and playbooks are general informational resources and do not create an attorney-client relationship or privilege. Additional guided support features may be added in future releases.
+      Pixelwise AI is not a law firm and does not provide legal advice. Templates and playbooks are general informational resources and do not create an attorney-client relationship or privilege.
     </div>
   </div>
 </section>
@@ -1468,60 +1613,52 @@ function showCatalog(view){
 
 const frameworkContent = {
   policies: {
-    step1: "Step 1",
-    title1: "Coverage",
+    label: "Policies",
+    title1: "What applies",
     desc1: "Identify which policies your team actually needs based on product, data use, and audience.",
     example1: "Example: Decide whether you need a public privacy policy, internal AI governance policy, or both.",
-    step2: "Step 2",
-    title2: "Language",
+    title2: "What to say",
     desc2: "Use policy language that fits the actual risk and operations of the business rather than generic boilerplate.",
-    example2: "Example: Website privacy policy language covering analytics, cookies, or consumer health data.",
-    step3: "Step 3",
-    title3: "Use",
+    example2: "Example: Website privacy policy language covering analytics, cookies, session replay, or consumer health data.",
+    title3: "What to do next",
     desc3: "Apply the policy in the right place and update it as your tools, vendors, or practices change.",
     example3: "Example: Publish externally, route internally, and revisit when products or workflows shift."
   },
   playbooks: {
-    step1: "Step 1",
-    title1: "Scenario",
+    label: "Playbooks",
+    title1: "The scenario",
     desc1: "Start with the actual privacy question and understand the practical choices in front of your team.",
     example1: "Example: Whether a marketing workflow can rely on a lighter or stricter approach.",
-    step2: "Step 2",
-    title2: "Decision path",
+    title2: "The decision path",
     desc2: "Use a guided framework to compare options based on goals, facts, and risk tolerance.",
     example2: "Example: A path for deciding when to avoid tracking on authenticated pages.",
-    step3: "Step 3",
-    title3: "Next steps",
-    desc3: "Turn the decision into an internal action plan that can be repeated across similar issues.",
+    title3: "The next step",
+    desc3: "Turn the decision into an action plan your team can repeat across similar issues.",
     example3: "Example: Align the team on what to permit, what to pause, and what to revisit later."
   },
   contracts: {
-    step1: "Step 1",
-    title1: "Issue spotting",
+    label: "Contract Templates",
+    title1: "What needs coverage",
     desc1: "Understand what the contract needs to address based on the relationship, data involved, and business goal.",
     example1: "Example: Whether a vendor needs a DPA, BAA, or tighter tracking-tech terms.",
-    step2: "Step 2",
-    title2: "Template",
+    title2: "What to say",
     desc2: "Start with practical contract language built for recurring privacy and digital health scenarios.",
-    example2: "Example: Contract language covering data use restrictions, HIPAA obligations, or vendor handling rules.",
-    step3: "Step 3",
-    title3: "Adaptation",
+    example2: "Example: Language covering data use restrictions, HIPAA obligations, or vendor handling rules.",
+    title3: "How to adapt it",
     desc3: "Adjust the template to the deal instead of starting from scratch every time.",
     example3: "Example: Tailor a clause for a healthcare vendor versus a general SaaS provider."
   },
   trees: {
-    step1: "Step 1",
-    title1: "Trigger",
-    desc1: "Start with a key privacy question and follow the decision points that matter most.",
-    example1: "Example: Whether a tool touches authenticated pages, sensitive data, or patient-facing workflows.",
-    step2: "Step 2",
-    title2: "Branching logic",
-    desc2: "Move through structured yes/no logic to narrow the issue into a more practical answer.",
-    example2: "Example: A decision tree for when a stricter consent or disclosure approach may be needed.",
-    step3: "Step 3",
-    title3: "Outcome",
-    desc3: "Land on a clearer action path supported by guidance and related framework materials.",
-    example3: "Example: Route the team toward a policy update, contract review, or narrower implementation choice."
+    label: "Risk Spectrum",
+    title1: "The trigger",
+    desc1: "Start with a common privacy scenario to frame what’s being evaluated.",
+    example1: "Example: A tool interacting with authenticated pages, sensitive data, or patient-facing workflows.",
+    title2: "The Spectrum",
+    desc2: "See how different factors can shift a scenario along a spectrum—from lower to higher privacy and compliance risk.",
+    example2: "Example: Factors like data sensitivity, user context, and disclosure expectations may move a use case along the spectrum.",
+    title3: "The direction",
+    desc3: "Use the spectrum to guide how the issue may be approached, including when additional review or stronger controls may be appropriate.",
+    example3: "Example: A scenario trending higher risk may point toward policy updates, contract review, or more tailored internal evaluation."
   }
 };
 
@@ -1529,17 +1666,17 @@ function updateFramework(key){
   const content = frameworkContent[key];
   if(!content) return;
 
-  document.getElementById('fw-step-1').textContent = content.step1;
+  document.getElementById('fw-step-1').textContent = content.label;
   document.getElementById('fw-title-1').textContent = content.title1;
   document.getElementById('fw-desc-1').textContent = content.desc1;
   document.getElementById('fw-example-1').textContent = content.example1;
 
-  document.getElementById('fw-step-2').textContent = content.step2;
+  document.getElementById('fw-step-2').textContent = content.label;
   document.getElementById('fw-title-2').textContent = content.title2;
   document.getElementById('fw-desc-2').textContent = content.desc2;
   document.getElementById('fw-example-2').textContent = content.example2;
 
-  document.getElementById('fw-step-3').textContent = content.step3;
+  document.getElementById('fw-step-3').textContent = content.label;
   document.getElementById('fw-title-3').textContent = content.title3;
   document.getElementById('fw-desc-3').textContent = content.desc3;
   document.getElementById('fw-example-3').textContent = content.example3;
@@ -1557,14 +1694,11 @@ document.querySelectorAll('.framework-pill').forEach((pill)=>{
 
 const scrollBtn = document.getElementById('scrollTopBtn');
 window.addEventListener('scroll', () => {
-  const brand = document.querySelector('.brand');
   const header = document.querySelector('header');
 
-  if(window.scrollY > 140){
-    brand.classList.add('show');
+  if(window.scrollY > 20){
     header.classList.add('scrolled');
   } else {
-    brand.classList.remove('show');
     header.classList.remove('scrolled');
   }
 
