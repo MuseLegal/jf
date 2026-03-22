@@ -411,6 +411,8 @@ h1{
   border-radius:999px;
   background:#fafafa;
   gap:4px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 .catalog-toggle button{
   border:none;
@@ -598,6 +600,17 @@ h1{
 }
 .catalog-cta.primary:hover{
   background:#111;
+}
+.detail-grid-wrap{
+  margin-top:28px;
+}
+.detail-grid-note{
+  margin-top:16px;
+  font-size:13px;
+  color:#666;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .capture-section{
   padding-top:40px;
@@ -1193,7 +1206,7 @@ h1{
           <div class="compare-row">
             <div class="compare-cell compare-label">Built for digital health privacy</div>
             <div class="compare-cell pixelwise">✔ Purpose-built for digital health</div>
-            <div class="compare-cell">◐ Broad, cross-industry</div>            
+            <div class="compare-cell">◐ Broad, cross-industry</div>
             <div class="compare-cell">✔ When specifically engaged</div>
           </div>
 
@@ -1207,21 +1220,21 @@ h1{
           <div class="compare-row">
             <div class="compare-cell compare-label">Usable recurring materials</div>
             <div class="compare-cell pixelwise">✔ Built for repeat use</div>
-            <div class="compare-cell">✖ Not typically reusable</div>            
+            <div class="compare-cell">✖ Not typically reusable</div>
             <div class="compare-cell">◐ Custom, limited reuse</div>
           </div>
 
           <div class="compare-row">
             <div class="compare-cell compare-label">Cost profile</div>
             <div class="compare-cell pixelwise">✔ Fixed, predictable</div>
-            <div class="compare-cell">◐ Project-based</div>           
+            <div class="compare-cell">◐ Project-based</div>
             <div class="compare-cell">✖ Hourly / high cost</div>
           </div>
 
           <div class="compare-row">
             <div class="compare-cell compare-label">Best fit</div>
             <div class="compare-cell pixelwise">✔ Recurring operational work</div>
-            <div class="compare-cell">◐ One-time projects</div>            
+            <div class="compare-cell">◐ One-time projects</div>
             <div class="compare-cell">✔ High-risk matters</div>
           </div>
         </div>
@@ -1236,46 +1249,504 @@ h1{
 
 <section id="templates" class="section">
   <div class="section-inner">
-    <h2>Choose the level of guidance that fits your team</h2>
+    <h2>Choose the topic that fits your team</h2>
     <div class="section-copy">
-      Start with the option most likely to get you to a practical answer faster. For most teams, templates paired with playbooks provide the strongest mix of clarity, usability, and value.
+      Keep the top panels simple. Use the grid underneath each topic if you want a fuller breakdown of what is included and what is not.
     </div>
 
     <div class="catalog-toggle-wrap">
-      <div class="catalog-toggle" role="tablist" aria-label="Product options">
-        <button id="toggle-bundles" class="active" type="button" onclick="showCatalog('bundles')">Templates + Playbooks</button>
-        <button id="toggle-templates" type="button" onclick="showCatalog('templates')">Templates Only</button>
+      <div class="catalog-toggle" role="tablist" aria-label="Product topics">
+        <button id="toggle-tracking" class="active" type="button" onclick="showCatalog('tracking')">Tracking Tech</button>
+        <button id="toggle-comms" type="button" onclick="showCatalog('comms')">HIPAA + Marketing</button>
+        <button id="toggle-privacy" type="button" onclick="showCatalog('privacy')">Privacy Program</button>
+        <button id="toggle-combined" type="button" onclick="showCatalog('combined')">Everything Combined</button>
       </div>
     </div>
 
     <div class="catalog-helper">
-      Best value for most buyers: start with templates + playbooks if you want both usable language and clearer guidance on when and how to use it.
+      The cards stay short for easier viewing on a normal screen. The grid below each topic shows the fuller scope.
     </div>
 
-    <div id="catalog-bundles" class="catalog-view active">
+    <div id="catalog-tracking" class="catalog-view active">
       <div class="catalog-grid pricing-grid">
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For one immediate issue</div>
+            <div class="catalog-eyebrow">For one immediate tracking issue</div>
             <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A focused package for teams that need to solve one privacy problem quickly and move on.</div>
+            <div class="catalog-subtitle">A focused pack for cookies, pixels, session replay, and one common website privacy need.</div>
 
             <div class="catalog-price-row">
               <div class="catalog-price">$149</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">A strong first purchase for a narrower issue.</div>
+            <div class="catalog-savings">Good for teams that need a narrower fix fast.</div>
 
-            <div class="catalog-desc">Get a practical set of materials that gives you usable language plus enough guidance to apply it with more confidence.</div>
+            <div class="catalog-desc">A short, practical package with baseline language and a limited amount of guidance.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
               <li>2 core templates</li>
-              <li>1 focused mini playbook</li>
-              <li>Practical implementation notes</li>
-              <li>Instant digital delivery</li>
+              <li>1 mini playbook</li>
+              <li>Basic risk spectrum</li>
+              <li>Implementation notes</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Starter</a>
+          </div>
+        </div>
+
+        <div class="catalog-card featured">
+          <div class="catalog-topbar green"></div>
+          <div class="catalog-badge">Most popular</div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For recurring tracking questions</div>
+            <h3 class="catalog-title">Growth</h3>
+            <div class="catalog-subtitle">The best fit for teams handling repeat questions across marketing, product, web, and privacy.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$299</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best mix of usable language and practical guidance.</div>
+
+            <div class="catalog-desc">A fuller pack with more reusable materials for recurring tracker and disclosure decisions.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>4 high-value templates</li>
+              <li>2 detailed playbooks</li>
+              <li>Expanded risk spectrum</li>
+              <li>Workflow guidance</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta primary">Get Growth</a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For broader internal use</div>
+            <h3 class="catalog-title">Complete</h3>
+            <div class="catalog-subtitle">A broader toolkit for teams that want stronger coverage across several tracking-tech scenarios.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$499</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best for repeat use across teams and workflows.</div>
+
+            <div class="catalog-desc">Choose this when tracking questions come up often and you want deeper coverage and more internal reusability.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>Full tracking template bundle</li>
+              <li>Full tracking playbook bundle</li>
+              <li>Broader scenario coverage</li>
+              <li>Built for repeat internal use</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Complete</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-grid-wrap">
+        <div class="compare-table-wrap">
+          <div class="compare-table-scroll">
+            <div class="compare-table">
+              <div class="compare-row header">
+                <div class="compare-cell">Tracking Tech Pack Details</div>
+                <div class="compare-cell center-head">Starter</div>
+                <div class="compare-cell center-head">Growth</div>
+                <div class="compare-cell center-head">Complete</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Core policy templates</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Contract language</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Playbooks</div>
+                <div class="compare-cell">1 mini</div>
+                <div class="compare-cell">2 detailed</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Risk spectrums</div>
+                <div class="compare-cell">Basic</div>
+                <div class="compare-cell">Expanded</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Workflow guidance</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Internal rollout notes</div>
+                <div class="compare-cell">—</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-grid-note">
+          This topic is best when your main issues involve website privacy language, trackers, analytics, session replay, vendor tools, and related operational decisions.
+        </div>
+      </div>
+    </div>
+
+    <div id="catalog-comms" class="catalog-view">
+      <div class="catalog-grid pricing-grid">
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For one immediate communications issue</div>
+            <h3 class="catalog-title">Starter</h3>
+            <div class="catalog-subtitle">A focused pack for teams dealing with one HIPAA or healthcare marketing communications question.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$149</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">A simple starting point for a narrower communications need.</div>
+
+            <div class="catalog-desc">Get baseline materials for one practical issue involving messaging, channels, or permissions.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>2 core templates</li>
+              <li>1 mini playbook</li>
+              <li>Basic risk spectrum</li>
+              <li>Implementation notes</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Starter</a>
+          </div>
+        </div>
+
+        <div class="catalog-card featured">
+          <div class="catalog-topbar green"></div>
+          <div class="catalog-badge">Most popular</div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For recurring communications questions</div>
+            <h3 class="catalog-title">Growth</h3>
+            <div class="catalog-subtitle">The best fit for teams that repeatedly work through health-related messaging, promotions, and channel rules.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$299</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best mix of message guidance and reusable language.</div>
+
+            <div class="catalog-desc">A fuller pack with more support for operational communications decisions across legal and marketing teams.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>4 high-value templates</li>
+              <li>2 detailed playbooks</li>
+              <li>Expanded risk spectrum</li>
+              <li>Workflow guidance</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta primary">Get Growth</a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For broader internal use</div>
+            <h3 class="catalog-title">Complete</h3>
+            <div class="catalog-subtitle">A broader toolkit for teams that want deeper support across multiple communications scenarios.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$499</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best for repeat use across several stakeholders and workflows.</div>
+
+            <div class="catalog-desc">Choose this when communications issues recur across product, legal, marketing, and operations.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>Full communications template bundle</li>
+              <li>Full communications playbook bundle</li>
+              <li>Broader scenario coverage</li>
+              <li>Built for repeat internal use</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Complete</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-grid-wrap">
+        <div class="compare-table-wrap">
+          <div class="compare-table-scroll">
+            <div class="compare-table">
+              <div class="compare-row header">
+                <div class="compare-cell">HIPAA + Marketing Pack Details</div>
+                <div class="compare-cell center-head">Starter</div>
+                <div class="compare-cell center-head">Growth</div>
+                <div class="compare-cell center-head">Complete</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Core policy templates</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Messaging frameworks</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Playbooks</div>
+                <div class="compare-cell">1 mini</div>
+                <div class="compare-cell">2 detailed</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Risk spectrums</div>
+                <div class="compare-cell">Basic</div>
+                <div class="compare-cell">Expanded</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Email / SMS guidance</div>
+                <div class="compare-cell">—</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Internal rollout notes</div>
+                <div class="compare-cell">—</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-grid-note">
+          This topic is best when you need clearer support around patient communications, marketing workflows, permissions, disclosures, and channel-specific operational guidance.
+        </div>
+      </div>
+    </div>
+
+    <div id="catalog-privacy" class="catalog-view">
+      <div class="catalog-grid pricing-grid">
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For one immediate privacy operations need</div>
+            <h3 class="catalog-title">Starter</h3>
+            <div class="catalog-subtitle">A focused pack for one privacy workflow, intake, governance, or internal documentation issue.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$149</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">A clean entry point for a narrower privacy program issue.</div>
+
+            <div class="catalog-desc">Get baseline language and limited guidance for one practical privacy operations question.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>2 core templates</li>
+              <li>1 mini playbook</li>
+              <li>Basic risk spectrum</li>
+              <li>Implementation notes</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Starter</a>
+          </div>
+        </div>
+
+        <div class="catalog-card featured">
+          <div class="catalog-topbar green"></div>
+          <div class="catalog-badge">Most popular</div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For recurring privacy team work</div>
+            <h3 class="catalog-title">Growth</h3>
+            <div class="catalog-subtitle">The best fit for teams that need reusable materials across intake, review, governance, and repeat workflows.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$299</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best balance of structure, guidance, and repeat usability.</div>
+
+            <div class="catalog-desc">A fuller pack with more support for repeat internal privacy work and team coordination.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>4 high-value templates</li>
+              <li>2 detailed playbooks</li>
+              <li>Expanded risk spectrum</li>
+              <li>Workflow guidance</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta primary">Get Growth</a>
+          </div>
+        </div>
+
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For broader internal use</div>
+            <h3 class="catalog-title">Complete</h3>
+            <div class="catalog-subtitle">A broader toolkit for teams that want stronger coverage across several privacy-program scenarios.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$499</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">Best for repeat use across privacy, legal, and operations.</div>
+
+            <div class="catalog-desc">Choose this when you want broader internal guidance and more complete materials for recurring program work.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>Full privacy template bundle</li>
+              <li>Full privacy playbook bundle</li>
+              <li>Broader scenario coverage</li>
+              <li>Built for repeat internal use</li>
+            </ul>
+
+            <div class="catalog-spacer"></div>
+            <a href="#" class="catalog-cta">Get Complete</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-grid-wrap">
+        <div class="compare-table-wrap">
+          <div class="compare-table-scroll">
+            <div class="compare-table">
+              <div class="compare-row header">
+                <div class="compare-cell">Privacy Program Pack Details</div>
+                <div class="compare-cell center-head">Starter</div>
+                <div class="compare-cell center-head">Growth</div>
+                <div class="compare-cell center-head">Complete</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Core policy templates</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Governance materials</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Playbooks</div>
+                <div class="compare-cell">1 mini</div>
+                <div class="compare-cell">2 detailed</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Risk spectrums</div>
+                <div class="compare-cell">Basic</div>
+                <div class="compare-cell">Expanded</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Workflow guidance</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Internal rollout notes</div>
+                <div class="compare-cell">—</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-grid-note">
+          This topic is best when your team needs repeatable materials for governance, intake, review, issue routing, and internal privacy operations.
+        </div>
+      </div>
+    </div>
+
+    <div id="catalog-combined" class="catalog-view">
+      <div class="catalog-grid pricing-grid">
+        <div class="catalog-card">
+          <div class="catalog-topbar"></div>
+          <div class="catalog-body">
+            <div class="catalog-eyebrow">For a smaller cross-functional start</div>
+            <h3 class="catalog-title">Starter</h3>
+            <div class="catalog-subtitle">A lighter combined pack for teams that need basic coverage across multiple privacy topics at once.</div>
+
+            <div class="catalog-price-row">
+              <div class="catalog-price">$249</div>
+              <div class="catalog-price-note">one-time</div>
+            </div>
+
+            <div class="catalog-savings">A lower-cost way to get initial cross-topic coverage.</div>
+
+            <div class="catalog-desc">A practical starter option when your needs touch more than one topic but remain relatively narrow.</div>
+
+            <div class="catalog-list-label">Includes</div>
+            <ul class="catalog-list">
+              <li>Selected templates across topics</li>
+              <li>1 combined mini playbook</li>
+              <li>Basic risk spectrums</li>
+              <li>Implementation notes</li>
             </ul>
 
             <div class="catalog-spacer"></div>
@@ -1289,23 +1760,23 @@ h1{
           <div class="catalog-body">
             <div class="catalog-eyebrow">For most teams</div>
             <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The best fit for teams that handle recurring privacy questions and want a repeatable way to move faster.</div>
+            <div class="catalog-subtitle">The best fit for teams that want broader coverage across tracking tech, HIPAA + marketing, and privacy program workflows.</div>
 
             <div class="catalog-price-row">
-              <div class="catalog-price">$299</div>
+              <div class="catalog-price">$599</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Broader guidance at a lower effective cost than piecing things together separately.</div>
+            <div class="catalog-savings">Best cross-topic value for teams with recurring issues.</div>
 
-            <div class="catalog-desc">This package gives both language and clearer decision support, helping reduce internal back-and-forth on common privacy and digital health issues.</div>
+            <div class="catalog-desc">A fuller package that combines practical language and guidance across multiple recurring privacy workstreams.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
-              <li>4 high-value templates</li>
-              <li>2 detailed playbooks</li>
-              <li>Risk-based and goal-based options</li>
-              <li>Better savings than buying separately</li>
+              <li>Expanded templates across topics</li>
+              <li>2 detailed combined playbooks</li>
+              <li>Expanded risk spectrums</li>
+              <li>Workflow guidance</li>
             </ul>
 
             <div class="catalog-spacer"></div>
@@ -1316,23 +1787,23 @@ h1{
         <div class="catalog-card">
           <div class="catalog-topbar"></div>
           <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader internal use</div>
+            <div class="catalog-eyebrow">For broader internal adoption</div>
             <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A broader toolkit for teams that want deeper coverage across tracking tech, privacy, and digital health workflows.</div>
+            <div class="catalog-subtitle">A fuller all-in bundle for teams that want the widest Pixelwise coverage in one place.</div>
 
             <div class="catalog-price-row">
-              <div class="catalog-price">$499</div>
+              <div class="catalog-price">$899</div>
               <div class="catalog-price-note">one-time</div>
             </div>
 
-            <div class="catalog-savings">Best for repeat use across multiple issues, stakeholders, and workflows.</div>
+            <div class="catalog-savings">Best for repeat use across several teams and issue types.</div>
 
-            <div class="catalog-desc">Choose this when you want fuller documentation and wider decision support across several recurring privacy questions—not just one narrow need.</div>
+            <div class="catalog-desc">Choose this when you want the strongest overall value and expect repeated use across privacy, marketing, product, and legal stakeholders.</div>
 
             <div class="catalog-list-label">Includes</div>
             <ul class="catalog-list">
-              <li>Full template bundle</li>
-              <li>Full playbook bundle</li>
+              <li>Broad template coverage across topics</li>
+              <li>Full combined playbook coverage</li>
               <li>Broader scenario coverage</li>
               <li>Built for repeat internal use</li>
             </ul>
@@ -1342,96 +1813,64 @@ h1{
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="catalog-templates" class="catalog-view">
-      <div class="catalog-grid pricing-grid">
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For one basic document need</div>
-            <h3 class="catalog-title">Essential</h3>
-            <div class="catalog-subtitle">A simple entry point for teams that mainly need foundational privacy language and already know what they want.</div>
+      <div class="detail-grid-wrap">
+        <div class="compare-table-wrap">
+          <div class="compare-table-scroll">
+            <div class="compare-table">
+              <div class="compare-row header">
+                <div class="compare-cell">Everything Combined Details</div>
+                <div class="compare-cell center-head">Starter</div>
+                <div class="compare-cell center-head">Growth</div>
+                <div class="compare-cell center-head">Complete</div>
+              </div>
 
-            <div class="catalog-price-row">
-              <div class="catalog-price">$59</div>
-              <div class="catalog-price-note">one-time</div>
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Tracking templates</div>
+                <div class="compare-cell">Selected</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">HIPAA + marketing templates</div>
+                <div class="compare-cell">Selected</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Privacy program templates</div>
+                <div class="compare-cell">Selected</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Playbooks</div>
+                <div class="compare-cell">1 combined mini</div>
+                <div class="compare-cell">2 detailed</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Risk spectrums</div>
+                <div class="compare-cell">Basic</div>
+                <div class="compare-cell">Expanded</div>
+                <div class="compare-cell">Full set</div>
+              </div>
+
+              <div class="compare-row">
+                <div class="compare-cell compare-label">Internal rollout notes</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell">✔</div>
+                <div class="compare-cell">✔ Expanded</div>
+              </div>
             </div>
-
-            <div class="catalog-savings">Lowest-cost way to get a single strong building block.</div>
-
-            <div class="catalog-desc">Best when you have a specific document need and mostly want clean, attorney-informed language you can adapt quickly.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>1 single template</li>
-              <li>Fast digital delivery</li>
-              <li>Editable format</li>
-              <li>Good for narrow needs</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Essential</a>
           </div>
         </div>
-
-        <div class="catalog-card featured">
-          <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Most popular</div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For practical coverage</div>
-            <h3 class="catalog-title">Core</h3>
-            <div class="catalog-subtitle">A stronger set of templates for teams that want broader coverage without adding playbooks yet.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$129</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">The strongest standalone template value for buyers not ready for playbooks.</div>
-
-            <div class="catalog-desc">A good middle option when you want more than one document and need a stronger base for recurring internal use.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>2 to 3 core templates</li>
-              <li>Better range of use cases</li>
-              <li>Useful for internal teams</li>
-              <li>Lower cost than buying separate singles</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Get Core</a>
-          </div>
-        </div>
-
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For a broader document library</div>
-            <h3 class="catalog-title">Expanded</h3>
-            <div class="catalog-subtitle">A fuller template pack for teams that want stronger coverage now and may add guided materials later.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$199</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best for buyers who want more documents now and more flexibility later.</div>
-
-            <div class="catalog-desc">Useful when several stakeholders need materials and you want broader policy, disclosure, and workflow coverage without jumping to the full bundle.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>4 or more templates</li>
-              <li>Broader policy and disclosure coverage</li>
-              <li>Good for repeat document use</li>
-              <li>Stronger than one-off purchases</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Expanded</a>
-          </div>
+        <div class="detail-grid-note">
+          This is the best value when your team expects recurring needs across multiple privacy topics instead of one narrow issue area.
         </div>
       </div>
     </div>
@@ -1509,9 +1948,9 @@ h1{
       </details>
 
       <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Should I buy templates only or templates + playbooks?</summary>
+        <summary style="font-weight:600;cursor:pointer;">Should I buy a focused topic or everything combined?</summary>
         <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Buy templates only if you already know what document you need and mostly want usable language. Choose templates + playbooks if you also want guidance on which approach fits your facts, goals, and risk tolerance. For most teams, the bundles are the better buy.
+          Buy a focused topic if your current pain point is mainly one area, like tracking tech or healthcare communications. Choose everything combined if your team expects recurring questions across multiple privacy workstreams.
         </div>
       </details>
 
@@ -1603,22 +2042,19 @@ function closeDrawer(){
 }
 
 function showCatalog(view){
-  const bundlesBtn = document.getElementById('toggle-bundles');
-  const templatesBtn = document.getElementById('toggle-templates');
-  const bundlesView = document.getElementById('catalog-bundles');
-  const templatesView = document.getElementById('catalog-templates');
+  const views = ['tracking','comms','privacy','combined'];
+  views.forEach((key)=>{
+    const btn = document.getElementById('toggle-' + key);
+    const panel = document.getElementById('catalog-' + key);
 
-  if(view === 'bundles'){
-    bundlesBtn.classList.add('active');
-    templatesBtn.classList.remove('active');
-    bundlesView.classList.add('active');
-    templatesView.classList.remove('active');
-  } else {
-    templatesBtn.classList.add('active');
-    bundlesBtn.classList.remove('active');
-    templatesView.classList.add('active');
-    bundlesView.classList.remove('active');
-  }
+    if(key === view){
+      btn.classList.add('active');
+      panel.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+      panel.classList.remove('active');
+    }
+  });
 }
 
 const frameworkContent = {
