@@ -2,2125 +2,738 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pixelwise Law</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pixelwise Framework</title>
+
 <style>
 :root{
   --bg:#ffffff;
-  --text:#000000;
-  --muted:#555;
-  --border:#dcdcdc;
-  --blue:#2563eb;
-  --green:#4ade80;
-  --soft-green:#dcfce7;
+  --text:#111111;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --soft:#f8fafc;
 }
+
 *{box-sizing:border-box}
-body{
+
+html, body{
   margin:0;
-  font-family:Inter, system-ui, Arial, sans-serif;
+  padding:0;
+  height:100%;
+  font-family:Inter, system-ui, sans-serif;
   background:var(--bg);
   color:var(--text);
+  overflow:hidden;
 }
-header{
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,input{
+  font:inherit;
+}
+
+/* TOP BAR */
+
+.topbar{
   position:fixed;
   top:0;
   left:0;
   right:0;
-  z-index:10;
-  background:#ffffff;
-  border-bottom:1px solid transparent;
-  transition:border-color .25s ease, background .25s ease;
-}
-header.scrolled{border-bottom:1px solid #eee;}
-.header-inner{
-  width:100%;
-  max-width:none;
-  margin:0 auto;
+  height:64px;
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:center;
-  padding:14px 32px;
-  gap:18px;
-}
-.header-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex:0 0 auto;
-}
-.brand-lockup{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  color:#000;
-  font-weight:700;
-  letter-spacing:-0.02em;
-}
-.brand-text{
-  font-size:20px;
-  line-height:1;
-}
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-left:auto;
-}
-.header-login{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px 16px;
-  border:1px solid var(--border);
-  border-radius:999px;
+  padding:0 24px;
+  border-bottom:1px solid var(--border);
   background:#fff;
-  color:#000;
-  text-decoration:none;
-  font-family:inherit;
-  font-size:13px;
+  z-index:30;
+}
+
+.top-left{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  min-width:0;
+}
+
+.logo{
   font-weight:600;
+  font-size:18px;
   white-space:nowrap;
-  transition:background .2s ease, border-color .2s ease, transform .2s ease;
 }
-.header-login:hover{
-  background:#f7f7f7;
-  transform:translateY(-1px);
-}
-.menu-btn{
-  font-size:22px;
-  border:none;
-  background:none;
-  cursor:pointer;
-  color:#000;
-  padding:0;
-  line-height:1;
-}
-.drawer{
-  position:fixed;
-  top:0;
-  right:0;
-  height:100%;
-  width:280px;
-  background:#ffffff;
-  border-left:1px solid var(--border);
-  transform:translateX(100%);
-  transition:transform .25s ease;
-  z-index:1000;
-  padding:24px;
-  display:flex;
-  flex-direction:column;
-}
-.drawer.open{transform:translateX(0);}
-.drawer-close{
-  position:absolute;
-  top:18px;
-  right:18px;
-  font-size:22px;
-  border:none;
-  background:none;
-  cursor:pointer;
-}
-.drawer a{
-  display:block;
-  padding:14px 0;
+
+.logo a{
+  color:inherit;
   text-decoration:none;
-  color:#000;
-  font-size:18px;
-  border-bottom:1px solid #f1f1f1;
 }
-.drawer a:last-child{border-bottom:none;}
-.drawer-top a{font-size:18px;}
-.drawer-section-label{
-  font-size:12px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:#888;
-  margin:18px 0 8px;
-}
-.drawer-submenu{
-  display:block;
-  padding:8px 0 4px 14px;
-  border-bottom:1px solid #f1f1f1;
-}
-.drawer-submenu a{
-  font-size:16px;
-  padding:10px 0;
-  border-bottom:none;
-  color:#555;
-}
-.drawer-bottom{
-  margin-top:auto;
-  padding-top:20px;
-}
-.drawer-join{
-  display:block;
-  text-align:center;
-  padding:14px 18px;
-  background:#2563eb;
-  color:#ffffff !important;
-  border-radius:10px;
-  border-bottom:none;
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:14px;
-}
-.drawer-login{
-  display:block;
-  text-align:center;
-  padding:12px 0;
-  color:#000;
-  text-decoration:none;
-  font-size:16px;
-  border-bottom:none;
-}
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,.25);
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .2s ease;
-  z-index:900;
-}
-.overlay.open{
-  opacity:1;
-  pointer-events:auto;
-}
-main{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  min-height:100vh;
-  padding:150px 20px 110px;
-  text-align:center;
-}
-h1{
-  font-size:64px;
-  font-weight:600;
-  letter-spacing:-0.04em;
-  margin:34px 0 24px;
-  line-height:1;
-  max-width:980px;
-}
-.subtitle{
-  font-size:20px;
-  color:var(--muted);
-  max-width:760px;
-  margin-bottom:14px;
-}
-.description{
-  font-size:17px;
-  color:var(--muted);
-  max-width:820px;
-  margin-bottom:26px;
-}
-.hero-actions{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-.hero-btn{
-  display:inline-block;
-  text-decoration:none;
-  padding:14px 18px;
-  border-radius:10px;
-  font-size:15px;
-  font-weight:600;
-  transition:transform .2s ease, background .2s ease, border-color .2s ease;
-}
-.hero-btn.primary{
-  background:#000;
-  color:#fff;
-  border:1px solid #000;
-}
-.hero-btn.primary:hover{
-  background:#111;
-  transform:translateY(-1px);
-}
-.hero-btn.secondary{
-  background:#fff;
-  color:#000;
-  border:1px solid var(--border);
-}
-.hero-btn.secondary:hover{
-  background:#f7f7f7;
-  transform:translateY(-1px);
-}
-.helper{
-  font-size:13px;
-  color:#888;
-  margin-top:18px;
-  max-width:860px;
-}
-.section{
-  padding:90px 20px;
-}
-.section-inner{
-  max-width:1120px;
-  margin:0 auto;
-  text-align:center;
-}
-.section h2{
-  font-size:64px;
-  line-height:0.95;
-  letter-spacing:-0.05em;
-  margin:0 auto 22px;
+
+.logo span{
+  color:#9ca3af;
   font-weight:500;
-  max-width:860px;
+  margin-left:6px;
 }
-.section-copy{
-  max-width:820px;
-  margin:0 auto;
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.5;
-}
-.section-description{
-  margin:18px auto 0;
-  font-size:16px;
-  color:#666;
-  max-width:760px;
-  text-align:center;
-}
-.framework-pill-row{
-  margin-top:28px;
+
+.top-nav{
   display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-}
-.framework-pill{
-  font-size:13px;
-  padding:8px 12px;
-  border:1px solid #e5e5e5;
-  border-radius:999px;
-  background:#fff;
-  color:#111;
-  cursor:pointer;
-  font-family:inherit;
-  transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease;
-}
-.framework-pill:hover{
-  transform:translateY(-1px);
-  border-color:#cfcfcf;
-}
-.framework-pill.active{
-  background:#000;
-  color:#fff;
-  border-color:#000;
-}
-.compare-table-wrap{
-  margin-top:46px;
-  border:1px solid var(--border);
-  border-radius:18px;
-  overflow:hidden;
-  background:#fff;
-}
-.compare-table-scroll{
-  width:100%;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-}
-.compare-table{
-  min-width:760px;
-}
-.compare-row{
-  display:grid;
-  grid-template-columns:1.3fr 1fr 1fr 1fr;
-}
-.compare-row + .compare-row{
-  border-top:1px solid var(--border);
-}
-.compare-cell{
-  padding:18px 16px;
-  font-size:14px;
-  line-height:1.45;
-  text-align:left;
-  background:#fff;
-}
-.compare-row.header .compare-cell{
-  background:#fafafa;
-  font-weight:600;
-}
-.compare-row.header .compare-cell.center-head{
-  text-align:center;
-}
-.compare-label{
-  font-weight:600;
-}
-.compare-cell.pixelwise{
-  background:#f0fdf4;
-}
-.compare-row.header .compare-cell.pixelwise{
-  background:#dcfce7;
-}
-.compare-brand{
-  display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:8px;
-  width:100%;
-}
-.compare-brand-logo{
-  width:18px;
-  height:18px;
-  display:block;
-  flex:0 0 auto;
-}
-.compare-top-note{
-  margin-top:18px;
-  font-size:14px;
-  color:#666;
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.catalog-toggle-wrap{
-  display:flex;
-  justify-content:center;
-  margin:28px 0 0;
-}
-.catalog-toggle{
-  display:inline-flex;
-  align-items:center;
-  padding:6px;
-  border:1px solid var(--border);
-  border-radius:999px;
-  background:#fafafa;
-  gap:4px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.catalog-toggle button{
-  border:none;
-  background:transparent;
-  padding:10px 16px;
-  border-radius:999px;
-  font-size:13px;
-  color:#555;
-  cursor:pointer;
-  font-family:inherit;
-  transition:background .2s ease,color .2s ease;
-}
-.catalog-toggle button.active{
-  background:#000;
-  color:#fff;
-}
-.catalog-helper{
-  margin-top:14px;
-  font-size:13px;
-  color:#666;
-  max-width:760px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.catalog-view{
-  display:none;
-}
-.catalog-view.active{
-  display:block;
-}
-.catalog-grid{
-  margin:42px auto 0;
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:22px;
-  align-items:stretch;
 }
-.catalog-card{
-  position:relative;
-  border:1px solid var(--border);
-  border-radius:18px;
-  background:#fff;
-  overflow:hidden;
-  text-align:left;
-  display:flex;
-  flex-direction:column;
-  min-height:100%;
-}
-.catalog-card.featured{
-  border-color:#86efac;
-  box-shadow:0 8px 30px rgba(74, 222, 128, 0.16);
-  transform:translateY(-4px);
-}
-.catalog-topbar{
-  height:14px;
-  background:#000;
-}
-.catalog-topbar.green{
-  background:var(--green);
-}
-.catalog-badge{
-  position:absolute;
-  top:18px;
-  right:18px;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:600;
-  line-height:1;
-  color:#166534;
-  background:var(--soft-green);
-  border:1px solid #bbf7d0;
-}
-.catalog-body{
-  padding:22px 20px 20px;
-  display:flex;
-  flex-direction:column;
-  height:100%;
-}
-.catalog-eyebrow{
-  font-size:13px;
-  color:#777;
-  margin-bottom:8px;
-}
-.catalog-title{
-  font-size:30px;
-  line-height:1;
-  letter-spacing:-0.04em;
-  margin:0 0 6px;
-  font-weight:600;
-}
-.catalog-subtitle{
-  font-size:14px;
-  color:var(--muted);
-  margin-bottom:18px;
-  min-height:40px;
-}
-.catalog-price-row{
-  display:flex;
-  align-items:flex-end;
-  gap:6px;
-  margin-bottom:12px;
-}
-.catalog-price{
-  font-size:46px;
-  line-height:0.95;
-  letter-spacing:-0.05em;
-  font-weight:600;
-}
-.catalog-price-note{
-  font-size:13px;
-  color:#777;
-  padding-bottom:5px;
-}
-.catalog-savings{
-  display:inline-block;
-  margin-bottom:14px;
-  padding:7px 10px;
-  border-radius:10px;
-  font-size:12px;
-  line-height:1.3;
-  color:#166534;
-  background:#f0fdf4;
-  border:1px solid #bbf7d0;
-}
-.catalog-desc{
-  font-size:14px;
-  color:#444;
-  line-height:1.45;
-  padding:14px 0 16px;
-  border-top:1px solid #efefef;
-}
-.catalog-list-label{
-  font-size:14px;
-  font-weight:600;
-  margin:0 0 12px;
-}
-.catalog-list{
-  list-style:none;
+
+.top-nav button{
+  background:none;
+  border:none;
   padding:0;
-  margin:0;
+  font-size:15px;
+  color:#6b7280;
+  cursor:pointer;
+  font-weight:450;
 }
-.catalog-list li{
-  position:relative;
-  padding-left:18px;
-  margin-bottom:10px;
-  color:#555;
-  font-size:14px;
-  line-height:1.4;
+
+.top-nav button.active{
+  color:#111111;
+  font-weight:500;
 }
-.catalog-list li::before{
-  content:"✓";
-  position:absolute;
-  left:0;
-  top:0;
-  color:#666;
-  font-size:13px;
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
-.catalog-spacer{
-  flex:1 1 auto;
-}
-.catalog-cta{
-  display:inline-block;
-  margin-top:18px;
-  width:100%;
-  text-align:center;
-  text-decoration:none;
-  padding:13px 16px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  color:#000;
-  font-weight:600;
-  background:#fff;
-  transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease;
-}
-.catalog-cta:hover{
-  background:#f8f8f8;
-  transform:translateY(-1px);
-}
-.catalog-cta.primary{
-  background:#000;
-  color:#fff;
-  border-color:#000;
-}
-.catalog-cta.primary:hover{
-  background:#111;
-}
-.detail-grid-wrap{
-  margin-top:28px;
-}
-.detail-grid-note{
-  margin-top:16px;
-  font-size:13px;
-  color:#666;
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.capture-section{
-  padding-top:40px;
-}
-.capture-box{
-  max-width:780px;
-  margin:0 auto;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:34px 24px;
+
+.search{
+  width:240px;
   background:#fafafa;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:14px;
+  outline:none;
 }
-.capture-title{
-  font-size:42px;
-  line-height:1;
-  letter-spacing:-0.04em;
+
+.dash-btn{
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:10px 16px;
+  font-size:14px;
+  cursor:pointer;
+  font-weight:500;
+}
+
+/* APP LAYOUT */
+
+.app{
+  position:fixed;
+  top:64px;
+  left:0;
+  right:0;
+  bottom:0;
+  display:grid;
+  grid-template-columns:280px minmax(0, 1fr) 240px;
+}
+
+/* LEFT PANEL */
+
+.sidebar{
+  border-right:1px solid var(--border);
+  background:#fff;
+  padding:28px 24px;
+  overflow:hidden;
+}
+
+.sidebar-inner{
+  height:100%;
+  overflow:auto;
+}
+
+.sidebar-heading{
+  font-size:11px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:#9ca3af;
   margin:0 0 14px;
   font-weight:500;
 }
-.capture-copy{
-  max-width:680px;
-  margin:0 auto;
-  color:var(--muted);
-  font-size:17px;
-  line-height:1.5;
+
+.section-list{
+  display:none;
 }
-.capture-form{
-  margin-top:24px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
+
+.section-list.active{
+  display:block;
 }
-.capture-input{
-  padding:14px 16px;
-  border:1px solid #dcdcdc;
-  border-radius:10px;
-  min-width:280px;
-  font-size:14px;
-  font-family:inherit;
-  background:#fff;
-}
-.capture-btn{
-  padding:14px 18px;
-  background:#000;
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
+
+.section-link{
+  display:block;
+  font-size:15px;
+  color:#4b5563;
+  padding:8px 0;
   cursor:pointer;
-  font-family:inherit;
+  font-weight:400;
 }
-.capture-note{
-  margin-top:10px;
-  font-size:12px;
-  color:#777;
+
+.section-link:hover{
+  color:#111;
 }
-.consult-card{
-  margin-top:40px;
-  display:flex;
-  justify-content:center;
-}
-.consult-card-inner{
-  max-width:640px;
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:28px 32px;
-  background:#fafafa;
-  text-align:left;
-}
-.consult-item{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-}
-.consult-item + .consult-item{margin-top:18px;}
-.consult-icon{
-  width:36px;
-  height:36px;
-  border-radius:8px;
-  border:2px solid #000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  flex:0 0 auto;
-}
-.consult-text strong{display:block;}
-.consult-text div{
-  color:var(--muted);
-  font-size:14px;
-}
-.footer-cta{
-  padding:90px 20px 70px;
-}
-.footer-cta-inner{
-  max-width:980px;
-  margin:0 auto;
-  text-align:center;
-}
-.footer-cta h2{
-  font-size:64px;
-  line-height:0.95;
-  letter-spacing:-0.05em;
-  margin:0 0 22px;
+
+.section-link.active{
+  color:#111;
   font-weight:500;
 }
-.footer-cta-copy{
-  max-width:760px;
-  margin:0 auto 28px;
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.5;
+
+/* CENTER CONTENT */
+
+.content{
+  overflow:auto;
+  background:#fff;
 }
-.footer-links{
-  max-width:760px;
-  margin:56px auto 0;
-  display:grid;
-  grid-template-columns:1.1fr 1fr 1fr 1fr;
-  gap:28px;
-  text-align:left;
+
+.content-inner{
+  max-width:980px;
+  padding:34px 28px 80px;
 }
-.footer-brand{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:-0.03em;
-}
-.footer-social{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-  color:#666;
-  font-size:13px;
-}
-.footer-col-title{
-  font-size:14px;
-  font-weight:600;
-  margin-bottom:10px;
-  color:#444;
-}
-.footer-link{
-  display:block;
-  color:#777;
-  text-decoration:none;
-  font-size:14px;
-  margin-bottom:8px;
-}
-.footer-mini-capture{
-  margin-top:40px;
-  text-align:center;
-}
-.footer-mini-title{
-  font-size:14px;
-  color:#555;
-  margin-bottom:10px;
-}
-.footer-mini-form{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.footer-mini-input{
-  padding:10px 12px;
-  border:1px solid #dcdcdc;
-  border-radius:8px;
-  font-size:13px;
-  font-family:inherit;
-  min-width:220px;
-}
-.footer-mini-btn{
-  padding:10px 14px;
-  border:none;
-  border-radius:8px;
-  background:#000;
-  color:#fff;
-  font-size:13px;
-  font-weight:600;
-  cursor:pointer;
-  font-family:inherit;
-}
-.footer-disclaimer{
-  max-width:760px;
-  margin:34px auto 0;
-  font-size:12px;
-  color:#8a8a8a;
-  line-height:1.45;
-}
-.drawer-logo,
-.header-logo{
-  width:22px;
-  height:22px;
-  display:block;
-  flex:0 0 auto;
-}
-#scrollTopBtn{
-  position:fixed;
-  bottom:24px;
-  right:24px;
-  width:44px;
-  height:44px;
-  border-radius:999px;
-  border:1px solid #dcdcdc;
-  background:#ffffff;
-  color:#000;
-  font-size:18px;
-  cursor:pointer;
+
+.page{
   display:none;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  z-index:1200;
-}
-#scrollTopBtn:hover{background:#f7f7f7}
-
-@media (max-width:1180px){
-  .header-login{
-    padding:10px 14px;
-    font-size:12px;
-  }
 }
 
-@media (max-width:1000px){
-  .catalog-grid{grid-template-columns:1fr;}
-  .pricing-grid{
-    max-width:380px;
-    margin-left:auto;
-    margin-right:auto;
-  }
-  .catalog-card.featured{transform:none;}
-  .header-login{
-    padding:9px 13px;
-    font-size:12px;
+.page.active{
+  display:block;
+}
+
+.page-title{
+  font-size:46px;
+  line-height:1.05;
+  letter-spacing:-0.04em;
+  margin:0 0 18px;
+  font-weight:500;
+}
+
+.divider{
+  height:1px;
+  background:var(--border);
+  margin:0 0 26px;
+}
+
+.page-intro{
+  font-size:16px;
+  line-height:1.75;
+  color:var(--muted);
+  margin:0 0 30px;
+  max-width:820px;
+  font-weight:400;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:20px;
+  margin-bottom:42px;
+}
+
+.card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px;
+  background:#fff;
+  transition:border-color .2s ease, transform .2s ease;
+}
+
+.card:hover{
+  border-color:#d1d5db;
+  transform:translateY(-1px);
+}
+
+.card h3{
+  font-size:17px;
+  margin:0 0 10px;
+  line-height:1.35;
+  font-weight:500;
+}
+
+.card p{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.65;
+  margin:0;
+  font-weight:400;
+}
+
+.content-section{
+  margin-bottom:42px;
+  scroll-margin-top:22px;
+}
+
+.content-section h2{
+  font-size:20px;
+  margin:0 0 12px;
+  line-height:1.3;
+  font-weight:500;
+}
+
+.content-section p{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.75;
+  margin:0 0 14px;
+  max-width:820px;
+  font-weight:400;
+}
+
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+}
+
+.mini-card{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  background:#fff;
+}
+
+.mini-card h4{
+  margin:0 0 8px;
+  font-size:15px;
+  line-height:1.35;
+  font-weight:500;
+}
+
+.mini-card p{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.65;
+  font-weight:400;
+}
+
+/* RIGHT PANEL */
+
+.right{
+  border-left:1px solid var(--border);
+  background:#fff;
+  padding:28px 22px;
+  overflow:hidden;
+}
+
+.right-inner{
+  height:100%;
+  overflow:auto;
+}
+
+.right h4{
+  font-size:11px;
+  color:#9ca3af;
+  margin:0 0 14px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-weight:500;
+}
+
+.tool{
+  display:block;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:8px 0;
+  font-size:15px;
+  color:#4b5563;
+  cursor:pointer;
+  font-weight:400;
+}
+
+.tool:hover{
+  color:#111;
+}
+
+/* MOBILE */
+
+@media(max-width:1180px){
+  .right{display:none;}
+  .app{
+    grid-template-columns:280px minmax(0, 1fr);
   }
 }
 
-@media (max-width:900px){
-  .section h2,.footer-cta h2{font-size:52px;}
-  .capture-title{font-size:36px;}
-  .compare-table{
-    min-width:760px;
+@media(max-width:960px){
+  .sidebar{display:none;}
+  .app{
+    grid-template-columns:minmax(0, 1fr);
   }
-  .compare-cell{
-    padding:14px 14px;
-    font-size:13px;
+  .content-inner{
+    padding:28px 22px 70px;
   }
-  .header-inner{
-    padding:14px 18px;
-    gap:12px;
-  }
-  .header-right{
-    gap:8px;
-  }
-  .header-login{
-    padding:8px 12px;
-    font-size:11px;
-  }
-}
-
-@media (max-width:700px){
-  header{top:0;left:0;right:0;}
-  .header-inner{
-    padding:12px 12px;
-    gap:8px;
-  }
-  .brand-text{
-    font-size:18px;
-  }
-  .header-right{
-    gap:6px;
-  }
-  .header-login{
-    padding:8px 11px;
-    font-size:10px;
-  }
-  .menu-btn{
-    font-size:20px;
-  }
-  main{
-    min-height:auto;
-    padding:120px 16px 84px;
-  }
-  h1{
-    font-size:46px;
-  }
-  .subtitle{
-    font-size:17px;
-  }
-  .description{
-    font-size:15px;
-  }
-  .section,.footer-cta{padding:70px 16px}
-  .section h2,.footer-cta h2,.capture-title{font-size:42px}
-  .section-copy,.footer-cta-copy,.capture-copy{font-size:16px}
-  .section-description{
-    font-size:15px;
-  }
-  .consult-card-inner{padding:22px 18px;}
-  .footer-links{
+  .card-grid{
     grid-template-columns:1fr;
-    gap:18px;
-    text-align:center;
   }
-  .footer-social{justify-content:center;}
-  .capture-input{
-    min-width:100%;
-    width:100%;
-  }
-  .capture-btn{width:100%;}
-  .pricing-grid{
-    max-width:320px;
-    width:100%;
-  }
-  .catalog-body{
-    text-align:center;
-  }
-  .catalog-price-row{
-    justify-content:center !important;
-    width:100%;
-  }
-  .catalog-title,
-  .catalog-price,
-  .catalog-price-row,
-  .catalog-eyebrow,
-  .catalog-subtitle,
-  .catalog-savings,
-  .catalog-list-label,
-  .catalog-desc{
-    text-align:center !important;
-    margin-left:auto;
-    margin-right:auto;
-  }
-  .catalog-title{
-    width:100%;
-    display:block;
-  }
-  .catalog-price{
-    display:block;
-  }
-  .catalog-list{
-    text-align:left;
-  }
-  .catalog-list-label{
-    width:100%;
-  }
-  .catalog-desc{
-    width:100%;
+  .mini-grid{
+    grid-template-columns:1fr;
   }
 }
 
-@media (max-width:520px){
-  .header-login{
-    padding:7px 9px;
-    font-size:10px;
-  }
-  .pricing-grid{
-    max-width:290px;
+@media(max-width:760px){
+  .search{display:none;}
+  .top-nav{display:none;}
+  .page-title{
+    font-size:34px;
   }
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <div class="header-left">
-      <a href="#" class="brand-lockup" aria-label="Pixelwise home">
-        <svg class="header-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
-          <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
-          <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
-          <rect x="9" y="1" width="4" height="4" fill="#000000"/>
-          <rect x="13" y="1" width="4" height="4" fill="#000000"/>
-          <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
-          <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
-          <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
-          <rect x="13" y="5" width="4" height="4" fill="#000000"/>
-          <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
-          <rect x="5" y="9" width="4" height="4" fill="#000000"/>
-          <rect x="9" y="9" width="4" height="4" fill="#000000"/>
-          <rect x="1" y="13" width="4" height="4" fill="#000000"/>
-          <rect x="5" y="13" width="4" height="4" fill="#000000"/>
-        </svg>
-        <span class="brand-text">Pixelwise</span>
-      </a>
-    </div>
 
-    <div class="header-right">
-      <a href="/login.html" class="header-login">Login</a>
-      <button class="menu-btn" onclick="openDrawer()" aria-label="Open menu">☰</button>
+<div class="topbar">
+  <div class="top-left">
+    <div class="logo"><a href="index.html">Pixelwise</a> <span>Framework</span></div>
+
+    <div class="top-nav">
+      <button class="framework-tab active" data-framework="policies">Policies</button>
+      <button class="framework-tab" data-framework="playbooks">Playbooks</button>
+      <button class="framework-tab" data-framework="contracts">Contract Templates</button>
+      <button class="framework-tab" data-framework="risk">Risk Spectrums</button>
     </div>
   </div>
-</header>
 
-<div id="overlay" class="overlay" onclick="closeDrawer()"></div>
-
-<div id="drawer" class="drawer">
-  <button class="drawer-close" onclick="closeDrawer()">✕</button>
-  <div style="display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:20px;font-size:20px;">
-    <svg class="drawer-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
-      <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
-      <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
-      <rect x="9" y="1" width="4" height="4" fill="#000000"/>
-      <rect x="13" y="1" width="4" height="4" fill="#000000"/>
-      <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
-      <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
-      <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
-      <rect x="13" y="5" width="4" height="4" fill="#000000"/>
-      <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
-      <rect x="5" y="9" width="4" height="4" fill="#000000"/>
-      <rect x="9" y="9" width="4" height="4" fill="#000000"/>
-      <rect x="1" y="13" width="4" height="4" fill="#000000"/>
-      <rect x="5" y="13" width="4" height="4" fill="#000000"/>
-    </svg>
-    <span>Pixelwise</span>
-  </div>
-
-  <div class="drawer-top">
-    <a href="#templates" onclick="closeDrawer()">Templates & Playbooks</a>
-    <a href="#framework" onclick="closeDrawer()">How it works</a>
-    <a href="#faq" onclick="closeDrawer()">FAQ</a>
-  </div>
-
-  <div class="drawer-section-label">Privacy topics</div>
-  <div class="drawer-submenu">
-    <a href="#" onclick="closeDrawer()">HIPAA & privacy</a>
-    <a href="#" onclick="closeDrawer()">Tracking tech</a>
-    <a href="#" onclick="closeDrawer()">Digital health</a>
-    <a href="#" onclick="closeDrawer()">AI governance</a>
-    <a href="#" onclick="closeDrawer()">Marketing compliance</a>
-    <a href="#" onclick="closeDrawer()">Vendor contracts</a>
-    <a href="#" onclick="closeDrawer()">Consumer health data</a>
-    <a href="#" onclick="closeDrawer()">Product launch review</a>
-  </div>
-
-  <div class="drawer-bottom">
-    <a href="#risk-brief" class="drawer-join">Get free brief</a>
-    <a href="#templates" class="drawer-login">Browse products</a>
+  <div class="top-right">
+    <input class="search" placeholder="Search framework..." />
+    <button class="dash-btn">Dashboard</button>
   </div>
 </div>
 
-<main>
-  <h1>Privacy frameworks for digital health teams</h1>
+<div class="app">
 
-  <div class="subtitle">
-    Move faster on HIPAA, tracking tech, AI, and marketing compliance without starting from scratch.
-  </div>
+  <!-- LEFT PANEL -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-  <div class="hero-actions">
-    <a href="#templates" class="hero-btn primary">Get Solutions</a>
-    <a href="#risk-brief" class="hero-btn secondary">Get the free risk brief</a>
-  </div>
-
-  <div class="helper">
-    Legal Templates & Playbooks for providers, digital health companies, and wellness platforms
-  </div>
-</main>
-
-<section id="framework" class="section">
-  <div class="section-inner">
-    <h2>How Pixelwise helps you make privacy decisions faster</h2>
-    <div class="section-copy">
-      Go from issue to decision to usable language—without reinventing the wheel every time.
-    </div>
-
-    <div class="framework-pill-row">
-      <button class="framework-pill active" type="button" data-framework="policies">Policies</button>
-      <button class="framework-pill" type="button" data-framework="playbooks">Playbooks</button>
-      <button class="framework-pill" type="button" data-framework="contracts">Contract Templates</button>
-      <button class="framework-pill" type="button" data-framework="trees">Risk Spectrums</button>
-    </div>
-
-    <div class="catalog-grid" style="margin-top:44px;">
-      <div class="catalog-card">
-        <div class="catalog-topbar"></div>
-        <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-1">Policies</div>
-          <h3 class="catalog-title" id="fw-title-1" style="font-size:28px;">What applies</h3>
-          <div class="catalog-desc" id="fw-desc-1" style="border-top:none; padding-top:0;">
-            Identify which policies your team actually needs based on product, data use, and audience.
-          </div>
-          <div id="fw-example-1" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Decide whether you need a public privacy policy, internal AI governance policy, or both.
-          </div>
-        </div>
+      <div class="section-list active" data-sections="policies">
+        <div class="sidebar-heading">Policies</div>
+        <a class="section-link" href="#policies-purpose">Purpose</a>
+        <a class="section-link" href="#policies-scope">Scope</a>
+        <a class="section-link" href="#policies-rules">Core Rules</a>
+        <a class="section-link" href="#policies-governance">Governance</a>
       </div>
 
-      <div class="catalog-card featured">
-        <div class="catalog-topbar green"></div>
-        <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-2">Policies</div>
-          <h3 class="catalog-title" id="fw-title-2" style="font-size:28px;">What to say</h3>
-          <div class="catalog-desc" id="fw-desc-2" style="border-top:none; padding-top:0;">
-            Use ready-to-adapt language built for the actual issue instead of generic boilerplate.
-          </div>
-          <div id="fw-example-2" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Policy language covering cookies, analytics, session replay, or consumer health data.
-          </div>
-        </div>
+      <div class="section-list" data-sections="playbooks">
+        <div class="sidebar-heading">Playbooks</div>
+        <a class="section-link" href="#playbooks-how">How They Work</a>
+        <a class="section-link" href="#playbooks-marketing">Marketing Requests</a>
+        <a class="section-link" href="#playbooks-product">Product Requests</a>
+        <a class="section-link" href="#playbooks-engineering">Engineering Requests</a>
       </div>
 
-      <div class="catalog-card">
-        <div class="catalog-topbar"></div>
-        <div class="catalog-body">
-          <div class="catalog-eyebrow" id="fw-step-3">Policies</div>
-          <h3 class="catalog-title" id="fw-title-3" style="font-size:28px;">What to do next</h3>
-          <div class="catalog-desc" id="fw-desc-3" style="border-top:none; padding-top:0;">
-            Apply the approach in your product, site, contracts, or workflows with practical implementation guidance.
+      <div class="section-list" data-sections="contracts">
+        <div class="sidebar-heading">Contract Templates</div>
+        <a class="section-link" href="#contracts-purpose">Purpose</a>
+        <a class="section-link" href="#contracts-baa">BAA / DPA Logic</a>
+        <a class="section-link" href="#contracts-vendors">Vendor Boundaries</a>
+        <a class="section-link" href="#contracts-fallbacks">Fallback Clauses</a>
+      </div>
+
+      <div class="section-list" data-sections="risk">
+        <div class="sidebar-heading">Risk Spectrums</div>
+        <a class="section-link" href="#risk-why">Why Spectrums</a>
+        <a class="section-link" href="#risk-low">Lower Risk</a>
+        <a class="section-link" href="#risk-mid">Managed / Gray Zone</a>
+        <a class="section-link" href="#risk-high">High Risk</a>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- CENTER -->
+  <main class="content" id="contentArea">
+    <div class="content-inner">
+
+      <div class="page active" id="page-policies">
+        <h1 class="page-title">Policies</h1>
+        <div class="divider"></div>
+
+        <p class="page-intro">
+          Policies anchor the framework. They should define what tracking is, what it is for, where boundaries sit, and when review is required. The point is to create usable rules that teams can apply consistently.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Purpose</h3>
+            <p>Set the baseline for how your organization approaches tracking, privacy, and external data-sharing decisions.</p>
           </div>
-          <div id="fw-example-3" style="margin-top:14px; font-size:13px; color:#777;">
-            Example: Know where the language goes, when stricter controls apply, and what to revisit later.
+          <div class="card">
+            <h3>Operational Rules</h3>
+            <p>Turn policy language into practical boundaries that marketing, product, and engineering can actually follow.</p>
+          </div>
+          <div class="card">
+            <h3>Governance</h3>
+            <p>Clarify what requires review, who owns escalation, and how exceptions should be handled.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="section-inner">
-    <h2>A practical path between generic templates and full legal spend</h2>
-    <div class="section-copy">
-      Built for capable teams that want a more efficient alternative to repeated counsulting spend.
-    </div>
+        <section class="content-section" id="policies-purpose">
+          <h2>Purpose</h2>
+          <p>This part should explain what the policy is doing inside the broader Pixelwise system. It is the rule layer. It gives teams a shared baseline before requests start flowing.</p>
+        </section>
 
-    <div class="compare-table-wrap">
-      <div class="compare-table-scroll">
-        <div class="compare-table">
-          <div class="compare-row header">
-            <div class="compare-cell"></div>
-            <div class="compare-cell pixelwise center-head">
-              <span class="compare-brand">
-                <svg class="compare-brand-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
-                  <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
-                  <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
-                  <rect x="9" y="1" width="4" height="4" fill="#000000"/>
-                  <rect x="13" y="1" width="4" height="4" fill="#000000"/>
-                  <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
-                  <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
-                  <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
-                  <rect x="13" y="5" width="4" height="4" fill="#000000"/>
-                  <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
-                  <rect x="5" y="9" width="4" height="4" fill="#000000"/>
-                  <rect x="9" y="9" width="4" height="4" fill="#000000"/>
-                  <rect x="1" y="13" width="4" height="4" fill="#000000"/>
-                  <rect x="5" y="13" width="4" height="4" fill="#000000"/>
-                </svg>
-                <span>Pixelwise</span>
-              </span>
+        <section class="content-section" id="policies-scope">
+          <h2>Scope</h2>
+          <p>The policy should define what counts as tracking, what tools are in scope, and what kinds of environments matter most when applying the framework.</p>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <h4>Tracking technologies in scope</h4>
+              <p>Cookies, pixels, SDKs, APIs, session replay, analytics tools, and other mechanisms that collect or transmit user interaction data.</p>
             </div>
-            <div class="compare-cell center-head">Traditional Consultants</div>
-            <div class="compare-cell center-head">Traditional law firm</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Built for digital health privacy</div>
-            <div class="compare-cell pixelwise">✔ Purpose-built for digital health</div>
-            <div class="compare-cell">◐ Broad, cross-industry</div>
-            <div class="compare-cell">✔ When specifically engaged</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Structured Guidance</div>
-            <div class="compare-cell pixelwise">✔ Frameworks + risk spectrums</div>
-            <div class="compare-cell">◐ Delivered in engagements</div>
-            <div class="compare-cell">✔ Case-specific advice</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Usable recurring materials</div>
-            <div class="compare-cell pixelwise">✔ Built for repeat use</div>
-            <div class="compare-cell">✖ Not typically reusable</div>
-            <div class="compare-cell">◐ Custom, limited reuse</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Cost profile</div>
-            <div class="compare-cell pixelwise">✔ Fixed, predictable</div>
-            <div class="compare-cell">◐ Project-based</div>
-            <div class="compare-cell">✖ Hourly / high cost</div>
-          </div>
-
-          <div class="compare-row">
-            <div class="compare-cell compare-label">Best fit</div>
-            <div class="compare-cell pixelwise">✔ Recurring operational work</div>
-            <div class="compare-cell">◐ One-time projects</div>
-            <div class="compare-cell">✔ High-risk matters</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="compare-top-note">
-      Pixelwise is the better fit when generic templates are too thin, but a full legal engagement is more time and cost than the issue calls for.
-    </div>
-  </div>
-</section>
-
-<section id="templates" class="section">
-  <div class="section-inner">
-    <h2>Choose the topic that fits your team</h2>
-    <div class="section-copy">
-      Keep the top panels simple. Use the grid underneath each topic if you want a fuller breakdown of what is included and what is not.
-    </div>
-
-    <div class="catalog-toggle-wrap">
-      <div class="catalog-toggle" role="tablist" aria-label="Product topics">
-        <button id="toggle-tracking" class="active" type="button" onclick="showCatalog('tracking')">Tracking Tech</button>
-        <button id="toggle-comms" type="button" onclick="showCatalog('comms')">HIPAA + Marketing</button>
-        <button id="toggle-privacy" type="button" onclick="showCatalog('privacy')">Privacy Program</button>
-        <button id="toggle-combined" type="button" onclick="showCatalog('combined')">Everything Combined</button>
-      </div>
-    </div>
-
-    <div class="catalog-helper">
-      The cards stay short for easier viewing on a normal screen. The grid below each topic shows the fuller scope.
-    </div>
-
-    <div id="catalog-tracking" class="catalog-view active">
-      <div class="catalog-grid pricing-grid">
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For one immediate tracking issue</div>
-            <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A focused pack for cookies, pixels, session replay, and one common website privacy need.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$149</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Good for teams that need a narrower fix fast.</div>
-
-            <div class="catalog-desc">A short, practical package with baseline language and a limited amount of guidance.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>2 core templates</li>
-              <li>1 mini playbook</li>
-              <li>Basic risk spectrum</li>
-              <li>Implementation notes</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Starter</a>
-          </div>
-        </div>
-
-        <div class="catalog-card featured">
-          <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Most popular</div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For recurring tracking questions</div>
-            <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The best fit for teams handling repeat questions across marketing, product, web, and privacy.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$299</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best mix of usable language and practical guidance.</div>
-
-            <div class="catalog-desc">A fuller pack with more reusable materials for recurring tracker and disclosure decisions.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>4 high-value templates</li>
-              <li>2 detailed playbooks</li>
-              <li>Expanded risk spectrum</li>
-              <li>Workflow guidance</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Get Growth</a>
-          </div>
-        </div>
-
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader internal use</div>
-            <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A broader toolkit for teams that want stronger coverage across several tracking-tech scenarios.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$499</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best for repeat use across teams and workflows.</div>
-
-            <div class="catalog-desc">Choose this when tracking questions come up often and you want deeper coverage and more internal reusability.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Full tracking template bundle</li>
-              <li>Full tracking playbook bundle</li>
-              <li>Broader scenario coverage</li>
-              <li>Built for repeat internal use</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Complete</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-grid-wrap">
-        <div class="compare-table-wrap">
-          <div class="compare-table-scroll">
-            <div class="compare-table">
-              <div class="compare-row header">
-                <div class="compare-cell">Tracking Tech Pack Details</div>
-                <div class="compare-cell center-head">Starter</div>
-                <div class="compare-cell center-head">Growth</div>
-                <div class="compare-cell center-head">Complete</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Core policy templates</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Contract language</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Playbooks</div>
-                <div class="compare-cell">1 mini</div>
-                <div class="compare-cell">2 detailed</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Risk spectrums</div>
-                <div class="compare-cell">Basic</div>
-                <div class="compare-cell">Expanded</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Workflow guidance</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Internal rollout notes</div>
-                <div class="compare-cell">—</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-              </div>
+            <div class="mini-card">
+              <h4>Environment matters</h4>
+              <p>Public pages, pre-login flows, and authenticated experiences should not all be treated the same.</p>
             </div>
           </div>
-        </div>
-        <div class="detail-grid-note">
-          This topic is best when your main issues involve website privacy language, trackers, analytics, session replay, vendor tools, and related operational decisions.
-        </div>
+        </section>
+
+        <section class="content-section" id="policies-rules">
+          <h2>Core Rules</h2>
+          <p>This is where the working rules live: approved use cases, restricted uses, third-party sharing expectations, and transparency requirements.</p>
+        </section>
+
+        <section class="content-section" id="policies-governance">
+          <h2>Governance</h2>
+          <p>A strong policy should make clear what requires legal or privacy review, what can move faster, and how decisions get documented.</p>
+        </section>
       </div>
+
+      <div class="page" id="page-playbooks">
+        <h1 class="page-title">Playbooks</h1>
+        <div class="divider"></div>
+
+        <p class="page-intro">
+          Playbooks are the decision layer. They translate policy into action by helping teams evaluate real requests in a consistent way instead of improvising every time.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Use Cases</h3>
+            <p>Start with the business need, not the vendor name. The playbook should clarify what outcome is actually being pursued.</p>
+          </div>
+          <div class="card">
+            <h3>Decision Flow</h3>
+            <p>Guide users through data involved, environment, vendor role, likely risk, and mitigation options.</p>
+          </div>
+          <div class="card">
+            <h3>Cross-Functional Use</h3>
+            <p>Make it easier for legal, product, marketing, and engineering to move together around one structured model.</p>
+          </div>
+        </div>
+
+        <section class="content-section" id="playbooks-how">
+          <h2>How They Work</h2>
+          <p>Playbooks should create repeatability. Same categories of request should move through the same basic structure.</p>
+        </section>
+
+        <section class="content-section" id="playbooks-marketing">
+          <h2>Marketing Requests</h2>
+          <p>Campaign measurement, attribution, vendor pixels, audience targeting, and consent-sensitive uses should be handled here.</p>
+        </section>
+
+        <section class="content-section" id="playbooks-product">
+          <h2>Product Requests</h2>
+          <p>Product analytics, feature usage monitoring, onboarding flows, and experimentation should be framed within the same logic.</p>
+        </section>
+
+        <section class="content-section" id="playbooks-engineering">
+          <h2>Engineering Requests</h2>
+          <p>Engineering should get concrete implementation guidance, not vague instructions to “be careful.”</p>
+        </section>
+      </div>
+
+      <div class="page" id="page-contracts">
+        <h1 class="page-title">Contract Templates</h1>
+        <div class="divider"></div>
+
+        <p class="page-intro">
+          Contract templates should support the framework, not replace the analysis. They help align vendor relationships with the actual data flow and approved use case.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Purpose</h3>
+            <p>Clarify what contracts do and do not solve inside a tracking or privacy program.</p>
+          </div>
+          <div class="card">
+            <h3>Vendor Logic</h3>
+            <p>Help teams map vendor roles, permitted uses, restrictions, and downstream sharing boundaries.</p>
+          </div>
+          <div class="card">
+            <h3>Fallback Language</h3>
+            <p>Give users language that helps control risk when vendor paper is broad or implementation details are still moving.</p>
+          </div>
+        </div>
+
+        <section class="content-section" id="contracts-purpose">
+          <h2>Purpose</h2>
+          <p>Contracts govern relationships. They do not independently determine whether data should flow the way a team proposes.</p>
+        </section>
+
+        <section class="content-section" id="contracts-baa">
+          <h2>BAA / DPA Logic</h2>
+          <p>Users should understand when a BAA or DPA matters and when invoking one is not enough.</p>
+        </section>
+
+        <section class="content-section" id="contracts-vendors">
+          <h2>Vendor Boundaries</h2>
+          <p>This section should clarify secondary use, retention, aggregation, downstream vendors, and implementation assumptions.</p>
+        </section>
+
+        <section class="content-section" id="contracts-fallbacks">
+          <h2>Fallback Clauses</h2>
+          <p>Fallback language should help users narrow scope, preserve control, and align the paper with actual operations.</p>
+        </section>
+      </div>
+
+      <div class="page" id="page-risk">
+        <h1 class="page-title">Risk Spectrums</h1>
+        <div class="divider"></div>
+
+        <p class="page-intro">
+          Risk spectrums give users a more useful way to evaluate tracking and privacy decisions than simple yes/no answers. They show where something sits and what moves it higher or lower.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3>Lower Risk</h3>
+            <p>Minimal data, strong contextual fit, tight controls, and limited third-party exposure.</p>
+          </div>
+          <div class="card">
+            <h3>Managed / Gray Zone</h3>
+            <p>Practical use cases that may be acceptable with clear boundaries, minimization, and mitigation.</p>
+          </div>
+          <div class="card">
+            <h3>High Risk</h3>
+            <p>Context-rich or identifiable data flows, weak alignment with expectations, and heavy external sharing.</p>
+          </div>
+        </div>
+
+        <section class="content-section" id="risk-why">
+          <h2>Why Spectrums</h2>
+          <p>Most real-world uses do not sit at an obvious yes or no. A spectrum helps teams see tradeoffs more honestly.</p>
+        </section>
+
+        <section class="content-section" id="risk-low">
+          <h2>Lower Risk</h2>
+          <p>This section should show what tends to place a use case in a more comfortable zone.</p>
+        </section>
+
+        <section class="content-section" id="risk-mid">
+          <h2>Managed / Gray Zone</h2>
+          <p>This is where many practical business cases sit. The framework should help users explain why and what controls matter.</p>
+        </section>
+
+        <section class="content-section" id="risk-high">
+          <h2>High Risk</h2>
+          <p>High-risk uses should be recognizable quickly so teams can redesign, tighten, or escalate earlier.</p>
+        </section>
+      </div>
+
     </div>
+  </main>
 
-    <div id="catalog-comms" class="catalog-view">
-      <div class="catalog-grid pricing-grid">
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For one immediate communications issue</div>
-            <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A focused pack for teams dealing with one HIPAA or healthcare marketing communications question.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$149</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">A simple starting point for a narrower communications need.</div>
-
-            <div class="catalog-desc">Get baseline materials for one practical issue involving messaging, channels, or permissions.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>2 core templates</li>
-              <li>1 mini playbook</li>
-              <li>Basic risk spectrum</li>
-              <li>Implementation notes</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Starter</a>
-          </div>
-        </div>
-
-        <div class="catalog-card featured">
-          <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Most popular</div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For recurring communications questions</div>
-            <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The best fit for teams that repeatedly work through health-related messaging, promotions, and channel rules.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$299</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best mix of message guidance and reusable language.</div>
-
-            <div class="catalog-desc">A fuller pack with more support for operational communications decisions across legal and marketing teams.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>4 high-value templates</li>
-              <li>2 detailed playbooks</li>
-              <li>Expanded risk spectrum</li>
-              <li>Workflow guidance</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Get Growth</a>
-          </div>
-        </div>
-
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader internal use</div>
-            <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A broader toolkit for teams that want deeper support across multiple communications scenarios.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$499</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best for repeat use across several stakeholders and workflows.</div>
-
-            <div class="catalog-desc">Choose this when communications issues recur across product, legal, marketing, and operations.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Full communications template bundle</li>
-              <li>Full communications playbook bundle</li>
-              <li>Broader scenario coverage</li>
-              <li>Built for repeat internal use</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Complete</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-grid-wrap">
-        <div class="compare-table-wrap">
-          <div class="compare-table-scroll">
-            <div class="compare-table">
-              <div class="compare-row header">
-                <div class="compare-cell">HIPAA + Marketing Pack Details</div>
-                <div class="compare-cell center-head">Starter</div>
-                <div class="compare-cell center-head">Growth</div>
-                <div class="compare-cell center-head">Complete</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Core policy templates</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Messaging frameworks</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Playbooks</div>
-                <div class="compare-cell">1 mini</div>
-                <div class="compare-cell">2 detailed</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Risk spectrums</div>
-                <div class="compare-cell">Basic</div>
-                <div class="compare-cell">Expanded</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Email / SMS guidance</div>
-                <div class="compare-cell">—</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Internal rollout notes</div>
-                <div class="compare-cell">—</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="detail-grid-note">
-          This topic is best when you need clearer support around patient communications, marketing workflows, permissions, disclosures, and channel-specific operational guidance.
-        </div>
-      </div>
+  <!-- RIGHT PANEL -->
+  <aside class="right">
+    <div class="right-inner">
+      <h4>AI Tools</h4>
+      <button class="tool" id="copyMarkdownBtn">Copy as Markdown</button>
+      <a class="tool" id="askChatGPTBtn" href="#" target="_blank" rel="noopener noreferrer">Ask ChatGPT</a>
+      <button class="tool" id="askClaudeBtn">Ask Claude</button>
+      <button class="tool" id="askNotebookBtn">Ask NotebookLM</button>
     </div>
+  </aside>
 
-    <div id="catalog-privacy" class="catalog-view">
-      <div class="catalog-grid pricing-grid">
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For one immediate privacy operations need</div>
-            <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A focused pack for one privacy workflow, intake, governance, or internal documentation issue.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$149</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">A clean entry point for a narrower privacy program issue.</div>
-
-            <div class="catalog-desc">Get baseline language and limited guidance for one practical privacy operations question.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>2 core templates</li>
-              <li>1 mini playbook</li>
-              <li>Basic risk spectrum</li>
-              <li>Implementation notes</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Starter</a>
-          </div>
-        </div>
-
-        <div class="catalog-card featured">
-          <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Most popular</div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For recurring privacy team work</div>
-            <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The best fit for teams that need reusable materials across intake, review, governance, and repeat workflows.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$299</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best balance of structure, guidance, and repeat usability.</div>
-
-            <div class="catalog-desc">A fuller pack with more support for repeat internal privacy work and team coordination.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>4 high-value templates</li>
-              <li>2 detailed playbooks</li>
-              <li>Expanded risk spectrum</li>
-              <li>Workflow guidance</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Get Growth</a>
-          </div>
-        </div>
-
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader internal use</div>
-            <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A broader toolkit for teams that want stronger coverage across several privacy-program scenarios.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$499</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best for repeat use across privacy, legal, and operations.</div>
-
-            <div class="catalog-desc">Choose this when you want broader internal guidance and more complete materials for recurring program work.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Full privacy template bundle</li>
-              <li>Full privacy playbook bundle</li>
-              <li>Broader scenario coverage</li>
-              <li>Built for repeat internal use</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Complete</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-grid-wrap">
-        <div class="compare-table-wrap">
-          <div class="compare-table-scroll">
-            <div class="compare-table">
-              <div class="compare-row header">
-                <div class="compare-cell">Privacy Program Pack Details</div>
-                <div class="compare-cell center-head">Starter</div>
-                <div class="compare-cell center-head">Growth</div>
-                <div class="compare-cell center-head">Complete</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Core policy templates</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Governance materials</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Playbooks</div>
-                <div class="compare-cell">1 mini</div>
-                <div class="compare-cell">2 detailed</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Risk spectrums</div>
-                <div class="compare-cell">Basic</div>
-                <div class="compare-cell">Expanded</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Workflow guidance</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Internal rollout notes</div>
-                <div class="compare-cell">—</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="detail-grid-note">
-          This topic is best when your team needs repeatable materials for governance, intake, review, issue routing, and internal privacy operations.
-        </div>
-      </div>
-    </div>
-
-    <div id="catalog-combined" class="catalog-view">
-      <div class="catalog-grid pricing-grid">
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For a smaller cross-functional start</div>
-            <h3 class="catalog-title">Starter</h3>
-            <div class="catalog-subtitle">A lighter combined pack for teams that need basic coverage across multiple privacy topics at once.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$249</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">A lower-cost way to get initial cross-topic coverage.</div>
-
-            <div class="catalog-desc">A practical starter option when your needs touch more than one topic but remain relatively narrow.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Selected templates across topics</li>
-              <li>1 combined mini playbook</li>
-              <li>Basic risk spectrums</li>
-              <li>Implementation notes</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Starter</a>
-          </div>
-        </div>
-
-        <div class="catalog-card featured">
-          <div class="catalog-topbar green"></div>
-          <div class="catalog-badge">Most popular</div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For most teams</div>
-            <h3 class="catalog-title">Growth</h3>
-            <div class="catalog-subtitle">The best fit for teams that want broader coverage across tracking tech, HIPAA + marketing, and privacy program workflows.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$599</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best cross-topic value for teams with recurring issues.</div>
-
-            <div class="catalog-desc">A fuller package that combines practical language and guidance across multiple recurring privacy workstreams.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Expanded templates across topics</li>
-              <li>2 detailed combined playbooks</li>
-              <li>Expanded risk spectrums</li>
-              <li>Workflow guidance</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta primary">Get Growth</a>
-          </div>
-        </div>
-
-        <div class="catalog-card">
-          <div class="catalog-topbar"></div>
-          <div class="catalog-body">
-            <div class="catalog-eyebrow">For broader internal adoption</div>
-            <h3 class="catalog-title">Complete</h3>
-            <div class="catalog-subtitle">A fuller all-in bundle for teams that want the widest Pixelwise coverage in one place.</div>
-
-            <div class="catalog-price-row">
-              <div class="catalog-price">$899</div>
-              <div class="catalog-price-note">one-time</div>
-            </div>
-
-            <div class="catalog-savings">Best for repeat use across several teams and issue types.</div>
-
-            <div class="catalog-desc">Choose this when you want the strongest overall value and expect repeated use across privacy, marketing, product, and legal stakeholders.</div>
-
-            <div class="catalog-list-label">Includes</div>
-            <ul class="catalog-list">
-              <li>Broad template coverage across topics</li>
-              <li>Full combined playbook coverage</li>
-              <li>Broader scenario coverage</li>
-              <li>Built for repeat internal use</li>
-            </ul>
-
-            <div class="catalog-spacer"></div>
-            <a href="#" class="catalog-cta">Get Complete</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="detail-grid-wrap">
-        <div class="compare-table-wrap">
-          <div class="compare-table-scroll">
-            <div class="compare-table">
-              <div class="compare-row header">
-                <div class="compare-cell">Everything Combined Details</div>
-                <div class="compare-cell center-head">Starter</div>
-                <div class="compare-cell center-head">Growth</div>
-                <div class="compare-cell center-head">Complete</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Tracking templates</div>
-                <div class="compare-cell">Selected</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">HIPAA + marketing templates</div>
-                <div class="compare-cell">Selected</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Privacy program templates</div>
-                <div class="compare-cell">Selected</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Playbooks</div>
-                <div class="compare-cell">1 combined mini</div>
-                <div class="compare-cell">2 detailed</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Risk spectrums</div>
-                <div class="compare-cell">Basic</div>
-                <div class="compare-cell">Expanded</div>
-                <div class="compare-cell">Full set</div>
-              </div>
-
-              <div class="compare-row">
-                <div class="compare-cell compare-label">Internal rollout notes</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell">✔</div>
-                <div class="compare-cell">✔ Expanded</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="detail-grid-note">
-          This is the best value when your team expects recurring needs across multiple privacy topics instead of one narrow issue area.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="risk-brief" class="section capture-section">
-  <div class="section-inner">
-    <div class="capture-box">
-      <h2 class="capture-title">Get the tracking-tech & privacy risk brief</h2>
-      <div class="capture-copy">
-        Get a free breakdown of recent enforcement, lawsuits, and state law trends affecting digital health companies, websites, apps, and product teams.
-      </div>
-
-      <div class="capture-form">
-        <input class="capture-input" type="email" placeholder="Enter your email" />
-        <button class="capture-btn">Get the free brief</button>
-      </div>
-
-      <div class="capture-note">Free resource + occasional updates on new templates, playbooks, and practical privacy guidance.</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-inner">
-    <h2>Built for recurring privacy questions your team cannot ignore</h2>
-    <div class="section-copy">
-      Start with attorney-informed templates and playbooks designed for practical use right now—from website language and tracking disclosures to vendor terms, HIPAA-facing issues, and internal decision support.
-    </div>
-
-    <div class="consult-card">
-      <div class="consult-card-inner">
-        <div class="consult-item">
-          <div class="consult-icon">📘</div>
-          <div class="consult-text">
-            <strong>Usable language</strong>
-            <div>Start with strong templates instead of a blank page or thin generic forms.</div>
-          </div>
-        </div>
-
-        <div class="consult-item">
-          <div class="consult-icon">🧭</div>
-          <div class="consult-text">
-            <strong>Decision support</strong>
-            <div>Use playbooks and decision trees to compare options based on facts, goals, and risk tolerance.</div>
-          </div>
-        </div>
-
-        <div class="consult-item">
-          <div class="consult-icon">⚖</div>
-          <div class="consult-text">
-            <strong>Practical scope</strong>
-            <div>Best for recurring privacy and digital health issues that need more structure than generic templates but do not always justify a full legal engagement.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="section">
-  <div class="section-inner">
-    <h2>Frequently asked questions</h2>
-    <div class="section-copy">
-      Everything you need to decide whether Pixelwise is the right fit for your team right now.
-    </div>
-
-    <div style="max-width:760px;margin:50px auto 0;text-align:left;">
-      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Who is Pixelwise for?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Pixelwise is for digital health, wellness, product, marketing, privacy, and in-house legal teams that keep running into recurring privacy questions and want stronger materials than generic templates without sending every issue to outside counsel.
-        </div>
-      </details>
-
-      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Should I buy a focused topic or everything combined?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Buy a focused topic if your current pain point is mainly one area, like tracking tech or healthcare communications. Choose everything combined if your team expects recurring questions across multiple privacy workstreams.
-        </div>
-      </details>
-
-      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">What kinds of issues is Pixelwise best for?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Pixelwise is best for recurring privacy and digital health issues like website privacy policies, tracking-tech disclosures, HIPAA-facing vendor terms, AI governance materials, consent and marketing questions, and other repeat issues where teams need a practical answer and reusable materials.
-        </div>
-      </details>
-
-      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">When is Pixelwise not enough on its own?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          Pixelwise is not a substitute for bespoke legal advice on your most sensitive matters. If you are dealing with litigation, a government investigation, a major transaction, a novel high-stakes issue, or facts that require deep legal judgment specific to your business, a law firm may still be the right next step.
-        </div>
-      </details>
-
-      <details style="border:1px solid #dcdcdc;border-radius:12px;padding:18px 20px;margin-bottom:12px;">
-        <summary style="font-weight:600;cursor:pointer;">Does Pixelwise create an attorney-client relationship?</summary>
-        <div style="margin-top:10px;color:#555;font-size:15px;line-height:1.5;">
-          No. Pixelwise provides general informational resources, templates, and playbooks. It does not create an attorney-client relationship, provide legal advice, or establish privilege.
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="footer-cta">
-  <div class="footer-cta-inner">
-    <h2>Start with the issue. Leave with the right language and a clearer path forward.</h2>
-    <div class="footer-cta-copy">
-      Use Pixelwise to find practical guidance, download attorney-informed templates, and choose playbooks that help your team move faster on recurring privacy and digital health issues.
-    </div>
-
-    <div class="footer-links">
-      <div>
-        <div class="footer-brand">Pixelwise</div>
-        <div class="footer-social">
-          <span>◎</span><span>◌</span><span>◍</span><span>◐</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Company</div>
-        <a class="footer-link" href="#">About</a>
-        <a class="footer-link" href="#">Contact</a>
-        <a class="footer-link" href="#">Careers</a>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Legal</div>
-        <a class="footer-link" href="#">Privacy Policy</a>
-        <a class="footer-link" href="#">Terms of Service</a>
-        <a class="footer-link" href="#">Engagement Terms</a>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Support</div>
-        <a class="footer-link" href="#faq">FAQ</a>
-        <a class="footer-link" href="#">Feedback</a>
-        <a class="footer-link" href="#">For Teams</a>
-      </div>
-    </div>
-
-    <div class="footer-mini-capture">
-      <div class="footer-mini-title">Get the tracking-tech & privacy risk brief and updates on new templates and playbooks</div>
-      <div class="footer-mini-form">
-        <input class="footer-mini-input" type="email" placeholder="Enter your email" />
-        <button class="footer-mini-btn">Get updates</button>
-      </div>
-    </div>
-
-    <div class="footer-disclaimer">
-      Pixelwise AI is not a law firm and does not provide legal advice. Templates and playbooks are general informational resources and do not create an attorney-client relationship or privilege.
-    </div>
-  </div>
-</section>
-
-<button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+</div>
 
 <script>
-function openDrawer(){
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('overlay').classList.add('open');
-}
-function closeDrawer(){
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('overlay').classList.remove('open');
+const frameworkTabs = document.querySelectorAll('.framework-tab');
+const sectionLists = document.querySelectorAll('.section-list');
+const pages = document.querySelectorAll('.page');
+const contentArea = document.getElementById('contentArea');
+
+function frameworkPrompt(framework) {
+  const prompts = {
+    policies: `Help me apply the Pixelwise Policies framework. Summarize the purpose of the policy layer, identify the core rules that should govern the use case, and draft a concise internal recommendation for legal, marketing, product, and engineering.`,
+    playbooks: `Help me apply the Pixelwise Playbooks framework. Walk through the use case, the likely data involved, the relevant environment, the vendor role, the risk position, and the strongest mitigation options.`,
+    contracts: `Help me apply the Pixelwise Contract Templates framework. Explain what contract logic matters here, what the vendor should and should not be allowed to do, and what fallback language or restrictions I should consider.`,
+    risk: `Help me apply the Pixelwise Risk Spectrums framework. Place the use case on a practical risk spectrum, explain what factors are driving the position, and identify how the implementation could move toward lower risk.`
+  };
+  return prompts[framework] || prompts.policies;
 }
 
-function showCatalog(view){
-  const views = ['tracking','comms','privacy','combined'];
-  views.forEach((key)=>{
-    const btn = document.getElementById('toggle-' + key);
-    const panel = document.getElementById('catalog-' + key);
+function setActiveFramework(framework) {
+  frameworkTabs.forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.framework === framework);
+  });
 
-    if(key === view){
-      btn.classList.add('active');
-      panel.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-      panel.classList.remove('active');
+  sectionLists.forEach(list => {
+    list.classList.toggle('active', list.dataset.sections === framework);
+  });
+
+  pages.forEach(page => {
+    page.classList.toggle('active', page.id === `page-${framework}`);
+  });
+
+  const prompt = frameworkPrompt(framework);
+  const encoded = encodeURIComponent(prompt);
+  document.getElementById('askChatGPTBtn').href = `https://chatgpt.com/?q=${encoded}`;
+  document.getElementById('copyMarkdownBtn').dataset.prompt = prompt;
+  document.getElementById('askClaudeBtn').dataset.prompt = prompt;
+  document.getElementById('askNotebookBtn').dataset.prompt = prompt;
+
+  contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+frameworkTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    setActiveFramework(tab.dataset.framework);
+  });
+});
+
+document.querySelectorAll('.section-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    alert('Copied.');
+  } catch (e) {
+    alert('Could not copy.');
+  }
 }
 
-const frameworkContent = {
-  policies: {
-    label: "Policies",
-    title1: "What applies",
-    desc1: "Identify which policies your team actually needs based on product, data use, and audience.",
-    example1: "Example: Decide whether you need a public privacy policy, internal AI governance policy, or both.",
-    title2: "What to say",
-    desc2: "Use policy language that fits the actual risk and operations of the business rather than generic boilerplate.",
-    example2: "Example: Website privacy policy language covering analytics, cookies, session replay, or consumer health data.",
-    title3: "What to do next",
-    desc3: "Apply the policy in the right place and update it as your tools, vendors, or practices change.",
-    example3: "Example: Publish externally, route internally, and revisit when products or workflows shift."
-  },
-  playbooks: {
-    label: "Playbooks",
-    title1: "The scenario",
-    desc1: "Start with the actual privacy question and understand the practical choices in front of your team.",
-    example1: "Example: Whether a marketing workflow can rely on a lighter or stricter approach.",
-    title2: "The decision path",
-    desc2: "Use a guided framework to compare options based on goals, facts, and risk tolerance.",
-    example2: "Example: A path for deciding when to avoid tracking on authenticated pages.",
-    title3: "The next step",
-    desc3: "Turn the decision into an action plan your team can repeat across similar issues.",
-    example3: "Example: Align the team on what to permit, what to pause, and what to revisit later."
-  },
-  contracts: {
-    label: "Contract Templates",
-    title1: "What needs coverage",
-    desc1: "Understand what the contract needs to address based on the relationship, data involved, and business goal.",
-    example1: "Example: Whether a vendor needs a DPA, BAA, or tighter tracking-tech terms.",
-    title2: "What to say",
-    desc2: "Start with practical contract language built for recurring privacy and digital health scenarios.",
-    example2: "Example: Language covering data use restrictions, HIPAA obligations, or vendor handling rules.",
-    title3: "How to adapt it",
-    desc3: "Adjust the template to the deal instead of starting from scratch every time.",
-    example3: "Example: Tailor a clause for a healthcare vendor versus a general SaaS provider."
-  },
-  trees: {
-    label: "Risk Spectrum",
-    title1: "The trigger",
-    desc1: "Start with a common privacy scenario to frame what’s being evaluated.",
-    example1: "Example: A tool interacting with authenticated pages, sensitive data, or patient-facing workflows.",
-    title2: "The Spectrum",
-    desc2: "See how different factors can shift a scenario along a spectrum—from lower to higher privacy and compliance risk.",
-    example2: "Example: Factors like data sensitivity, user context, and disclosure expectations may move a use case along the spectrum.",
-    title3: "The direction",
-    desc3: "Use the spectrum to guide how the issue may be approached, including when additional review or stronger controls may be appropriate.",
-    example3: "Example: A scenario trending higher risk may point toward policy updates, contract review, or more tailored internal evaluation."
-  }
-};
-
-function updateFramework(key){
-  const content = frameworkContent[key];
-  if(!content) return;
-
-  document.getElementById('fw-step-1').textContent = content.label;
-  document.getElementById('fw-title-1').textContent = content.title1;
-  document.getElementById('fw-desc-1').textContent = content.desc1;
-  document.getElementById('fw-example-1').textContent = content.example1;
-
-  document.getElementById('fw-step-2').textContent = content.label;
-  document.getElementById('fw-title-2').textContent = content.title2;
-  document.getElementById('fw-desc-2').textContent = content.desc2;
-  document.getElementById('fw-example-2').textContent = content.example2;
-
-  document.getElementById('fw-step-3').textContent = content.label;
-  document.getElementById('fw-title-3').textContent = content.title3;
-  document.getElementById('fw-desc-3').textContent = content.desc3;
-  document.getElementById('fw-example-3').textContent = content.example3;
-
-  document.querySelectorAll('.framework-pill').forEach((pill)=>{
-    pill.classList.toggle('active', pill.dataset.framework === key);
-  });
-}
-
-document.querySelectorAll('.framework-pill').forEach((pill)=>{
-  pill.addEventListener('click', ()=>{
-    updateFramework(pill.dataset.framework);
-  });
+document.getElementById('copyMarkdownBtn').addEventListener('click', function() {
+  copyText(this.dataset.prompt || frameworkPrompt('policies'));
 });
 
-const scrollBtn = document.getElementById('scrollTopBtn');
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('header');
-
-  if(window.scrollY > 20){
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-
-  if(window.scrollY > 400){
-    scrollBtn.style.display = 'flex';
-  } else {
-    scrollBtn.style.display = 'none';
-  }
+document.getElementById('askClaudeBtn').addEventListener('click', async function() {
+  await copyText(this.dataset.prompt || frameworkPrompt('policies'));
+  window.open('https://claude.ai/', '_blank', 'noopener,noreferrer');
 });
 
-scrollBtn.addEventListener('click', () => {
-  window.scrollTo({top:0, behavior:'smooth'});
+document.getElementById('askNotebookBtn').addEventListener('click', async function() {
+  await copyText(this.dataset.prompt || frameworkPrompt('policies'));
+  window.open('https://notebooklm.google.com/', '_blank', 'noopener,noreferrer');
 });
+
+setActiveFramework('policies');
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const supabaseUrl = "https://zytcznhxiszqypflgvhz.supabase.co";
-  const supabaseKey = "sb_publishable_g-lpsZTEaID3cbgEPQyA2Q_dnDNDyAv";
-  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-
-  async function testConnection() {
-    const { data, error } = await supabaseClient
-      .from('documents')
-      .select('*');
-
-    console.log("DATA:", data);
-    console.log("ERROR:", error);
-  }
-
-  testConnection();
-</script>
 </body>
 </html>
