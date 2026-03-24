@@ -42,11 +42,11 @@ button,input{
   top:0;
   left:0;
   right:0;
-  height:64px;
+  height:52px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 24px;
+  padding:0 18px;
   border-bottom:1px solid var(--border);
   background:#fff;
   z-index:30;
@@ -55,13 +55,13 @@ button,input{
 .top-left{
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:20px;
   min-width:0;
 }
 
 .logo{
   font-weight:600;
-  font-size:18px;
+  font-size:16px;
   white-space:nowrap;
 }
 
@@ -79,14 +79,14 @@ button,input{
 .top-nav{
   display:flex;
   align-items:center;
-  gap:22px;
+  gap:16px;
 }
 
 .top-nav button{
   background:none;
   border:none;
-  padding:0;
-  font-size:15px;
+  padding:6px 4px;
+  font-size:14px;
   color:#6b7280;
   cursor:pointer;
   font-weight:450;
@@ -100,16 +100,16 @@ button,input{
 .top-right{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:8px;
 }
 
 .search{
-  width:240px;
+  width:200px;
   background:#fafafa;
   border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px 14px;
-  font-size:14px;
+  border-radius:6px;
+  padding:8px 12px;
+  font-size:13px;
   outline:none;
 }
 
@@ -117,18 +117,29 @@ button,input{
   background:#111;
   color:#fff;
   border:none;
-  border-radius:10px;
-  padding:10px 16px;
-  font-size:14px;
+  border-radius:6px;
+  padding:8px 14px;
+  font-size:13px;
   cursor:pointer;
   font-weight:500;
+}
+
+.mobile-toggle{
+  display:none;
+  background:none;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:7px 10px;
+  font-size:13px;
+  color:#4b5563;
+  cursor:pointer;
 }
 
 /* APP LAYOUT */
 
 .app{
   position:fixed;
-  top:64px;
+  top:52px;
   left:0;
   right:0;
   bottom:0;
@@ -338,7 +349,7 @@ button,input{
   gap:26px;
   border-bottom:1px solid var(--border);
   margin:14px 0 18px;
-  padding:0 0 0 0;
+  padding:0;
 }
 
 .tab-strip button{
@@ -417,34 +428,93 @@ button,input{
   line-height:1.65;
 }
 
-/* MOBILE */
+/* MOBILE OVERLAY */
+
+.mobile-overlay{
+  display:none;
+}
+
+/* RESPONSIVE */
 
 @media(max-width:1180px){
-  .right{display:none;}
+  .right{
+    display:block;
+    position:fixed;
+    top:52px;
+    right:-260px;
+    width:260px;
+    bottom:0;
+    z-index:40;
+    background:#fff;
+    transition:right .25s ease;
+  }
+
+  .right.open{
+    right:0;
+  }
+
   .app{
     grid-template-columns:280px minmax(0, 1fr);
   }
 }
 
 @media(max-width:960px){
-  .sidebar{display:none;}
+  .sidebar{
+    display:block;
+    position:fixed;
+    top:52px;
+    left:-300px;
+    width:280px;
+    bottom:0;
+    z-index:40;
+    background:#fff;
+    transition:left .25s ease;
+  }
+
+  .sidebar.open{
+    left:0;
+  }
+
   .app{
     grid-template-columns:minmax(0, 1fr);
   }
+
   .content-inner{
     padding:28px 22px 70px;
   }
+
   .card-grid{
     grid-template-columns:1fr;
+  }
+
+  .mobile-toggle{
+    display:inline-block;
+  }
+
+  .mobile-overlay{
+    display:block;
+    position:fixed;
+    inset:52px 0 0 0;
+    background:rgba(0,0,0,.22);
+    z-index:35;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+  }
+
+  .mobile-overlay.open{
+    opacity:1;
+    pointer-events:auto;
   }
 }
 
 @media(max-width:760px){
   .search{display:none;}
   .top-nav{display:none;}
-  .page-title{
-    font-size:34px;
-  }
+  .topbar{padding:0 12px;}
+  .top-right{gap:8px;}
+  .content-inner{padding:22px 16px 60px;}
+  .page-title{font-size:30px;}
 }
 </style>
 </head>
@@ -463,7 +533,10 @@ button,input{
   </div>
 
   <div class="top-right">
+    <button class="mobile-toggle" id="menuToggle">Menu</button>
+    <button class="mobile-toggle" id="aiToggle">AI</button>
     <input class="search" placeholder="Search framework..." />
+    
   </div>
 </div>
 
@@ -516,7 +589,6 @@ button,input{
   <main class="content" id="contentArea">
     <div class="content-inner">
 
-      <!-- POLICIES -->
       <div class="page active" id="page-policies">
         <h1 class="page-title">Policies</h1>
         <div class="divider"></div>
@@ -624,7 +696,6 @@ button,input{
         </section>
       </div>
 
-      <!-- PLAYBOOKS -->
       <div class="page" id="page-playbooks">
         <h1 class="page-title">Playbooks</h1>
         <div class="divider"></div>
@@ -701,7 +772,7 @@ button,input{
             <button class="demo-tab" data-target="demo-c">Validate</button>
           </div>
 
-          <div class="code-box demo-panel active" id="demo-a">
+          <div class="code-box demo-panel" id="demo-a">
 1. Define the use case<br>
 2. Identify the data<br>
 3. Analyze the context<br>
@@ -722,7 +793,6 @@ button,input{
         </section>
       </div>
 
-      <!-- CONTRACTS -->
       <div class="page" id="page-contracts">
         <h1 class="page-title">Contract Templates</h1>
         <div class="divider"></div>
@@ -794,7 +864,6 @@ button,input{
         </section>
       </div>
 
-      <!-- RISK -->
       <div class="page" id="page-risk">
         <h1 class="page-title">Risk Spectrums</h1>
         <div class="divider"></div>
@@ -890,6 +959,8 @@ button,input{
 
 </div>
 
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
 <script>
 const frameworkTabs = document.querySelectorAll('.framework-tab');
 const sectionLists = document.querySelectorAll('.section-list');
@@ -932,6 +1003,7 @@ function setActiveFramework(framework) {
 frameworkTabs.forEach(tab => {
   tab.addEventListener('click', () => {
     setActiveFramework(tab.dataset.framework);
+    closeDrawers();
   });
 });
 
@@ -945,6 +1017,7 @@ document.querySelectorAll('.section-link').forEach(link => {
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+    if (window.innerWidth <= 960) closeDrawers();
   });
 });
 
@@ -980,6 +1053,57 @@ document.getElementById('askNotebookBtn').addEventListener('click', async functi
   await copyText(this.dataset.prompt || frameworkPrompt('policies'));
   window.open('https://notebooklm.google.com/', '_blank', 'noopener,noreferrer');
 });
+
+/* MOBILE DRAWERS */
+const menuToggle = document.getElementById('menuToggle');
+const aiToggle = document.getElementById('aiToggle');
+const sidebar = document.querySelector('.sidebar');
+const rightPanel = document.querySelector('.right');
+const mobileOverlay = document.getElementById('mobileOverlay');
+
+function closeDrawers() {
+  sidebar.classList.remove('open');
+  rightPanel.classList.remove('open');
+  mobileOverlay.classList.remove('open');
+}
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  rightPanel.classList.remove('open');
+  mobileOverlay.classList.add('open');
+}
+
+function openAI() {
+  rightPanel.classList.add('open');
+  sidebar.classList.remove('open');
+  mobileOverlay.classList.add('open');
+}
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = sidebar.classList.contains('open');
+    if (isOpen) {
+      closeDrawers();
+    } else {
+      openSidebar();
+    }
+  });
+}
+
+if (aiToggle) {
+  aiToggle.addEventListener('click', () => {
+    const isOpen = rightPanel.classList.contains('open');
+    if (isOpen) {
+      closeDrawers();
+    } else {
+      openAI();
+    }
+  });
+}
+
+if (mobileOverlay) {
+  mobileOverlay.addEventListener('click', closeDrawers);
+}
 
 setActiveFramework('policies');
 </script>
