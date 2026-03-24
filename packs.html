@@ -67,41 +67,25 @@ header.scrolled{border-bottom:1px solid #eee;}
   gap:12px;
   margin-left:auto;
 }
-.header-newsletter{
-  display:flex;
+.header-login{
+  display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:4px;
+  justify-content:center;
+  padding:10px 16px;
   border:1px solid var(--border);
   border-radius:999px;
   background:#fff;
-  min-width:0;
-}
-.header-newsletter input{
-  border:none;
-  outline:none;
-  background:transparent;
-  font-family:inherit;
-  font-size:13px;
   color:#000;
-  min-width:210px;
-  width:210px;
-  padding:0 10px;
-}
-.header-newsletter input::placeholder{
-  color:#888;
-}
-.header-newsletter button{
-  border:none;
-  background:#000;
-  color:#fff;
+  text-decoration:none;
   font-family:inherit;
   font-size:13px;
   font-weight:600;
-  padding:10px 14px;
-  border-radius:999px;
-  cursor:pointer;
   white-space:nowrap;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.header-login:hover{
+  background:#f7f7f7;
+  transform:translateY(-1px);
 }
 .menu-btn{
   font-size:22px;
@@ -828,12 +812,8 @@ h1{
 #scrollTopBtn:hover{background:#f7f7f7}
 
 @media (max-width:1180px){
-  .header-newsletter input{
-    min-width:170px;
-    width:170px;
-  }
-  .header-newsletter button{
-    padding:10px 12px;
+  .header-login{
+    padding:10px 14px;
     font-size:12px;
   }
 }
@@ -846,13 +826,8 @@ h1{
     margin-right:auto;
   }
   .catalog-card.featured{transform:none;}
-  .header-newsletter input{
-    min-width:130px;
-    width:130px;
-    font-size:12px;
-  }
-  .header-newsletter button{
-    padding:9px 11px;
+  .header-login{
+    padding:9px 13px;
     font-size:12px;
   }
 }
@@ -874,17 +849,8 @@ h1{
   .header-right{
     gap:8px;
   }
-  .header-newsletter{
-    padding:3px;
-    gap:4px;
-  }
-  .header-newsletter input{
-    min-width:100px;
-    width:100px;
-    padding:0 8px;
-  }
-  .header-newsletter button{
-    padding:8px 10px;
+  .header-login{
+    padding:8px 12px;
     font-size:11px;
   }
 }
@@ -901,19 +867,8 @@ h1{
   .header-right{
     gap:6px;
   }
-  .header-newsletter{
-    max-width:180px;
-    padding:3px;
-    gap:3px;
-  }
-  .header-newsletter input{
-    min-width:0;
-    width:82px;
-    padding:0 6px;
-    font-size:11px;
-  }
-  .header-newsletter button{
-    padding:8px 9px;
+  .header-login{
+    padding:8px 11px;
     font-size:10px;
   }
   .menu-btn{
@@ -992,15 +947,8 @@ h1{
 }
 
 @media (max-width:520px){
-  .header-newsletter{
-    max-width:154px;
-  }
-  .header-newsletter input{
-    width:62px;
-    font-size:10px;
-  }
-  .header-newsletter button{
-    padding:7px 8px;
+  .header-login{
+    padding:7px 9px;
     font-size:10px;
   }
   .pricing-grid{
@@ -1034,10 +982,7 @@ h1{
     </div>
 
     <div class="header-right">
-      <form class="header-newsletter">
-        <input type="email" placeholder="Enter your email" />
-        <button type="button">Free Newsletter</button>
-      </form>
+      <a href="/login.html" class="header-login">Login</a>
       <button class="menu-btn" onclick="openDrawer()" aria-label="Open menu">☰</button>
     </div>
   </div>
@@ -2158,6 +2103,24 @@ window.addEventListener('scroll', () => {
 scrollBtn.addEventListener('click', () => {
   window.scrollTo({top:0, behavior:'smooth'});
 });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = "https://zytcznhxiszqypflgvhz.supabase.co";
+  const supabaseKey = "sb_publishable_g-lpsZTEaID3cbgEPQyA2Q_dnDNDyAv";
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+  async function testConnection() {
+    const { data, error } = await supabaseClient
+      .from('documents')
+      .select('*');
+
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
+  }
+
+  testConnection();
 </script>
 </body>
 </html>
