@@ -6,12 +6,14 @@
   <title>Pixelwise Resource Library</title>
   <style>
     :root{
-      --bg:#f7f7f7;
-      --surface:#ffffff;
+      --bg:#ffffff;
       --text:#000000;
       --muted:#666666;
       --border:#dddddd;
+      --soft:#f7f7f7;
       --pill:#f4f4f4;
+      --green:#dcfce7;
+      --green-text:#166534;
     }
 
     *{box-sizing:border-box}
@@ -24,43 +26,47 @@
       font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    a{text-decoration:none;color:inherit}
-    button,input{font:inherit}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-    .page{
+    button,input{
+      font:inherit;
+    }
+
+    body{
       min-height:100vh;
-      padding:0;
     }
 
     .shell{
       width:100%;
-      margin:0;
-      background:var(--bg);
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px 64px;
     }
 
     .topbar{
-      background:var(--bg);
-      border-bottom:1px solid var(--border);
-      min-height:82px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:0 28px;
-      gap:20px;
+      gap:16px;
+      padding:20px 0;
+      border-bottom:1px solid transparent;
+      position:sticky;
+      top:0;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(8px);
+      z-index:10;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
       font-weight:700;
       font-size:22px;
       letter-spacing:-0.02em;
-      text-decoration:none;
-      color:#000;
       flex:0 0 auto;
     }
 
@@ -71,195 +77,265 @@
       flex:0 0 auto;
     }
 
-    .topbar-center{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex:1 1 auto;
-      min-width:0;
-    }
-
-    .topbar-nav{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    .topbar-nav a,
-    .topbar-nav button{
-      height:48px;
-      padding:0 20px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--bg);
-      color:#555;
-      cursor:pointer;
-      font-size:17px;
-      font-weight:500;
-      font-family:inherit;
-    }
-
-    .topbar-nav a.active{
-      background:#000;
-      color:#fff;
-      border-color:#000;
-      font-weight:600;
-    }
-
     .topbar-right{
       display:flex;
       align-items:center;
-      gap:12px;
-      flex:0 0 auto;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .status-pill{
+    .mini-pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
+      justify-content:center;
+      min-height:38px;
       padding:0 14px;
-      height:42px;
-      border-radius:999px;
       border:1px solid var(--border);
+      border-radius:999px;
       background:#fff;
       color:#555;
-      font-size:14px;
+      font-size:13px;
+      font-weight:600;
+      text-align:center;
       white-space:nowrap;
     }
 
-    .status-dot{
-      width:8px;
-      height:8px;
-      border-radius:999px;
+    .mini-pill.active{
       background:#000;
-      flex:0 0 auto;
+      border-color:#000;
+      color:#fff;
     }
 
-    .signout{
-      height:48px;
-      padding:0 20px;
-      border-radius:999px;
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 14px;
       border:1px solid var(--border);
-      background:var(--bg);
-      color:#4d4d4d;
+      border-radius:999px;
+      background:#fff;
+      color:#000;
       cursor:pointer;
-      font-size:18px;
-      font-weight:500;
-      font-family:inherit;
+      font-size:13px;
+      font-weight:600;
       white-space:nowrap;
+      transition:background .2s ease, transform .2s ease;
     }
 
-    .signout:hover{
-      background:#efefef;
+    .mini-btn:hover{
+      background:var(--soft);
+      transform:translateY(-1px);
     }
 
-    .content{
-      padding:34px 24px 34px;
+    .hero{
+      padding:56px 0 30px;
+      text-align:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#fff;
+      color:#555;
+      font-size:12px;
+      font-weight:600;
+      margin-bottom:18px;
+      text-align:center;
     }
 
     h1{
-      margin:8px 0 18px;
-      font-size:82px;
-      line-height:0.95;
-      letter-spacing:-0.05em;
+      margin:0 auto 18px;
+      max-width:860px;
+      font-size:76px;
+      line-height:.94;
+      letter-spacing:-0.055em;
       font-weight:700;
+      text-align:center;
     }
 
     .subtext{
-      max-width:980px;
-      font-size:27px;
-      line-height:1.4;
+      max-width:760px;
+      margin:0 auto;
+      font-size:22px;
+      line-height:1.5;
       color:var(--muted);
-      margin:0 0 52px;
-      font-weight:400;
+      text-align:center;
+    }
+
+    .upgrade-bar{
+      margin:34px auto 0;
+      max-width:820px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:var(--soft);
+      padding:18px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .upgrade-copy{
+      flex:1 1 320px;
+      min-width:0;
+      text-align:left;
+    }
+
+    .upgrade-title{
+      font-size:16px;
+      font-weight:600;
+      margin:0 0 4px;
+    }
+
+    .upgrade-text{
+      margin:0;
+      color:#666;
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    .upgrade-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      flex:0 0 auto;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      font-size:14px;
+      font-weight:600;
+      text-align:center;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+      border:1px solid var(--border);
+    }
+
+    .primary-btn{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+    }
+
+    .primary-btn:hover{
+      background:#111;
+      transform:translateY(-1px);
+    }
+
+    .secondary-btn{
+      background:#fff;
+      color:#000;
+    }
+
+    .secondary-btn:hover{
+      background:#f7f7f7;
+      transform:translateY(-1px);
+    }
+
+    .controls{
+      padding:24px 0 28px;
+      display:grid;
+      gap:18px;
     }
 
     .search{
       width:100%;
-      max-width:670px;
-      margin-bottom:18px;
+      max-width:620px;
+      margin:0 auto;
     }
 
     .search input{
       width:100%;
-      height:66px;
+      height:58px;
       border:1px solid var(--border);
       border-radius:18px;
-      padding:0 24px;
-      background:var(--bg);
-      color:var(--text);
+      padding:0 18px;
+      background:#fff;
+      color:#000;
       outline:none;
-      font-size:20px;
+      font-size:16px;
+      text-align:left;
     }
 
     .search input::placeholder{
-      color:#9a9a9a;
-    }
-
-    .info-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      flex-wrap:wrap;
-      margin-bottom:26px;
-    }
-
-    .note{
-      font-size:15px;
-      color:#777;
-      line-height:1.6;
-      max-width:920px;
-    }
-
-    .results-count{
-      font-size:14px;
-      color:#777;
-      white-space:nowrap;
+      color:#999;
     }
 
     .filters{
       display:flex;
-      gap:14px;
+      justify-content:center;
       flex-wrap:wrap;
-      margin-bottom:56px;
+      gap:8px;
+      max-width:940px;
+      margin:0 auto;
     }
 
     .filter-btn{
-      height:54px;
-      padding:0 22px;
+      min-height:34px;
+      padding:0 12px;
       border-radius:999px;
       border:1px solid var(--border);
-      background:var(--bg);
+      background:#fff;
       color:#555;
       cursor:pointer;
-      font-size:17px;
-      font-weight:500;
+      font-size:12px;
+      font-weight:600;
       font-family:inherit;
+      transition:background .2s ease, transform .2s ease, border-color .2s ease;
+      text-align:center;
+    }
+
+    .filter-btn:hover{
+      background:var(--soft);
+      transform:translateY(-1px);
     }
 
     .filter-btn.active{
       background:#000;
       color:#fff;
       border-color:#000;
-      font-weight:600;
+    }
+
+    .status-row{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:#777;
+      font-size:13px;
+      text-align:center;
     }
 
     .cards{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:28px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+      align-items:stretch;
     }
 
     .card{
-      background:var(--bg);
-      border:1px solid #cfcfcf;
+      border:1px solid var(--border);
       border-radius:24px;
-      overflow:hidden;
+      background:#fff;
       display:flex;
       flex-direction:column;
-      min-height:406px;
+      min-height:340px;
+      overflow:hidden;
     }
 
     .card.hidden{
@@ -267,314 +343,359 @@
     }
 
     .card.locked{
-      opacity:.62;
+      background:#fafafa;
     }
 
     .card-top{
-      height:14px;
+      height:10px;
       background:#000;
-      border-top-left-radius:24px;
-      border-top-right-radius:24px;
       flex:0 0 auto;
     }
 
     .card-body{
-      padding:28px 28px 20px;
+      padding:24px 22px 18px;
       display:flex;
       flex-direction:column;
+      align-items:center;
+      text-align:center;
       flex:1 1 auto;
     }
 
     .type-pill{
       display:inline-flex;
-      align-self:flex-start;
-      padding:9px 14px;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      padding:0 10px;
       border-radius:999px;
       border:1px solid var(--border);
       background:var(--pill);
       color:#666;
-      font-size:15px;
+      font-size:11px;
       font-weight:600;
-      margin-bottom:18px;
+      margin-bottom:16px;
+      text-align:center;
     }
 
     .card h3{
       margin:0 0 12px;
-      font-size:22px;
-      line-height:1.25;
-      letter-spacing:-0.03em;
+      font-size:24px;
+      line-height:1.18;
+      letter-spacing:-0.035em;
       font-weight:700;
+      max-width:100%;
+      text-align:center;
     }
 
     .card p{
       margin:0;
-      color:#555;
-      font-size:18px;
-      line-height:1.6;
+      color:#666;
+      font-size:15px;
+      line-height:1.65;
+      max-width:100%;
+      text-align:center;
     }
 
     .tags{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:20px;
+      justify-content:center;
+      gap:8px;
+      margin-top:18px;
     }
 
     .tag{
-      padding:8px 14px;
+      min-height:28px;
+      padding:0 10px;
       border-radius:999px;
       border:1px solid var(--border);
-      background:var(--pill);
+      background:#fff;
       color:#777;
-      font-size:14px;
-      line-height:1;
-      font-weight:500;
+      font-size:11px;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .locked-note{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:16px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--green);
+      color:var(--green-text);
+      font-size:11px;
+      font-weight:700;
+      text-align:center;
     }
 
     .card-footer{
       margin-top:auto;
-      padding:22px 24px 24px;
+      padding:18px 18px 20px;
       border-top:1px solid var(--border);
-      display:flex;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
+      display:grid;
+      gap:10px;
+      background:#fff;
     }
 
-    .btn{
-      min-height:58px;
-      border-radius:16px;
+    .card.locked .card-footer{
+      background:#fafafa;
+    }
+
+    .full-btn{
+      width:100%;
+      min-height:50px;
+      border-radius:14px;
       border:1px solid var(--border);
-      padding:14px 22px;
-      font-size:17px;
+      background:#fff;
+      color:#000;
+      font-size:14px;
       font-weight:600;
       cursor:pointer;
-      background:#fff;
-      color:#333;
-      white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
+      padding:0 14px;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
       font-family:inherit;
     }
 
-    .btn.primary{
+    .full-btn:hover{
+      transform:translateY(-1px);
+      background:var(--soft);
+    }
+
+    .full-btn.primary{
       background:#000;
       color:#fff;
       border-color:#000;
-      flex:1 1 auto;
     }
 
-    .btn.secondary{
-      background:var(--bg);
-      color:#333;
-      flex:0 0 auto;
+    .full-btn.primary:hover{
+      background:#111;
     }
 
-    .btn.locked{
+    .full-btn.locked{
       background:#ececec;
       color:#777;
       border-color:#d8d8d8;
       cursor:default;
-      flex:1 1 auto;
     }
 
-    .btn:disabled{
-      cursor:default;
-      opacity:1;
+    .full-btn.locked:hover{
+      transform:none;
+      background:#ececec;
+    }
+
+    .loading,
+    .empty-state{
+      padding:36px 20px;
+      text-align:center;
+      color:#777;
+      font-size:16px;
+      line-height:1.6;
     }
 
     .empty-state{
       display:none;
-      padding:28px;
       border:1px solid var(--border);
       border-radius:24px;
       background:#fff;
-      color:#666;
-      font-size:18px;
-      line-height:1.6;
-      text-align:center;
+      max-width:760px;
+      margin:0 auto;
     }
 
     .bottom-note{
-      margin-top:34px;
-      max-width:980px;
+      margin:34px auto 0;
+      max-width:760px;
       color:#777;
-      font-size:16px;
+      font-size:14px;
       line-height:1.7;
+      text-align:center;
     }
 
-    .loading{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:220px;
-      font-size:18px;
-      color:#666;
-    }
-
-    @media (max-width: 1240px){
-      .topbar{
-        padding:14px 20px;
+    @media (max-width: 1100px){
+      h1{
+        font-size:62px;
       }
 
-      h1{font-size:68px}
-      .subtext{font-size:24px}
-      .cards{grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .cards{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 820px){
+      .shell{
+        padding:0 14px 50px;
+      }
+
       .topbar{
-        min-height:auto;
-        flex-wrap:wrap;
+        padding:14px 0;
         align-items:flex-start;
-      }
-
-      .topbar-center{
-        order:3;
-        width:100%;
-      }
-
-      .topbar-nav{
-        width:100%;
+        flex-wrap:wrap;
       }
 
       .topbar-right{
-        margin-left:auto;
-      }
-    }
-
-    @media (max-width: 860px){
-      .content{
-        padding:24px 16px 28px;
+        width:100%;
+        justify-content:flex-start;
       }
 
       h1{
-        font-size:52px;
+        font-size:48px;
       }
 
       .subtext{
-        font-size:21px;
-        margin-bottom:34px;
+        font-size:18px;
       }
 
-      .search input{
-        height:58px;
-        font-size:18px;
+      .upgrade-bar{
+        padding:16px;
+      }
+
+      .upgrade-copy{
+        text-align:center;
+      }
+
+      .upgrade-actions{
+        width:100%;
+        justify-content:center;
       }
 
       .cards{
         grid-template-columns:1fr;
-        gap:20px;
       }
 
       .card{
         min-height:auto;
       }
+    }
 
-      .btn.primary,
-      .btn.secondary,
-      .btn.locked{
-        width:100%;
+    @media (max-width: 560px){
+      .brand{
+        font-size:20px;
       }
 
-      .topbar-right{
-        gap:8px;
+      h1{
+        font-size:40px;
       }
 
-      .status-pill{
+      .hero{
+        padding:40px 0 22px;
+      }
+
+      .subtext{
+        font-size:16px;
+      }
+
+      .search input{
+        height:54px;
+        font-size:15px;
+      }
+
+      .card-body{
+        padding:22px 18px 18px;
+      }
+
+      .card h3{
+        font-size:22px;
+      }
+
+      .primary-btn,
+      .secondary-btn,
+      .full-btn{
+        min-height:46px;
         font-size:13px;
-        height:38px;
-        padding:0 12px;
       }
 
-      .signout{
-        height:42px;
-        padding:0 16px;
-        font-size:15px;
-      }
-
-      .topbar-nav a,
-      .topbar-nav button{
-        height:42px;
-        font-size:15px;
-        padding:0 16px;
+      .mini-pill,
+      .mini-btn{
+        min-height:36px;
+        font-size:12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="shell">
-      <header class="topbar">
-        <a href="/" class="brand" aria-label="Pixelwise home">
-          <svg class="header-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
-            <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
-            <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
-            <rect x="9" y="1" width="4" height="4" fill="#000000"/>
-            <rect x="13" y="1" width="4" height="4" fill="#000000"/>
-            <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
-            <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
-            <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
-            <rect x="13" y="5" width="4" height="4" fill="#000000"/>
-            <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
-            <rect x="5" y="9" width="4" height="4" fill="#000000"/>
-            <rect x="9" y="9" width="4" height="4" fill="#000000"/>
-            <rect x="1" y="13" width="4" height="4" fill="#000000"/>
-            <rect x="5" y="13" width="4" height="4" fill="#000000"/>
-          </svg>
-          <span>Pixelwise</span>
-        </a>
+  <div class="shell">
+    <header class="topbar">
+      <a href="index.html" class="brand" aria-label="Pixelwise home">
+        <svg class="header-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+          <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="9" y="1" width="4" height="4" fill="#000000"/>
+          <rect x="13" y="1" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
+          <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
+          <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
+          <rect x="13" y="5" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
+          <rect x="5" y="9" width="4" height="4" fill="#000000"/>
+          <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+          <rect x="1" y="13" width="4" height="4" fill="#000000"/>
+          <rect x="5" y="13" width="4" height="4" fill="#000000"/>
+        </svg>
+        <span>Pixelwise</span>
+      </a>
 
-        <div class="topbar-center">
-          <nav class="topbar-nav" aria-label="Library navigation">
-            <a href="/" aria-label="Back to homepage">Homepage</a>
-            <a href="/library.html" class="active" aria-current="page">Resource Library</a>
-          </nav>
+      <div class="topbar-right">
+        <a href="index.html" class="mini-pill">Homepage</a>
+        <div class="mini-pill active" id="tierPill">Loading access…</div>
+        <button class="mini-btn" id="signOutBtn">Sign out</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Member access</div>
+      <h1>Resource Library</h1>
+      <p class="subtext">
+        Templates, playbooks, books, and risk tools — all in one place.
+      </p>
+
+      <div class="upgrade-bar" id="upgradeBar">
+        <div class="upgrade-copy">
+          <p class="upgrade-title">Unlock more of the framework</p>
+          <p class="upgrade-text">
+            Free and lower-tier access can browse the full library, but some resources stay locked until you upgrade.
+          </p>
         </div>
-
-        <div class="topbar-right">
-          <div class="status-pill">
-            <span class="status-dot"></span>
-            <span id="tierPill">Loading access…</span>
-          </div>
-          <button class="signout" id="signOutBtn">Sign out</button>
+        <div class="upgrade-actions">
+          <a class="secondary-btn" href="index.html#templates">See plans</a>
+          <a class="primary-btn" id="upgradeTopBtn" href="index.html#templates">Upgrade access</a>
         </div>
-      </header>
+      </div>
+    </section>
 
-      <main class="content">
-        <h1>Resource Library</h1>
-        <p class="subtext">
-          Templates, playbooks, books, and risk tools — download instantly as PDF or .doc.
-        </p>
+    <section class="controls">
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Search resources..." />
+      </div>
 
-        <div class="search">
-          <input type="text" id="searchInput" placeholder="Search resources..." />
-        </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="policy">Policies</button>
+        <button class="filter-btn" data-filter="contract">Contracts</button>
+        <button class="filter-btn" data-filter="playbook">Playbooks</button>
+        <button class="filter-btn" data-filter="book">Book</button>
+        <button class="filter-btn" data-filter="premium">Podcasts + Risk</button>
+      </div>
 
-        <div class="info-row">
-          <div class="note">
-            Download resources as PDF or .doc and use them internally. Premium materials remain visible even when locked so you can see what is included in higher-tier access.
-          </div>
-          <div class="results-count" id="resultsCount">Loading resources…</div>
-        </div>
+      <div class="status-row">
+        <span id="resultsCount">Loading resources…</span>
+      </div>
+    </section>
 
-        <div class="filters">
-          <button class="filter-btn active" data-filter="all">All Resources</button>
-          <button class="filter-btn" data-filter="policy">Policy Templates</button>
-          <button class="filter-btn" data-filter="contract">Contract Templates</button>
-          <button class="filter-btn" data-filter="playbook">Tracking Tech Playbooks</button>
-          <button class="filter-btn" data-filter="book">Book</button>
-          <button class="filter-btn" data-filter="premium">Podcasts + Risk Spectrums</button>
-        </div>
+    <div id="loadingState" class="loading">Loading your library…</div>
+    <div id="emptyState" class="empty-state">No resources match your current filters.</div>
+    <section class="cards" id="resourceGrid"></section>
 
-        <div id="loadingState" class="loading">Loading your library…</div>
-        <div id="emptyState" class="empty-state">No resources match your current search or filters.</div>
-        <section class="cards" id="resourceGrid"></section>
-
-        <p class="bottom-note">
-          You can download the resources included with your plan now. Locked items remain visible so you can compare what is available on higher-tier plans.
-        </p>
-      </main>
-    </div>
+    <p class="bottom-note">
+      Download the resources included with your plan now. Locked materials remain visible so you can see what becomes available as you upgrade.
+    </p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -583,6 +704,17 @@
     const supabaseKey = "sb_publishable_g-lpsZTEaID3cbgEPQyA2Q_dnDNDyAv";
     const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
+    // Replace these with your real Stripe or checkout links when ready.
+    const UPGRADE_LINKS = {
+      free: "index.html#templates",
+      starter: "index.html#templates",
+      bronze: "index.html#templates",
+      growth: "index.html#templates",
+      silver: "index.html#templates",
+      complete: "index.html#templates",
+      gold: "index.html#templates"
+    };
+
     const searchInput = document.getElementById('searchInput');
     const resultsCount = document.getElementById('resultsCount');
     const resourceGrid = document.getElementById('resourceGrid');
@@ -590,29 +722,34 @@
     const loadingState = document.getElementById('loadingState');
     const tierPill = document.getElementById('tierPill');
     const signOutBtn = document.getElementById('signOutBtn');
+    const upgradeBar = document.getElementById('upgradeBar');
+    const upgradeTopBtn = document.getElementById('upgradeTopBtn');
     const filterButtons = document.querySelectorAll('.filter-btn');
 
     let activeFilter = 'all';
     let currentTier = 'free';
-    let currentDocuments = [];
 
     const TIER_ORDER = {
       free: 0,
-      starter: 0,
-      bronze: 0,
-      silver: 1,
-      growth: 1,
-      gold: 2,
-      complete: 2
+      starter: 1,
+      bronze: 1,
+      growth: 2,
+      silver: 2,
+      complete: 3,
+      gold: 3
     };
 
-    function normalizeTier(value) {
-      return (value || 'free').toString().trim().toLowerCase();
+    function normalizeValue(value, fallback = '') {
+      return (value ?? fallback).toString().trim();
     }
 
-    function formatTierLabel(value) {
+    function normalizeTier(value) {
+      return normalizeValue(value, 'free').toLowerCase();
+    }
+
+    function formatTier(value) {
       const tier = normalizeTier(value);
-      if (tier === 'free') return 'Free access';
+      if (tier === 'free') return 'Free preview';
       return tier.charAt(0).toUpperCase() + tier.slice(1) + ' access';
     }
 
@@ -622,30 +759,26 @@
       return userLevel >= requiredLevel;
     }
 
-    function mapCategoryLabel(category) {
-      const normalized = (category || '').toLowerCase();
-      if (normalized === 'policy') return 'Policy Template';
-      if (normalized === 'contract') return 'Contract Template';
-      if (normalized === 'playbook') return 'Playbook';
-      if (normalized === 'book') return 'Book';
-      if (normalized === 'premium') return 'Podcasts + Risk Spectrums';
+    function categoryLabel(category) {
+      const value = normalizeValue(category).toLowerCase();
+      if (value === 'policy') return 'Policy Template';
+      if (value === 'contract') return 'Contract Template';
+      if (value === 'playbook') return 'Playbook';
+      if (value === 'book') return 'Book';
+      if (value === 'premium') return 'Podcasts + Risk Spectrums';
       return 'Resource';
     }
 
-    function mapTierRequirementLabel(requiredTier) {
-      const normalized = normalizeTier(requiredTier);
-      if (normalized === 'free' || normalized === 'starter' || normalized === 'bronze') return 'Included in Starter';
-      if (normalized === 'silver' || normalized === 'growth') return 'Included in Growth';
-      if (normalized === 'gold' || normalized === 'complete') return 'Included in Complete';
-      return 'Premium resource';
-    }
-
-    function safeText(value) {
-      return value ? String(value) : '';
+    function includedInLabel(requiredTier) {
+      const tier = normalizeTier(requiredTier);
+      if (tier === 'starter' || tier === 'bronze') return 'Included in Starter';
+      if (tier === 'growth' || tier === 'silver') return 'Included in Growth';
+      if (tier === 'complete' || tier === 'gold') return 'Included in Complete';
+      return 'Included in Free Preview';
     }
 
     function buildTags(doc) {
-      const raw = safeText(doc.tags);
+      const raw = normalizeValue(doc.tags);
       if (!raw) return [];
       return raw
         .split(',')
@@ -655,18 +788,21 @@
     }
 
     function buildSearchText(doc) {
-      const parts = [
-        safeText(doc.title),
-        safeText(doc.description),
-        safeText(doc.category),
-        safeText(doc.required_tier),
-        safeText(doc.tags)
-      ];
-      return parts.join(' ').toLowerCase();
+      return [
+        normalizeValue(doc.title),
+        normalizeValue(doc.description),
+        normalizeValue(doc.category),
+        normalizeValue(doc.required_tier),
+        normalizeValue(doc.tags)
+      ].join(' ').toLowerCase();
+    }
+
+    function currentUpgradeLink() {
+      return UPGRADE_LINKS[normalizeTier(currentTier)] || "index.html#templates";
     }
 
     async function getSignedUrl(path) {
-      const cleanedPath = safeText(path).trim();
+      const cleanedPath = normalizeValue(path);
       if (!cleanedPath) return null;
 
       const { data, error } = await supabaseClient
@@ -683,12 +819,12 @@
     }
 
     async function handleDownload(path) {
-      const signedUrl = await getSignedUrl(path);
-      if (!signedUrl) {
+      const url = await getSignedUrl(path);
+      if (!url) {
         alert('Unable to prepare that download right now.');
         return;
       }
-      window.open(signedUrl, '_blank', 'noopener,noreferrer');
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function updateResultsCount(visibleCount) {
@@ -721,40 +857,48 @@
     }
 
     function renderDocuments(documents, userTier) {
-      currentDocuments = documents || [];
       resourceGrid.innerHTML = '';
 
-      currentDocuments.forEach(doc => {
-        const category = normalizeTier(doc.category).replace(/^(free|silver|gold|starter|growth|complete)$/, '');
-        const normalizedCategory = safeText(doc.category).trim().toLowerCase() || 'resource';
-        const locked = !canAccess(userTier, doc.required_tier);
+      documents.forEach(doc => {
+        const requiredTier = normalizeTier(doc.required_tier || 'free');
+        const category = normalizeValue(doc.category).toLowerCase() || 'resource';
+        const locked = !canAccess(userTier, requiredTier);
         const tags = buildTags(doc);
         const searchText = buildSearchText(doc);
-
         const card = document.createElement('article');
+
         card.className = locked ? 'card locked' : 'card';
-        card.dataset.category = normalizedCategory;
+        card.dataset.category = category;
         card.dataset.search = searchText;
 
         const tagsHtml = tags.length
           ? `<div class="tags">${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>`
           : '';
 
+        const lockedHtml = locked
+          ? `<div class="locked-note">${includedInLabel(requiredTier)}</div>`
+          : '';
+
         card.innerHTML = `
           <div class="card-top"></div>
           <div class="card-body">
-            <div class="type-pill">${mapCategoryLabel(doc.category)}</div>
-            <h3>${safeText(doc.title)}</h3>
-            <p>${safeText(doc.description)}</p>
+            <div class="type-pill">${categoryLabel(doc.category)}</div>
+            <h3>${normalizeValue(doc.title)}</h3>
+            <p>${normalizeValue(doc.description)}</p>
             ${tagsHtml}
+            ${lockedHtml}
           </div>
           <div class="card-footer">
             ${
               locked
-                ? `<button class="btn locked" disabled>${mapTierRequirementLabel(doc.required_tier)}</button>
-                   <button class="btn secondary" disabled>Upgrade</button>`
-                : `<button class="btn primary download-pdf"${doc.pdf_path ? '' : ' disabled'}>Download PDF</button>
-                   <button class="btn secondary download-doc"${doc.doc_path ? '' : ' disabled'}>Download .doc</button>`
+                ? `
+                  <a class="full-btn primary" href="${UPGRADE_LINKS[requiredTier] || 'index.html#templates'}">Upgrade to unlock</a>
+                  <a class="full-btn" href="index.html#templates">Compare plans</a>
+                `
+                : `
+                  <button class="full-btn primary download-pdf"${doc.pdf_path ? '' : ' disabled'}>Download PDF</button>
+                  <button class="full-btn download-doc"${doc.doc_path ? '' : ' disabled'}>Download .doc</button>
+                `
             }
           </div>
         `;
@@ -766,7 +910,6 @@
           if (pdfBtn && doc.pdf_path) {
             pdfBtn.addEventListener('click', () => handleDownload(doc.pdf_path));
           }
-
           if (docBtn && doc.doc_path) {
             docBtn.addEventListener('click', () => handleDownload(doc.doc_path));
           }
@@ -788,8 +931,7 @@
 
       if (error) {
         console.error('Profile load error:', error);
-        tierPill.textContent = 'Access unavailable';
-        return { tier: 'free', is_admin: false };
+        return { tier: 'free' };
       }
 
       return data;
@@ -816,14 +958,20 @@
       const { data, error } = await supabaseClient.auth.getSession();
 
       if (error || !data.session) {
-        window.location.href = "/login.html";
+        window.location.href = "login.html";
         return;
       }
 
       const user = data.session.user;
       const profile = await loadProfile(user.id);
+
       currentTier = normalizeTier(profile?.tier || 'free');
-      tierPill.textContent = formatTierLabel(currentTier);
+      tierPill.textContent = formatTier(currentTier);
+      upgradeTopBtn.href = currentUpgradeLink();
+
+      if (currentTier === 'complete' || currentTier === 'gold') {
+        upgradeBar.style.display = 'none';
+      }
 
       const documents = await loadDocuments();
       renderDocuments(documents, currentTier);
@@ -842,7 +990,7 @@
 
     signOutBtn.addEventListener('click', async () => {
       await supabaseClient.auth.signOut();
-      window.location.href = "/login.html";
+      window.location.href = "login.html";
     });
 
     enforceAuth();
