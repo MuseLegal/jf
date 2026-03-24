@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixelwise Resource Library</title>
+  <style>
+    :root{
+      --bg:#f7f7f7;
+      --surface:#ffffff;
+      --text:#000000;
+      --muted:#666666;
+      --border:#dddddd;
+      --pill:#f4f4f4;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+
+    .page{
+      min-height:100vh;
+      padding:0;
+    }
+
+    .shell{
+      width:100%;
+      margin:0;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+    }
+
+    .topbar{
+      background:var(--bg);
+      border-bottom:1px solid var(--border);
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 28px;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:700;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      text-decoration:none;
+      color:#000;
+      flex:0 0 auto;
+    }
+
+    .header-logo{
+      width:22px;
+      height:22px;
+      display:block;
+      flex:0 0 auto;
+    }
+
+    .topbar-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .topbar-nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .topbar-nav a,
+    .topbar-nav button{
+      height:48px;
+      padding:0 20px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--bg);
+      color:#555;
+      cursor:pointer;
+      font-size:17px;
+      font-weight:500;
+      font-family:inherit;
+    }
+
+    .topbar-nav a.active{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+      font-weight:600;
+    }
+
+    .topbar-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex:0 0 auto;
+    }
+
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:0 14px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:#555;
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .status-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#000;
+      flex:0 0 auto;
+    }
+
+    .signout{
+      height:48px;
+      padding:0 20px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--bg);
+      color:#4d4d4d;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:500;
+      font-family:inherit;
+      white-space:nowrap;
+    }
+
+    .signout:hover{
+      background:#efefef;
+    }
+
+    .content{
+      padding:34px 24px 34px;
+    }
+
+    h1{
+      margin:8px 0 18px;
+      font-size:82px;
+      line-height:0.95;
+      letter-spacing:-0.05em;
+      font-weight:700;
+    }
+
+    .subtext{
+      max-width:980px;
+      font-size:27px;
+      line-height:1.4;
+      color:var(--muted);
+      margin:0 0 52px;
+      font-weight:400;
+    }
+
+    .search{
+      width:100%;
+      max-width:670px;
+      margin-bottom:18px;
+    }
+
+    .search input{
+      width:100%;
+      height:66px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:0 24px;
+      background:var(--bg);
+      color:var(--text);
+      outline:none;
+      font-size:20px;
+    }
+
+    .search input::placeholder{
+      color:#9a9a9a;
+    }
+
+    .info-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom:26px;
+    }
+
+    .note{
+      font-size:15px;
+      color:#777;
+      line-height:1.6;
+      max-width:920px;
+    }
+
+    .results-count{
+      font-size:14px;
+      color:#777;
+      white-space:nowrap;
+    }
+
+    .filters{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:56px;
+    }
+
+    .filter-btn{
+      height:54px;
+      padding:0 22px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--bg);
+      color:#555;
+      cursor:pointer;
+      font-size:17px;
+      font-weight:500;
+      font-family:inherit;
+    }
+
+    .filter-btn.active{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+      font-weight:600;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:28px;
+    }
+
+    .card{
+      background:var(--bg);
+      border:1px solid #cfcfcf;
+      border-radius:24px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:406px;
+    }
+
+    .card.hidden{
+      display:none;
+    }
+
+    .card.locked{
+      opacity:.62;
+    }
+
+    .card-top{
+      height:14px;
+      background:#000;
+      border-top-left-radius:24px;
+      border-top-right-radius:24px;
+      flex:0 0 auto;
+    }
+
+    .card-body{
+      padding:28px 28px 20px;
+      display:flex;
+      flex-direction:column;
+      flex:1 1 auto;
+    }
+
+    .type-pill{
+      display:inline-flex;
+      align-self:flex-start;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--pill);
+      color:#666;
+      font-size:15px;
+      font-weight:600;
+      margin-bottom:18px;
+    }
+
+    .card h3{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.25;
+      letter-spacing:-0.03em;
+      font-weight:700;
+    }
+
+    .card p{
+      margin:0;
+      color:#555;
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .tag{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--pill);
+      color:#777;
+      font-size:14px;
+      line-height:1;
+      font-weight:500;
+    }
+
+    .card-footer{
+      margin-top:auto;
+      padding:22px 24px 24px;
+      border-top:1px solid var(--border);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      min-height:58px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      padding:14px 22px;
+      font-size:17px;
+      font-weight:600;
+      cursor:pointer;
+      background:#fff;
+      color:#333;
+      white-space:nowrap;
+      text-align:center;
+      font-family:inherit;
+    }
+
+    .btn.primary{
+      background:#000;
+      color:#fff;
+      border-color:#000;
+      flex:1 1 auto;
+    }
+
+    .btn.secondary{
+      background:var(--bg);
+      color:#333;
+      flex:0 0 auto;
+    }
+
+    .btn.locked{
+      background:#ececec;
+      color:#777;
+      border-color:#d8d8d8;
+      cursor:default;
+      flex:1 1 auto;
+    }
+
+    .btn:disabled{
+      cursor:default;
+      opacity:1;
+    }
+
+    .empty-state{
+      display:none;
+      padding:28px;
+      border:1px solid var(--border);
+      border-radius:24px;
+      background:#fff;
+      color:#666;
+      font-size:18px;
+      line-height:1.6;
+      text-align:center;
+    }
+
+    .bottom-note{
+      margin-top:34px;
+      max-width:980px;
+      color:#777;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .loading{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:220px;
+      font-size:18px;
+      color:#666;
+    }
+
+    @media (max-width: 1240px){
+      .topbar{
+        padding:14px 20px;
+      }
+
+      h1{font-size:68px}
+      .subtext{font-size:24px}
+      .cards{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    }
+
+    @media (max-width: 980px){
+      .topbar{
+        min-height:auto;
+        flex-wrap:wrap;
+        align-items:flex-start;
+      }
+
+      .topbar-center{
+        order:3;
+        width:100%;
+      }
+
+      .topbar-nav{
+        width:100%;
+      }
+
+      .topbar-right{
+        margin-left:auto;
+      }
+    }
+
+    @media (max-width: 860px){
+      .content{
+        padding:24px 16px 28px;
+      }
+
+      h1{
+        font-size:52px;
+      }
+
+      .subtext{
+        font-size:21px;
+        margin-bottom:34px;
+      }
+
+      .search input{
+        height:58px;
+        font-size:18px;
+      }
+
+      .cards{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+
+      .card{
+        min-height:auto;
+      }
+
+      .btn.primary,
+      .btn.secondary,
+      .btn.locked{
+        width:100%;
+      }
+
+      .topbar-right{
+        gap:8px;
+      }
+
+      .status-pill{
+        font-size:13px;
+        height:38px;
+        padding:0 12px;
+      }
+
+      .signout{
+        height:42px;
+        padding:0 16px;
+        font-size:15px;
+      }
+
+      .topbar-nav a,
+      .topbar-nav button{
+        height:42px;
+        font-size:15px;
+        padding:0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <header class="topbar">
+        <a href="/" class="brand" aria-label="Pixelwise home">
+          <svg class="header-logo" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" shape-rendering="crispEdges">
+            <rect x="1" y="1" width="4" height="4" fill="#7B5CFF"/>
+            <rect x="5" y="1" width="4" height="4" fill="#7B5CFF"/>
+            <rect x="9" y="1" width="4" height="4" fill="#000000"/>
+            <rect x="13" y="1" width="4" height="4" fill="#000000"/>
+            <rect x="1" y="5" width="4" height="4" fill="#FF5A4F"/>
+            <rect x="5" y="5" width="4" height="4" fill="#FFC83D"/>
+            <rect x="9" y="5" width="4" height="4" fill="#FFC83D"/>
+            <rect x="13" y="5" width="4" height="4" fill="#000000"/>
+            <rect x="1" y="9" width="4" height="4" fill="#7B5CFF"/>
+            <rect x="5" y="9" width="4" height="4" fill="#000000"/>
+            <rect x="9" y="9" width="4" height="4" fill="#000000"/>
+            <rect x="1" y="13" width="4" height="4" fill="#000000"/>
+            <rect x="5" y="13" width="4" height="4" fill="#000000"/>
+          </svg>
+          <span>Pixelwise</span>
+        </a>
+
+        <div class="topbar-center">
+          <nav class="topbar-nav" aria-label="Library navigation">
+            <a href="/" aria-label="Back to homepage">Homepage</a>
+            <a href="/library.html" class="active" aria-current="page">Resource Library</a>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span id="tierPill">Loading access…</span>
+          </div>
+          <button class="signout" id="signOutBtn">Sign out</button>
+        </div>
+      </header>
+
+      <main class="content">
+        <h1>Resource Library</h1>
+        <p class="subtext">
+          Templates, playbooks, books, and risk tools — download instantly as PDF or .doc.
+        </p>
+
+        <div class="search">
+          <input type="text" id="searchInput" placeholder="Search resources..." />
+        </div>
+
+        <div class="info-row">
+          <div class="note">
+            Download resources as PDF or .doc and use them internally. Premium materials remain visible even when locked so you can see what is included in higher-tier access.
+          </div>
+          <div class="results-count" id="resultsCount">Loading resources…</div>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All Resources</button>
+          <button class="filter-btn" data-filter="policy">Policy Templates</button>
+          <button class="filter-btn" data-filter="contract">Contract Templates</button>
+          <button class="filter-btn" data-filter="playbook">Tracking Tech Playbooks</button>
+          <button class="filter-btn" data-filter="book">Book</button>
+          <button class="filter-btn" data-filter="premium">Podcasts + Risk Spectrums</button>
+        </div>
+
+        <div id="loadingState" class="loading">Loading your library…</div>
+        <div id="emptyState" class="empty-state">No resources match your current search or filters.</div>
+        <section class="cards" id="resourceGrid"></section>
+
+        <p class="bottom-note">
+          You can download the resources included with your plan now. Locked items remain visible so you can compare what is available on higher-tier plans.
+        </p>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabaseUrl = "https://zytcznhxiszqypflgvhz.supabase.co";
+    const supabaseKey = "sb_publishable_g-lpsZTEaID3cbgEPQyA2Q_dnDNDyAv";
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    const searchInput = document.getElementById('searchInput');
+    const resultsCount = document.getElementById('resultsCount');
+    const resourceGrid = document.getElementById('resourceGrid');
+    const emptyState = document.getElementById('emptyState');
+    const loadingState = document.getElementById('loadingState');
+    const tierPill = document.getElementById('tierPill');
+    const signOutBtn = document.getElementById('signOutBtn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    let activeFilter = 'all';
+    let currentTier = 'free';
+    let currentDocuments = [];
+
+    const TIER_ORDER = {
+      free: 0,
+      starter: 0,
+      bronze: 0,
+      silver: 1,
+      growth: 1,
+      gold: 2,
+      complete: 2
+    };
+
+    function normalizeTier(value) {
+      return (value || 'free').toString().trim().toLowerCase();
+    }
+
+    function formatTierLabel(value) {
+      const tier = normalizeTier(value);
+      if (tier === 'free') return 'Free access';
+      return tier.charAt(0).toUpperCase() + tier.slice(1) + ' access';
+    }
+
+    function canAccess(userTier, requiredTier) {
+      const userLevel = TIER_ORDER[normalizeTier(userTier)] ?? 0;
+      const requiredLevel = TIER_ORDER[normalizeTier(requiredTier)] ?? 0;
+      return userLevel >= requiredLevel;
+    }
+
+    function mapCategoryLabel(category) {
+      const normalized = (category || '').toLowerCase();
+      if (normalized === 'policy') return 'Policy Template';
+      if (normalized === 'contract') return 'Contract Template';
+      if (normalized === 'playbook') return 'Playbook';
+      if (normalized === 'book') return 'Book';
+      if (normalized === 'premium') return 'Podcasts + Risk Spectrums';
+      return 'Resource';
+    }
+
+    function mapTierRequirementLabel(requiredTier) {
+      const normalized = normalizeTier(requiredTier);
+      if (normalized === 'free' || normalized === 'starter' || normalized === 'bronze') return 'Included in Starter';
+      if (normalized === 'silver' || normalized === 'growth') return 'Included in Growth';
+      if (normalized === 'gold' || normalized === 'complete') return 'Included in Complete';
+      return 'Premium resource';
+    }
+
+    function safeText(value) {
+      return value ? String(value) : '';
+    }
+
+    function buildTags(doc) {
+      const raw = safeText(doc.tags);
+      if (!raw) return [];
+      return raw
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(Boolean)
+        .slice(0, 4);
+    }
+
+    function buildSearchText(doc) {
+      const parts = [
+        safeText(doc.title),
+        safeText(doc.description),
+        safeText(doc.category),
+        safeText(doc.required_tier),
+        safeText(doc.tags)
+      ];
+      return parts.join(' ').toLowerCase();
+    }
+
+    async function getSignedUrl(path) {
+      const cleanedPath = safeText(path).trim();
+      if (!cleanedPath) return null;
+
+      const { data, error } = await supabaseClient
+        .storage
+        .from('documents')
+        .createSignedUrl(cleanedPath, 60);
+
+      if (error || !data?.signedUrl) {
+        console.error('Signed URL error:', error);
+        return null;
+      }
+
+      return data.signedUrl;
+    }
+
+    async function handleDownload(path) {
+      const signedUrl = await getSignedUrl(path);
+      if (!signedUrl) {
+        alert('Unable to prepare that download right now.');
+        return;
+      }
+      window.open(signedUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    function updateResultsCount(visibleCount) {
+      resultsCount.textContent = visibleCount === 1
+        ? 'Showing 1 resource'
+        : `Showing ${visibleCount} resources`;
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim().toLowerCase();
+      const cards = resourceGrid.querySelectorAll('.card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        const searchText = card.dataset.search;
+        const matchesFilter = activeFilter === 'all' || category === activeFilter;
+        const matchesSearch = !query || searchText.includes(query);
+
+        if (matchesFilter && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount += 1;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      updateResultsCount(visibleCount);
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    function renderDocuments(documents, userTier) {
+      currentDocuments = documents || [];
+      resourceGrid.innerHTML = '';
+
+      currentDocuments.forEach(doc => {
+        const category = normalizeTier(doc.category).replace(/^(free|silver|gold|starter|growth|complete)$/, '');
+        const normalizedCategory = safeText(doc.category).trim().toLowerCase() || 'resource';
+        const locked = !canAccess(userTier, doc.required_tier);
+        const tags = buildTags(doc);
+        const searchText = buildSearchText(doc);
+
+        const card = document.createElement('article');
+        card.className = locked ? 'card locked' : 'card';
+        card.dataset.category = normalizedCategory;
+        card.dataset.search = searchText;
+
+        const tagsHtml = tags.length
+          ? `<div class="tags">${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>`
+          : '';
+
+        card.innerHTML = `
+          <div class="card-top"></div>
+          <div class="card-body">
+            <div class="type-pill">${mapCategoryLabel(doc.category)}</div>
+            <h3>${safeText(doc.title)}</h3>
+            <p>${safeText(doc.description)}</p>
+            ${tagsHtml}
+          </div>
+          <div class="card-footer">
+            ${
+              locked
+                ? `<button class="btn locked" disabled>${mapTierRequirementLabel(doc.required_tier)}</button>
+                   <button class="btn secondary" disabled>Upgrade</button>`
+                : `<button class="btn primary download-pdf"${doc.pdf_path ? '' : ' disabled'}>Download PDF</button>
+                   <button class="btn secondary download-doc"${doc.doc_path ? '' : ' disabled'}>Download .doc</button>`
+            }
+          </div>
+        `;
+
+        if (!locked) {
+          const pdfBtn = card.querySelector('.download-pdf');
+          const docBtn = card.querySelector('.download-doc');
+
+          if (pdfBtn && doc.pdf_path) {
+            pdfBtn.addEventListener('click', () => handleDownload(doc.pdf_path));
+          }
+
+          if (docBtn && doc.doc_path) {
+            docBtn.addEventListener('click', () => handleDownload(doc.doc_path));
+          }
+        }
+
+        resourceGrid.appendChild(card);
+      });
+
+      loadingState.style.display = 'none';
+      applyFilters();
+    }
+
+    async function loadProfile(userId) {
+      const { data, error } = await supabaseClient
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) {
+        console.error('Profile load error:', error);
+        tierPill.textContent = 'Access unavailable';
+        return { tier: 'free', is_admin: false };
+      }
+
+      return data;
+    }
+
+    async function loadDocuments() {
+      const { data, error } = await supabaseClient
+        .from('documents')
+        .select('*')
+        .eq('is_published', true)
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Documents load error:', error);
+        loadingState.textContent = 'Unable to load resources right now.';
+        resultsCount.textContent = 'Unable to load resources';
+        return [];
+      }
+
+      return data || [];
+    }
+
+    async function enforceAuth() {
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        window.location.href = "/login.html";
+        return;
+      }
+
+      const user = data.session.user;
+      const profile = await loadProfile(user.id);
+      currentTier = normalizeTier(profile?.tier || 'free');
+      tierPill.textContent = formatTierLabel(currentTier);
+
+      const documents = await loadDocuments();
+      renderDocuments(documents, currentTier);
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        activeFilter = button.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', applyFilters);
+
+    signOutBtn.addEventListener('click', async () => {
+      await supabaseClient.auth.signOut();
+      window.location.href = "/login.html";
+    });
+
+    enforceAuth();
+  </script>
+</body>
+</html>
