@@ -11,7 +11,7 @@
   --text:#111111;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --soft:#f8fafc;
+  --soft:#fafafa;
 }
 
 *{box-sizing:border-box}
@@ -223,16 +223,31 @@ button,input{
   font-size:16px;
   line-height:1.75;
   color:var(--muted);
-  margin:0 0 30px;
-  max-width:820px;
+  margin:0 0 34px;
+  max-width:840px;
   font-weight:400;
+}
+
+.hero-note{
+  border:1px solid var(--border);
+  background:var(--soft);
+  border-radius:14px;
+  padding:18px 18px;
+  margin:0 0 40px;
+}
+
+.hero-note p{
+  margin:0;
+  font-size:14px;
+  line-height:1.75;
+  color:#374151;
 }
 
 .card-grid{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:20px;
-  margin-bottom:42px;
+  margin-bottom:46px;
 }
 
 .card{
@@ -264,13 +279,13 @@ button,input{
 }
 
 .content-section{
-  margin-bottom:42px;
+  margin-bottom:52px;
   scroll-margin-top:22px;
 }
 
 .content-section h2{
-  font-size:20px;
-  margin:0 0 12px;
+  font-size:22px;
+  margin:0 0 14px;
   line-height:1.3;
   font-weight:500;
 }
@@ -278,38 +293,78 @@ button,input{
 .content-section p{
   font-size:14px;
   color:var(--muted);
-  line-height:1.75;
+  line-height:1.8;
   margin:0 0 14px;
-  max-width:820px;
+  max-width:840px;
   font-weight:400;
 }
 
-.mini-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:18px;
+.content-section ul{
+  margin:12px 0 0 18px;
+  padding:0;
 }
 
-.mini-card{
+.content-section li{
+  margin:0 0 10px;
+  font-size:14px;
+  line-height:1.75;
+  color:#4b5563;
+}
+
+.subtle-box{
   border:1px solid var(--border);
   border-radius:14px;
-  padding:20px;
   background:#fff;
+  padding:18px 18px;
+  margin-top:18px;
 }
 
-.mini-card h4{
+.subtle-box h4{
   margin:0 0 8px;
   font-size:15px;
   line-height:1.35;
   font-weight:500;
 }
 
-.mini-card p{
+.subtle-box p{
   margin:0;
   font-size:14px;
   color:var(--muted);
-  line-height:1.65;
-  font-weight:400;
+  line-height:1.7;
+}
+
+.tab-strip{
+  display:flex;
+  gap:26px;
+  border-bottom:1px solid var(--border);
+  margin:14px 0 18px;
+  padding:0 0 0 0;
+}
+
+.tab-strip button{
+  background:none;
+  border:none;
+  padding:0 0 12px;
+  font-size:14px;
+  color:#6b7280;
+  cursor:pointer;
+}
+
+.tab-strip button.active{
+  color:#111;
+  border-bottom:2px solid #111;
+  margin-bottom:-1px;
+}
+
+.code-box{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#fff;
+  padding:18px 18px;
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size:14px;
+  line-height:1.7;
+  color:#374151;
 }
 
 /* RIGHT PANEL */
@@ -324,6 +379,10 @@ button,input{
 .right-inner{
   height:100%;
   overflow:auto;
+}
+
+.right-block{
+  margin-bottom:28px;
 }
 
 .right h4{
@@ -352,6 +411,12 @@ button,input{
   color:#111;
 }
 
+.empty-note{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.65;
+}
+
 /* MOBILE */
 
 @media(max-width:1180px){
@@ -370,9 +435,6 @@ button,input{
     padding:28px 22px 70px;
   }
   .card-grid{
-    grid-template-columns:1fr;
-  }
-  .mini-grid{
     grid-template-columns:1fr;
   }
 }
@@ -402,252 +464,427 @@ button,input{
 
   <div class="top-right">
     <input class="search" placeholder="Search framework..." />
-    <button class="dash-btn">Dashboard</button>
   </div>
 </div>
 
 <div class="app">
 
-  <!-- LEFT PANEL -->
   <aside class="sidebar">
     <div class="sidebar-inner">
 
       <div class="section-list active" data-sections="policies">
         <div class="sidebar-heading">Policies</div>
-        <a class="section-link" href="#policies-purpose">Purpose</a>
+        <a class="section-link" href="#policies-why">Why Most Policies Fail</a>
         <a class="section-link" href="#policies-scope">Scope</a>
-        <a class="section-link" href="#policies-rules">Core Rules</a>
+        <a class="section-link" href="#policies-purposes">Approved Use Cases</a>
+        <a class="section-link" href="#policies-data">Data Classification</a>
+        <a class="section-link" href="#policies-environments">Environment Rules</a>
+        <a class="section-link" href="#policies-sharing">Third-Party Sharing</a>
         <a class="section-link" href="#policies-governance">Governance</a>
       </div>
 
       <div class="section-list" data-sections="playbooks">
         <div class="sidebar-heading">Playbooks</div>
-        <a class="section-link" href="#playbooks-how">How They Work</a>
-        <a class="section-link" href="#playbooks-marketing">Marketing Requests</a>
-        <a class="section-link" href="#playbooks-product">Product Requests</a>
-        <a class="section-link" href="#playbooks-engineering">Engineering Requests</a>
+        <a class="section-link" href="#playbooks-why">Why Policies Aren’t Enough</a>
+        <a class="section-link" href="#playbooks-flow">Decision Flow</a>
+        <a class="section-link" href="#playbooks-risk">Risk Evaluation</a>
+        <a class="section-link" href="#playbooks-implementation">Implementation Requirements</a>
+        <a class="section-link" href="#playbooks-monitoring">Testing and Monitoring</a>
       </div>
 
       <div class="section-list" data-sections="contracts">
         <div class="sidebar-heading">Contract Templates</div>
-        <a class="section-link" href="#contracts-purpose">Purpose</a>
-        <a class="section-link" href="#contracts-baa">BAA / DPA Logic</a>
-        <a class="section-link" href="#contracts-vendors">Vendor Boundaries</a>
-        <a class="section-link" href="#contracts-fallbacks">Fallback Clauses</a>
+        <a class="section-link" href="#contracts-why">The Contract Comfort Problem</a>
+        <a class="section-link" href="#contracts-types">Contract Types</a>
+        <a class="section-link" href="#contracts-gap">The Gap Between Paper and Flow</a>
+        <a class="section-link" href="#contracts-framework">The Pixelwise Contract Framework</a>
+        <a class="section-link" href="#contracts-sequence">The Correct Sequence</a>
       </div>
 
       <div class="section-list" data-sections="risk">
         <div class="sidebar-heading">Risk Spectrums</div>
-        <a class="section-link" href="#risk-why">Why Spectrums</a>
-        <a class="section-link" href="#risk-low">Lower Risk</a>
-        <a class="section-link" href="#risk-mid">Managed / Gray Zone</a>
-        <a class="section-link" href="#risk-high">High Risk</a>
+        <a class="section-link" href="#risk-why">Why Binary Thinking Fails</a>
+        <a class="section-link" href="#risk-spectrum">The Pixelwise Spectrum</a>
+        <a class="section-link" href="#risk-drivers">What Drives Risk</a>
+        <a class="section-link" href="#risk-shifting">How to Move Lower</a>
+        <a class="section-link" href="#risk-mature">What a Mature Program Looks Like</a>
       </div>
 
     </div>
   </aside>
 
-  <!-- CENTER -->
   <main class="content" id="contentArea">
     <div class="content-inner">
 
+      <!-- POLICIES -->
       <div class="page active" id="page-policies">
         <h1 class="page-title">Policies</h1>
         <div class="divider"></div>
 
         <p class="page-intro">
-          Policies anchor the framework. They should define what tracking is, what it is for, where boundaries sit, and when review is required. The point is to create usable rules that teams can apply consistently.
+          Policies are the rule layer of the framework. Their job is not to recite principles or reassure regulators. Their job is to create usable boundaries that shape how product, marketing, engineering, and legal make tracking decisions in practice.
         </p>
+
+        <div class="hero-note">
+          <p>
+            Most organizations already have policy documents, but those documents are often written for repositories and regulators, not for the people making day-to-day implementation decisions. When a policy does not answer what is allowed, what is restricted, and what requires escalation, teams fill the gap with assumptions. That is where inconsistency starts.
+          </p>
+        </div>
 
         <div class="card-grid">
           <div class="card">
-            <h3>Purpose</h3>
-            <p>Set the baseline for how your organization approaches tracking, privacy, and external data-sharing decisions.</p>
+            <h3>Operational, not descriptive</h3>
+            <p>Effective policies move from “we value privacy” language to direct instructions teams can apply in real scenarios.</p>
           </div>
           <div class="card">
-            <h3>Operational Rules</h3>
-            <p>Turn policy language into practical boundaries that marketing, product, and engineering can actually follow.</p>
+            <h3>Built around real decisions</h3>
+            <p>The policy should mirror actual questions teams face: what counts as tracking, what data is sensitive, where tools may run, and when review is required.</p>
           </div>
           <div class="card">
-            <h3>Governance</h3>
-            <p>Clarify what requires review, who owns escalation, and how exceptions should be handled.</p>
+            <h3>Boundary-setting function</h3>
+            <p>Policies define rules and create consistency, but they do not replace use-case evaluation or implementation judgment.</p>
           </div>
         </div>
 
-        <section class="content-section" id="policies-purpose">
-          <h2>Purpose</h2>
-          <p>This part should explain what the policy is doing inside the broader Pixelwise system. It is the rule layer. It gives teams a shared baseline before requests start flowing.</p>
+        <section class="content-section" id="policies-why">
+          <h2>Why most policies fail</h2>
+          <p>
+            Most policy failure is not caused by lack of effort. It is caused by mismatch. The documents exist, but they are too abstract to influence behavior. Marketing does not read them, product does not rely on them, engineering does not implement from them, and legal assumes that having a policy means the system is controlled. A policy that does not shape behavior is just documentation.
+          </p>
+          <div class="subtle-box">
+            <h4>What a real policy should answer</h4>
+            <p>
+              What is allowed. What is restricted. What requires escalation. And most importantly: what should a team do right now when a tracking question appears.
+            </p>
+          </div>
         </section>
 
         <section class="content-section" id="policies-scope">
           <h2>Scope</h2>
-          <p>The policy should define what counts as tracking, what tools are in scope, and what kinds of environments matter most when applying the framework.</p>
-          <div class="mini-grid">
-            <div class="mini-card">
-              <h4>Tracking technologies in scope</h4>
-              <p>Cookies, pixels, SDKs, APIs, session replay, analytics tools, and other mechanisms that collect or transmit user interaction data.</p>
-            </div>
-            <div class="mini-card">
-              <h4>Environment matters</h4>
-              <p>Public pages, pre-login flows, and authenticated experiences should not all be treated the same.</p>
-            </div>
+          <p>
+            A strong policy starts by defining what counts as tracking. That scope should include cookies, pixels, SDKs, session replay, APIs that send user data, and third-party scripts. Without this definition, teams routinely carve out exceptions for server-side events or backend integrations and tell themselves, incorrectly, that those flows are not tracking.
+          </p>
+          <ul>
+            <li>Tracking is not limited to browser pixels.</li>
+            <li>Server-side integrations can still transmit behavior, identifiers, and contextual data.</li>
+            <li>Anything that collects or transmits user interaction data belongs inside the framework.</li>
+          </ul>
+        </section>
+
+        <section class="content-section" id="policies-purposes">
+          <h2>Approved use cases</h2>
+          <p>
+            Policies should define why tracking exists before teams decide which tools to use. Examples include analytics, product improvement, care coordination, and limited marketing use with constraints. Without defined purposes, a tool installed for one reason gradually becomes available for others. The result is scope creep disguised as reuse.
+          </p>
+          <div class="subtle-box">
+            <h4>Why this matters</h4>
+            <p>
+              Data collected for analytics today can become targeting data tomorrow unless the organization explicitly ties collection and sharing back to approved purposes.
+            </p>
           </div>
         </section>
 
-        <section class="content-section" id="policies-rules">
-          <h2>Core Rules</h2>
-          <p>This is where the working rules live: approved use cases, restricted uses, third-party sharing expectations, and transparency requirements.</p>
+        <section class="content-section" id="policies-data">
+          <h2>Data classification</h2>
+          <p>
+            The most important classification mistake companies make is treating sensitivity as something obvious and static. In practice, sensitivity often emerges from combinations: IP address plus page URL, identifiers plus health-related page context, interaction data plus a known user state. Policies should teach teams to evaluate context, not just field names.
+          </p>
+          <ul>
+            <li>Identifiers such as IP address and device ID may become sensitive in context.</li>
+            <li>URLs and page context can reveal more than teams expect.</li>
+            <li>User interactions tied to health-related content should be treated more carefully than generic page activity.</li>
+          </ul>
+        </section>
+
+        <section class="content-section" id="policies-environments">
+          <h2>Environment rules</h2>
+          <p>
+            The same tool can have very different implications depending on where it operates. Public pages, pre-login flows, and authenticated environments should not be governed by one flat rule. Environment changes the identifiability of the user, the sensitivity of interactions, and the expectations around disclosure.
+          </p>
+          <div class="subtle-box">
+            <h4>Common error</h4>
+            <p>
+              Teams often assume that pre-login means low risk. But detailed intake, registration, or onboarding flows can still create elevated sensitivity when they collect contextual information and tie it to identifiers.
+            </p>
+          </div>
+        </section>
+
+        <section class="content-section" id="policies-sharing">
+          <h2>Third-party sharing</h2>
+          <p>
+            Once data leaves your system, control drops sharply. Policies should define when sharing is allowed, how necessity is evaluated, and how third-party vendors are classified. Contracts matter, but they do not override the architectural reality that the organization has already transmitted data outside its own environment.
+          </p>
         </section>
 
         <section class="content-section" id="policies-governance">
           <h2>Governance</h2>
-          <p>A strong policy should make clear what requires legal or privacy review, what can move faster, and how decisions get documented.</p>
+          <p>
+            Governance is the mechanism that turns policy into a living system. It should establish who reviews, who approves, when escalation is required, and how decisions are documented. The goal is not to slow work down. The goal is to make similar requests produce similar outcomes over time.
+          </p>
         </section>
       </div>
 
+      <!-- PLAYBOOKS -->
       <div class="page" id="page-playbooks">
         <h1 class="page-title">Playbooks</h1>
         <div class="divider"></div>
 
         <p class="page-intro">
-          Playbooks are the decision layer. They translate policy into action by helping teams evaluate real requests in a consistent way instead of improvising every time.
+          Playbooks are the decision layer. Policies define what the organization allows and restricts. Playbooks show teams how to evaluate a real request from the moment it appears through implementation, testing, and ongoing review.
         </p>
+
+        <div class="hero-note">
+          <p>
+            Without playbooks, teams fall back to meetings, threads, urgency, and partial answers. With playbooks, the thinking is already structured: define the use case, identify the data, analyze the context, map the flow, assess the vendor role, evaluate risk, define constraints, test what is actually happening, and monitor drift over time.
+          </p>
+        </div>
 
         <div class="card-grid">
           <div class="card">
-            <h3>Use Cases</h3>
-            <p>Start with the business need, not the vendor name. The playbook should clarify what outcome is actually being pursued.</p>
+            <h3>Consistency</h3>
+            <p>Playbooks help similar inputs produce similar outcomes rather than different answers depending on who was asked.</p>
           </div>
           <div class="card">
-            <h3>Decision Flow</h3>
-            <p>Guide users through data involved, environment, vendor role, likely risk, and mitigation options.</p>
+            <h3>Clarity</h3>
+            <p>They identify what factors matter and in what sequence, so teams know what information must be gathered before a decision is made.</p>
           </div>
           <div class="card">
-            <h3>Cross-Functional Use</h3>
-            <p>Make it easier for legal, product, marketing, and engineering to move together around one structured model.</p>
+            <h3>Speed with structure</h3>
+            <p>The right playbook speeds decisions up because teams stop reinventing the logic every time a request arrives.</p>
           </div>
         </div>
 
-        <section class="content-section" id="playbooks-how">
-          <h2>How They Work</h2>
-          <p>Playbooks should create repeatability. Same categories of request should move through the same basic structure.</p>
+        <section class="content-section" id="playbooks-why">
+          <h2>Why policies aren’t enough</h2>
+          <p>
+            Policies define boundaries, but they do not answer how to evaluate a specific tool, how to assess a concrete scenario, or how to move from idea to implementation. That gap is where inconsistency enters. Playbooks close it by turning abstract rules into repeatable decision pathways.
+          </p>
         </section>
 
-        <section class="content-section" id="playbooks-marketing">
-          <h2>Marketing Requests</h2>
-          <p>Campaign measurement, attribution, vendor pixels, audience targeting, and consent-sensitive uses should be handled here.</p>
+        <section class="content-section" id="playbooks-flow">
+          <h2>Decision flow</h2>
+          <p>
+            Every tracking request should follow the same basic sequence. Start with the use case, not the tool. Then identify the data involved, analyze the environment, map where the data goes, and evaluate the vendor role. Only after that should teams ask whether the request is allowed, what level of risk it presents, and what mitigation options exist.
+          </p>
+          <ul>
+            <li>Define what outcome the team is actually seeking.</li>
+            <li>Identify the specific data fields, not vague categories.</li>
+            <li>Analyze whether the environment is public, pre-login, or authenticated.</li>
+            <li>Map the destinations, including downstream systems and integrations.</li>
+            <li>Assess whether the vendor acts like a processor, service provider, or independent third party.</li>
+          </ul>
         </section>
 
-        <section class="content-section" id="playbooks-product">
-          <h2>Product Requests</h2>
-          <p>Product analytics, feature usage monitoring, onboarding flows, and experimentation should be framed within the same logic.</p>
+        <section class="content-section" id="playbooks-risk">
+          <h2>Risk evaluation</h2>
+          <p>
+            The wrong question is “is this compliant?” The better question is where this sits on the risk spectrum and what would move it lower. Often several versions of a use case are possible. What matters is not whether the business goal exists, but whether the implementation is proportionate, necessary, and aligned with the organization’s rules.
+          </p>
         </section>
 
-        <section class="content-section" id="playbooks-engineering">
-          <h2>Engineering Requests</h2>
-          <p>Engineering should get concrete implementation guidance, not vague instructions to “be careful.”</p>
+        <section class="content-section" id="playbooks-implementation">
+          <h2>Implementation requirements</h2>
+          <p>
+            A playbook should produce concrete instructions for engineering. “Use cautiously” is not an implementation requirement. Teams need to know what data may be included, what must be excluded, where the tool may run, where it may not run, and what configuration choices are required before launch.
+          </p>
+        </section>
+
+        <section class="content-section" id="playbooks-monitoring">
+          <h2>Testing and monitoring</h2>
+          <p>
+            Decisions do not end when the tool goes live. Teams should verify the actual behavior before launch, then review periodically for drift as new features, new integrations, and updated defaults change what the system is doing over time.
+          </p>
+
+          <div class="tab-strip">
+            <button class="demo-tab active" data-target="demo-a">Review</button>
+            <button class="demo-tab" data-target="demo-b">Implement</button>
+            <button class="demo-tab" data-target="demo-c">Validate</button>
+          </div>
+
+          <div class="code-box demo-panel active" id="demo-a">
+1. Define the use case<br>
+2. Identify the data<br>
+3. Analyze the context<br>
+4. Map the destinations<br>
+5. Evaluate the vendor role
+          </div>
+          <div class="code-box demo-panel" id="demo-b" style="display:none;">
+6. Apply policy constraints<br>
+7. Position risk on the spectrum<br>
+8. Define mitigation options<br>
+9. Give engineering specific implementation requirements
+          </div>
+          <div class="code-box demo-panel" id="demo-c" style="display:none;">
+10. Test what is actually transmitted<br>
+11. Monitor for new fields and new flows<br>
+12. Document the reasoning and resulting configuration
+          </div>
         </section>
       </div>
 
+      <!-- CONTRACTS -->
       <div class="page" id="page-contracts">
         <h1 class="page-title">Contract Templates</h1>
         <div class="divider"></div>
 
         <p class="page-intro">
-          Contract templates should support the framework, not replace the analysis. They help align vendor relationships with the actual data flow and approved use case.
+          Contract templates are the relationship layer. They matter, but they should not be confused with control over a data flow. A good contract can allocate responsibility, define permitted use, and establish safeguards. It cannot decide whether data should have been collected or shared that way in the first place.
         </p>
+
+        <div class="hero-note">
+          <p>
+            The most common contract mistake is substituting paper for analysis. Teams stop asking whether the data should be shared and start asking only whether a BAA, DPA, or other agreement is in place. That posture is backwards. The use case, the data, and the risk come first. The contract should reflect those decisions, not replace them.
+          </p>
+        </div>
 
         <div class="card-grid">
           <div class="card">
-            <h3>Purpose</h3>
-            <p>Clarify what contracts do and do not solve inside a tracking or privacy program.</p>
+            <h3>Contracts govern relationships</h3>
+            <p>They allocate responsibility, define permitted use, and establish safeguards at the relationship level.</p>
           </div>
           <div class="card">
-            <h3>Vendor Logic</h3>
-            <p>Help teams map vendor roles, permitted uses, restrictions, and downstream sharing boundaries.</p>
+            <h3>They do not govern implementation</h3>
+            <p>Contracts do not limit what your systems collect, transmit, or configure by default.</p>
           </div>
           <div class="card">
-            <h3>Fallback Language</h3>
-            <p>Give users language that helps control risk when vendor paper is broad or implementation details are still moving.</p>
+            <h3>Templates should force better thinking</h3>
+            <p>The best templates make teams answer what data is shared, why it is shared, what is necessary, and what the vendor may not do.</p>
           </div>
         </div>
 
-        <section class="content-section" id="contracts-purpose">
-          <h2>Purpose</h2>
-          <p>Contracts govern relationships. They do not independently determine whether data should flow the way a team proposes.</p>
+        <section class="content-section" id="contracts-why">
+          <h2>The contract comfort problem</h2>
+          <p>
+            When data leaves a company, the instinctive question is often “do we have a contract in place?” If the answer is yes, teams relax. But that relief is often misplaced. Contracts control obligations, expectations, and liability. They do not control what the system actually sends.
+          </p>
         </section>
 
-        <section class="content-section" id="contracts-baa">
-          <h2>BAA / DPA Logic</h2>
-          <p>Users should understand when a BAA or DPA matters and when invoking one is not enough.</p>
+        <section class="content-section" id="contracts-types">
+          <h2>Contract types</h2>
+          <p>
+            Different contract forms serve different functions. BAAs allow vendors to handle PHI for defined purposes but do not justify unnecessary sharing. DPAs restrict vendor use after data is received but do not evaluate whether it should have been sent. Terms of service often operate at platform scale, not your specific risk posture. MSAs govern the relationship broadly, while SOWs often fail to define data boundaries with enough precision.
+          </p>
         </section>
 
-        <section class="content-section" id="contracts-vendors">
-          <h2>Vendor Boundaries</h2>
-          <p>This section should clarify secondary use, retention, aggregation, downstream vendors, and implementation assumptions.</p>
+        <section class="content-section" id="contracts-gap">
+          <h2>The gap between paper and flow</h2>
+          <p>
+            Contracts assume that good decisions have already been made: that the data is appropriate, necessary, and understood. In real implementations, those assumptions often fail. Overcollection, oversharing, and weak visibility into actual flows are what create the gap between the signed document and reality.
+          </p>
         </section>
 
-        <section class="content-section" id="contracts-fallbacks">
-          <h2>Fallback Clauses</h2>
-          <p>Fallback language should help users narrow scope, preserve control, and align the paper with actual operations.</p>
+        <section class="content-section" id="contracts-framework">
+          <h2>The Pixelwise contract framework</h2>
+          <p>
+            Strong templates should force teams to answer specific operational questions: what data is being shared, why it is being shared, whether less data could achieve the goal, what the vendor may and may not do, how the data is protected, where it goes next, how long it is retained, and what happens if something fails.
+          </p>
+          <ul>
+            <li>Specific fields matter more than broad labels.</li>
+            <li>Permitted uses should tie back to defined purposes.</li>
+            <li>Restrictions on secondary use should be explicit.</li>
+            <li>Deletion, retention, subcontractors, and downstream sharing should not be left vague.</li>
+          </ul>
+        </section>
+
+        <section class="content-section" id="contracts-sequence">
+          <h2>The correct sequence</h2>
+          <p>
+            The right order is: define the use case, evaluate the data, assess risk and necessity, decide how to implement, and only then structure the contract. That sequencing keeps contracts aligned with real decisions instead of being used as a substitute for them.
+          </p>
         </section>
       </div>
 
+      <!-- RISK -->
       <div class="page" id="page-risk">
         <h1 class="page-title">Risk Spectrums</h1>
         <div class="divider"></div>
 
         <p class="page-intro">
-          Risk spectrums give users a more useful way to evaluate tracking and privacy decisions than simple yes/no answers. They show where something sits and what moves it higher or lower.
+          Risk spectrums are the judgment layer. They replace brittle, binary approval logic with a structured way to position a use case, explain why it sits there, and identify what changes would move it toward lower risk.
         </p>
+
+        <div class="hero-note">
+          <p>
+            Most organizations ask whether something is compliant. That question sounds reasonable, but it produces inconsistent outcomes in a world where most real implementations sit between clearly acceptable and clearly prohibited. The more useful question is where the implementation falls on a spectrum and how it could improve.
+          </p>
+        </div>
 
         <div class="card-grid">
           <div class="card">
-            <h3>Lower Risk</h3>
-            <p>Minimal data, strong contextual fit, tight controls, and limited third-party exposure.</p>
+            <h3>Lower risk</h3>
+            <p>Minimal data, no meaningful sensitive context, strong alignment with user expectations, and limited external sharing.</p>
           </div>
           <div class="card">
-            <h3>Managed / Gray Zone</h3>
-            <p>Practical use cases that may be acceptable with clear boundaries, minimization, and mitigation.</p>
+            <h3>Managed / gray zone</h3>
+            <p>Meaningful data or contextual sensitivity exists, but risk can often be reduced through configuration and tighter controls.</p>
           </div>
           <div class="card">
-            <h3>High Risk</h3>
-            <p>Context-rich or identifiable data flows, weak alignment with expectations, and heavy external sharing.</p>
+            <h3>High risk / misaligned</h3>
+            <p>Identifiable or context-rich data is sent to third parties in ways that are difficult to justify or poorly aligned with purpose.</p>
           </div>
         </div>
 
         <section class="content-section" id="risk-why">
-          <h2>Why Spectrums</h2>
-          <p>Most real-world uses do not sit at an obvious yes or no. A spectrum helps teams see tradeoffs more honestly.</p>
+          <h2>Why binary thinking fails</h2>
+          <p>
+            Binary decisions make non-binary problems harder. They push risky implementations through when they seem “probably fine,” and they block useful work when the answer is not obviously safe. A spectrum gives teams a shared language for nuance.
+          </p>
         </section>
 
-        <section class="content-section" id="risk-low">
-          <h2>Lower Risk</h2>
-          <p>This section should show what tends to place a use case in a more comfortable zone.</p>
+        <section class="content-section" id="risk-spectrum">
+          <h2>The Pixelwise spectrum</h2>
+          <p>
+            The framework should distinguish clearly permissible uses, permissible uses with controls, gray-zone scenarios, high-risk implementations, and clearly misaligned uses that require redesign or rejection. That structure helps teams talk about risk position instead of pretending every decision is a simple pass or fail.
+          </p>
         </section>
 
-        <section class="content-section" id="risk-mid">
-          <h2>Managed / Gray Zone</h2>
-          <p>This is where many practical business cases sit. The framework should help users explain why and what controls matter.</p>
+        <section class="content-section" id="risk-drivers">
+          <h2>What drives risk</h2>
+          <p>
+            Risk is shaped by a combination of data sensitivity, context, destination, vendor behavior, and necessity. The most important factor is often not the field alone, but what that data reveals in context. Public pages can sit lower. Pre-login flows can elevate. Authenticated environments usually raise the baseline significantly. Internal destinations generally provide more control than third-party platforms, and necessity remains one of the most underused questions in most organizations.
+          </p>
         </section>
 
-        <section class="content-section" id="risk-high">
-          <h2>High Risk</h2>
-          <p>High-risk uses should be recognizable quickly so teams can redesign, tighten, or escalate earlier.</p>
+        <section class="content-section" id="risk-shifting">
+          <h2>How to move lower</h2>
+          <p>
+            Risk is not fixed. Teams can shift an implementation by reducing identifiers, limiting fields, changing configuration, narrowing environments, routing data through more controlled systems, or keeping more of the data internal. The point is not to avoid every use case. It is to make the implementation intentional.
+          </p>
+        </section>
+
+        <section class="content-section" id="risk-mature">
+          <h2>What a mature program looks like</h2>
+          <p>
+            Mature programs recognize that most decisions are not binary, align on thresholds, use controls to move implementations toward lower risk, and document the reasoning consistently. They do not eliminate risk. They make it understandable, manageable, and explainable.
+          </p>
         </section>
       </div>
 
     </div>
   </main>
 
-  <!-- RIGHT PANEL -->
   <aside class="right">
     <div class="right-inner">
-      <h4>AI Tools</h4>
-      <button class="tool" id="copyMarkdownBtn">Copy as Markdown</button>
-      <a class="tool" id="askChatGPTBtn" href="#" target="_blank" rel="noopener noreferrer">Ask ChatGPT</a>
-      <button class="tool" id="askClaudeBtn">Ask Claude</button>
-      <button class="tool" id="askNotebookBtn">Ask NotebookLM</button>
+      <div class="right-block video-block" style="display:none;">
+        <h4>Video</h4>
+        <button class="tool">Watch walkthrough</button>
+      </div>
+
+      <div class="right-block audio-block" style="display:none;">
+        <h4>Audio</h4>
+        <button class="tool">Play companion audio</button>
+      </div>
+
+      <div class="right-block">
+        <h4>AI Tools</h4>
+        <button class="tool" id="copyMarkdownBtn">Copy as Markdown</button>
+        <a class="tool" id="askChatGPTBtn" href="#" target="_blank" rel="noopener noreferrer">Ask ChatGPT</a>
+        <button class="tool" id="askClaudeBtn">Ask Claude</button>
+        <button class="tool" id="askNotebookBtn">Ask NotebookLM</button>
+        <div class="empty-note" style="margin-top:10px;">
+          Video and audio can sit above this section when those assets are available for the selected module.
+        </div>
+      </div>
     </div>
   </aside>
 
@@ -661,10 +898,10 @@ const contentArea = document.getElementById('contentArea');
 
 function frameworkPrompt(framework) {
   const prompts = {
-    policies: `Help me apply the Pixelwise Policies framework. Summarize the purpose of the policy layer, identify the core rules that should govern the use case, and draft a concise internal recommendation for legal, marketing, product, and engineering.`,
-    playbooks: `Help me apply the Pixelwise Playbooks framework. Walk through the use case, the likely data involved, the relevant environment, the vendor role, the risk position, and the strongest mitigation options.`,
-    contracts: `Help me apply the Pixelwise Contract Templates framework. Explain what contract logic matters here, what the vendor should and should not be allowed to do, and what fallback language or restrictions I should consider.`,
-    risk: `Help me apply the Pixelwise Risk Spectrums framework. Place the use case on a practical risk spectrum, explain what factors are driving the position, and identify how the implementation could move toward lower risk.`
+    policies: `Help me apply the Pixelwise Policies framework. Summarize the relevant policy boundaries, identify what counts as tracking here, what data may be sensitive in context, where environment rules matter, and draft a concise internal recommendation for legal, marketing, product, and engineering.`,
+    playbooks: `Help me apply the Pixelwise Playbooks framework. Walk through the use case, the data involved, the environment, the destinations, the vendor role, the risk position, and the strongest mitigation options before implementation.`,
+    contracts: `Help me apply the Pixelwise Contract Templates framework. Explain what contract logic matters here, what the vendor should and should not be allowed to do, what data is actually necessary, and what restrictions or fallback language should be considered.`,
+    risk: `Help me apply the Pixelwise Risk Spectrums framework. Place the use case on a practical risk spectrum, explain what is driving the position, and identify what changes would move the implementation toward lower risk.`
   };
   return prompts[framework] || prompts.policies;
 }
@@ -701,11 +938,23 @@ frameworkTabs.forEach(tab => {
 document.querySelectorAll('.section-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
+    document.querySelectorAll('.section-link').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
     const href = this.getAttribute('href');
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  });
+});
+
+document.querySelectorAll('.demo-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    const section = this.closest('.content-section');
+    section.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    section.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
+    this.classList.add('active');
+    document.getElementById(this.dataset.target).style.display = 'block';
   });
 });
 
